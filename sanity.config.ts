@@ -11,6 +11,7 @@ const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production';
 export default defineConfig({
   name: 'lusso-media',
   title: 'Lusso Media — Content Studio',
+  basePath: '/studio',
 
   projectId,
   dataset,
