@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "lusso-media",
+      "runtimeExecutable": "/bin/bash",
+      "runtimeArgs": ["/tmp/lusso-start.sh"],
+      "port": 3000
+    }
+  ]
+}
