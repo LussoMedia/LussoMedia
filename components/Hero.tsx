@@ -50,9 +50,9 @@ export default function Hero() {
           {...fadeUp(0.1)}
           className="font-[family-name:var(--font-space-grotesk)] text-5xl md:text-7xl font-bold text-white mb-6 leading-[1.05]"
         >
-          Your Business Is Good.
+          We Turn Service-Based Businesses Into
           <br />
-          <span className="teal-gradient-text">Your Brand Should Show It.</span>
+          <span className="teal-gradient-text">The First Choice In Their Market.</span>
         </motion.h1>
 
         {/* Subheadline */}
