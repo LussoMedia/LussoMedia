@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
+import Image from 'next/image';
 import BookingButton from './BookingButton';
 
 const navLinks = [
@@ -41,12 +41,15 @@ export default function Nav() {
       >
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           {/* Logo */}
-          <a href="#hero" className="flex items-center gap-2 group">
-            <span
-              className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold tracking-tight text-white"
-            >
-              Lusso<span className="text-[#008080]">.</span>
-            </span>
+          <a href="#hero" className="flex items-center">
+            <Image
+              src="/images/logo.png"
+              alt="Lusso Media"
+              width={48}
+              height={48}
+              className="h-10 w-auto object-contain"
+              priority
+            />
           </a>
 
           {/* Desktop nav */}
@@ -111,9 +114,13 @@ export default function Nav() {
           }`}
         >
           <div className="flex items-center justify-between px-6 h-16 border-b border-white/5">
-            <span className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold text-white">
-              Lusso<span className="text-[#008080]">.</span>
-            </span>
+            <Image
+              src="/images/logo.png"
+              alt="Lusso Media"
+              width={48}
+              height={48}
+              className="h-9 w-auto object-contain"
+            />
             <button
               onClick={() => setMenuOpen(false)}
               className="text-[#C5C6C7] hover:text-white transition-colors"

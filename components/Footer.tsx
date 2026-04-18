@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import BookingButton from './BookingButton';
 
 const navLinks = [
@@ -50,9 +51,13 @@ export default function Footer() {
           {/* Brand column */}
           <div className="lg:col-span-2">
             <a href="#hero" className="inline-block mb-5">
-              <span className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-white">
-                Lusso<span className="text-[#008080]">.</span>
-              </span>
+              <Image
+                src="/images/logo.png"
+                alt="Lusso Media"
+                width={56}
+                height={56}
+                className="h-12 w-auto object-contain"
+              />
             </a>
             <p className="text-[#888] text-sm leading-relaxed max-w-sm mb-6">
               A done-for-you content and ad partnership for service businesses serious about growth.
