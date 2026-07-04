@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, DM_Sans } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -100,6 +101,7 @@ Cal.ns["45min"]("ui", { hideEventTypeDetails: false, layout: "month_view" });
       </head>
       <body className="min-h-screen bg-[#0D0D0D] text-[#F0F0F0] antialiased">
         {children}
+        <Analytics />
       </body>
     </html>
   );
