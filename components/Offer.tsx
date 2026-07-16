@@ -1,15 +1,15 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import BookingButton from './BookingButton';
 
 const deliverables = [
   'Monthly strategy call + market research on your business, niche, and local competition',
   'One shoot day per month — we come to you',
   '8–12 professionally edited videos monthly',
-  'Full social posting + management across Facebook, Instagram, TikTok, YouTube Shorts, and Reels',
+  'Full social posting + management across all Social Platforms',
   'Full ad funnel: setup, copy, tracking, and retargeting',
-  'Ad campaign management — client provides $30/day minimum ad spend',
+  'Ad campaign management',
   'Monthly performance report + next month\'s strategic roadmap',
 ];
 
@@ -33,7 +33,7 @@ export default function Offer() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Copy */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
@@ -46,15 +46,15 @@ export default function Offer() {
               Full Execution.
             </h2>
             <p className="text-[#C5C6C7] text-lg leading-relaxed mb-8">
-              The Strategic Content Partnership gives you a complete content and ad operation —
-              without hiring a team. We embed in your business, learn your brand, and run everything.
+              The Strategic Content Partnership embeds directly into your business to run your
+              content and ad systems end-to-end — replacing the need for an in-house team while
+              maintaining consistent, strategic execution.
             </p>
 
             {/* Callout */}
             <div className="rounded-xl border border-[#008080]/30 bg-[#008080]/8 p-6 mb-8">
               <p className="text-white font-[family-name:var(--font-space-grotesk)] text-base font-semibold leading-snug">
-                "For the cost of one junior marketing hire, you get a full content and ad operation
-                already running."
+                Everything required to generate attention, trust, and inbound demand — handled for you.
               </p>
             </div>
 
@@ -74,10 +74,10 @@ export default function Offer() {
             <div className="mt-8">
               <BookingButton label="Start the Conversation" variant="primary" />
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Right: Deliverables checklist */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
@@ -88,7 +88,7 @@ export default function Offer() {
               Everything Included
             </h3>
 
-            <motion.ul
+            <m.ul
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
@@ -96,16 +96,16 @@ export default function Offer() {
               className="flex flex-col gap-4"
             >
               {deliverables.map((item, i) => (
-                <motion.li key={i} variants={itemVariants} className="flex items-start gap-3">
+                <m.li key={i} variants={itemVariants} className="flex items-start gap-3">
                   <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#008080]/15 border border-[#008080]/40 flex items-center justify-center mt-0.5">
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                       <path d="M2 5l2 2 4-4" stroke="#008080" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
                   <span className="text-[#C5C6C7] text-sm leading-relaxed">{item}</span>
-                </motion.li>
+                </m.li>
               ))}
-            </motion.ul>
+            </m.ul>
 
             {/* Value strip */}
             <div className="mt-8 pt-6 border-t border-white/5">
@@ -121,7 +121,7 @@ export default function Offer() {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 const steps = [
   {
@@ -31,7 +31,7 @@ export default function HowItWorks() {
     <section id="how-it-works" className="section-pad bg-[#0D0D0D]">
       <div className="max-w-7xl mx-auto px-6">
         {/* Heading */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
@@ -43,7 +43,7 @@ export default function HowItWorks() {
             How the Partnership Works
           </h2>
           <div className="teal-divider mx-auto mt-6" />
-        </motion.div>
+        </m.div>
 
         {/* Steps */}
         <div className="relative">
@@ -52,7 +52,7 @@ export default function HowItWorks() {
 
           <div className="flex flex-col gap-16">
             {steps.map((step, i) => (
-              <motion.div
+              <m.div
                 key={i}
                 initial={{ opacity: 0, y: 32 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -91,7 +91,7 @@ export default function HowItWorks() {
                     <p className="text-[#888] text-sm mt-2">{step.detail}</p>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>

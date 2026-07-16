@@ -1,17 +1,21 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import Image from 'next/image';
 import { urlFor } from '@/lib/sanity';
 import type { SanityClientLogo } from '@/types/sanity';
 
 const fallbackClients = [
-  'Bowlify',
-  'Smart Air LV',
-  'Red Rock RE',
   '777 Korean Restaurant',
-  'Summit Roofing',
-  'Desert Fit Co.',
+  'Clarity Unbound',
+  'Ebbi in Kanab',
+  'Full Curl Landscaping',
+  'Hanshew Flight Instruction',
+  'Kims Orthodontics',
+  'Mas Que Pilates',
+  'SmartAirLV',
+  'Bowlify SuperFoods',
+  'Awaken Protocol LLC',
 ];
 
 interface Props {
@@ -28,7 +32,7 @@ export default function ClientBar({ clients }: Props) {
   return (
     <section className="py-16 border-y border-white/5 bg-[#111111] overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 mb-10">
-        <motion.p
+        <m.p
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -36,7 +40,7 @@ export default function ClientBar({ clients }: Props) {
           className="text-center text-sm uppercase tracking-[0.2em] text-[#888]"
         >
           Trusted by Growing Businesses
-        </motion.p>
+        </m.p>
       </div>
 
       <div className="marquee-container relative overflow-hidden">

@@ -1,18 +1,18 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import Image from 'next/image';
 import { urlFor } from '@/lib/sanity';
 import type { SanityFounder } from '@/types/sanity';
 
 const defaultStats = [
-  { value: '15+', label: 'Clients Served' },
-  { value: '200+', label: 'Videos Produced' },
-  { value: '12+', label: 'Months of Consistent Execution' },
+  { value: '500+', label: 'Clients Served' },
+  { value: '2,000+', label: 'Videos Produced' },
+  { value: '24+', label: 'Months of Execution' },
 ];
 
 const defaultBio = [
-  "Lusso Media was built in Southern Utah by Pete — a video producer and brand strategist who spent years watching local businesses get outpaced online by brands with a fraction of their real-world reputation.",
+  "Lusso Media was built in Southern Utah by Peter — a video producer and brand strategist who spent years watching local businesses get outpaced online by brands with a fraction of their real-world reputation.",
   "So he built an agency designed specifically for them. One that shows up to your location, learns your business, and runs your content and ads like it's their own. No bloated agency overhead. No junior staff running your brand. Just a lean, fast-moving team that treats your growth like it's personal — because it is.",
   "We've worked with restaurants, contractors, real estate teams, fitness studios, and service professionals across the US. The approach is the same every time: strategy first, execution always.",
 ];
@@ -31,7 +31,7 @@ export default function Founder({ founder }: Props) {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Image column */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -32 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }}
@@ -72,10 +72,10 @@ export default function Founder({ founder }: Props) {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Content column */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 32 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }}
@@ -96,7 +96,7 @@ export default function Founder({ founder }: Props) {
 
             <div className="grid grid-cols-3 gap-6">
               {stats.map((stat, i) => (
-                <motion.div
+                <m.div
                   key={i}
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -106,10 +106,10 @@ export default function Founder({ founder }: Props) {
                 >
                   <p className="font-[family-name:var(--font-space-grotesk)] text-3xl font-bold text-white mb-1">{stat.value}</p>
                   <p className="text-[#888] text-xs leading-snug">{stat.label}</p>
-                </motion.div>
+                </m.div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

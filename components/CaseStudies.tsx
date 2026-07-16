@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import Image from 'next/image';
 import { urlFor } from '@/lib/sanity';
 import type { SanityCaseStudy } from '@/types/sanity';
@@ -43,7 +43,7 @@ export default function CaseStudies({ caseStudies }: Props) {
   return (
     <section id="case-studies" className="section-pad bg-[#0D0D0D]">
       <div className="max-w-7xl mx-auto px-6">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
@@ -55,11 +55,11 @@ export default function CaseStudies({ caseStudies }: Props) {
             Real Businesses. Real Results.
           </h2>
           <div className="teal-divider mx-auto mt-6" />
-        </motion.div>
+        </m.div>
 
         <div className="grid md:grid-cols-2 gap-6">
           {items.map((cs, i) => (
-            <motion.div
+            <m.div
               key={cs._id}
               initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -119,7 +119,7 @@ export default function CaseStudies({ caseStudies }: Props) {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

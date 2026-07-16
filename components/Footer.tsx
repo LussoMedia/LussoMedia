@@ -12,7 +12,7 @@ const navLinks = [
 const socialLinks = [
   {
     name: 'Instagram',
-    href: 'https://instagram.com/illussomedia',
+    href: 'https://www.instagram.com/illussomedia/',
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -23,7 +23,7 @@ const socialLinks = [
   },
   {
     name: 'TikTok',
-    href: 'https://tiktok.com/@illussomedia',
+    href: 'https://www.tiktok.com/@illussomedia',
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
         <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.83a8.19 8.19 0 004.8 1.53V6.9a4.85 4.85 0 01-1.03-.21z" />
@@ -32,7 +32,7 @@ const socialLinks = [
   },
   {
     name: 'LinkedIn',
-    href: 'https://linkedin.com/company/illussomedia',
+    href: 'https://www.linkedin.com/company/lussomedia',
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
         <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
@@ -96,10 +96,10 @@ export default function Footer() {
             </p>
             <div className="flex flex-col gap-3 mb-8">
               <a
-                href="mailto:hello@illussomedia.com"
+                href="mailto:Admin@illussomedia.com"
                 className="text-[#888] text-sm hover:text-[#008080] transition-colors"
               >
-                hello@illussomedia.com
+                Admin@illussomedia.com
               </a>
               <a
                 href="https://illussomedia.com"

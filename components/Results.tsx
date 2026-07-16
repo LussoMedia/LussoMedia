@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import Image from 'next/image';
 import { urlFor } from '@/lib/sanity';
 import type { SanityTestimonial } from '@/types/sanity';
@@ -39,7 +39,7 @@ export default function Results({ testimonials }: Props) {
   return (
     <section id="results" className="section-pad bg-[#111111]">
       <div className="max-w-7xl mx-auto px-6">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
@@ -53,11 +53,11 @@ export default function Results({ testimonials }: Props) {
             Matches Your Business
           </h2>
           <div className="teal-divider mx-auto mt-6" />
-        </motion.div>
+        </m.div>
 
         <div className="grid md:grid-cols-3 gap-6">
           {items.map((t, i) => (
-            <motion.div
+            <m.div
               key={t._id}
               initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -99,7 +99,7 @@ export default function Results({ testimonials }: Props) {
                   <p className="text-[#888] text-xs">{t.business}</p>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

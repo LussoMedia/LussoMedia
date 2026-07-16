@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 const painPoints = [
   {
@@ -59,7 +59,7 @@ export default function Problem() {
     <section id="problem" className="section-pad bg-[#0D0D0D]">
       <div className="max-w-7xl mx-auto px-6">
         {/* Heading */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
@@ -71,10 +71,10 @@ export default function Problem() {
             You're Leaving Growth on the Table
           </h2>
           <div className="teal-divider mx-auto mt-6" />
-        </motion.div>
+        </m.div>
 
         {/* Cards */}
-        <motion.div
+        <m.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -82,7 +82,7 @@ export default function Problem() {
           className="grid md:grid-cols-3 gap-6"
         >
           {painPoints.map((point, i) => (
-            <motion.div
+            <m.div
               key={i}
               variants={cardVariants}
               className="card-hover bg-[#141414] rounded-xl p-8 flex flex-col gap-5"
@@ -94,9 +94,9 @@ export default function Problem() {
                 {point.heading}
               </h3>
               <p className="text-[#C5C6C7] text-sm leading-relaxed">{point.body}</p>
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

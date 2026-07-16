@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 
 const faqs = [
   {
@@ -61,7 +61,7 @@ function FAQItem({ faq, isOpen, onToggle }: { faq: typeof faqs[0]; isOpen: boole
 
       <AnimatePresence initial={false}>
         {isOpen && (
-          <motion.div
+          <m.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -71,7 +71,7 @@ function FAQItem({ faq, isOpen, onToggle }: { faq: typeof faqs[0]; isOpen: boole
             <p className="text-[#C5C6C7] leading-relaxed pb-6 pr-10 text-[15px]">
               {faq.answer}
             </p>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>
@@ -89,7 +89,7 @@ export default function FAQ() {
     <section id="faq" className="section-pad bg-[#0D0D0D]">
       <div className="max-w-3xl mx-auto px-6">
         {/* Heading */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
@@ -101,10 +101,10 @@ export default function FAQ() {
             Questions Worth Asking
           </h2>
           <div className="teal-divider mx-auto mt-6" />
-        </motion.div>
+        </m.div>
 
         {/* Accordion */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
@@ -119,7 +119,7 @@ export default function FAQ() {
               onToggle={() => toggle(i)}
             />
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

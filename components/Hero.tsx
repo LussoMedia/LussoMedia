@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import BookingButton from './BookingButton';
 
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -21,8 +21,8 @@ export default function Hero() {
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-[#0D0D0D]">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full bg-[#008080]/10 blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[300px] rounded-full bg-[#008080]/5 blur-[100px] pointer-events-none" />
+        <div className="hidden sm:block absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full bg-[#008080]/10 blur-[120px] pointer-events-none" />
+        <div className="hidden sm:block absolute bottom-0 left-0 w-[400px] h-[300px] rounded-full bg-[#008080]/5 blur-[100px] pointer-events-none" />
       </div>
 
       {/* Grid lines */}
@@ -37,35 +37,35 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-24 md:pt-0">
         {/* Badge */}
-        <motion.div
+        <m.div
           {...fadeUp(0)}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#008080]/30 bg-[#008080]/10 text-[#008080] text-sm font-medium mb-8"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-[#008080] animate-pulse" />
           Done-for-You Strategic Content Partnership
-        </motion.div>
+        </m.div>
 
         {/* Headline */}
-        <motion.h1
+        <m.h1
           {...fadeUp(0.1)}
           className="font-[family-name:var(--font-space-grotesk)] text-5xl md:text-7xl font-bold text-white mb-6 leading-[1.05]"
         >
           We Turn Service-Based Businesses Into
           <br />
           <span className="teal-gradient-text">The First Choice In Their Market.</span>
-        </motion.h1>
+        </m.h1>
 
         {/* Subheadline */}
-        <motion.p
+        <m.p
           {...fadeUp(0.2)}
           className="text-lg md:text-xl text-[#C5C6C7] max-w-2xl mx-auto mb-10 leading-relaxed"
         >
           Lusso Media is a done-for-you content and ad partnership for service businesses
           that are serious about growth. Strategy, production, and paid ads — all handled.
-        </motion.p>
+        </m.p>
 
         {/* CTAs */}
-        <motion.div
+        <m.div
           {...fadeUp(0.3)}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
@@ -79,17 +79,17 @@ export default function Hero() {
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </a>
-        </motion.div>
+        </m.div>
 
         {/* Trust indicators */}
-        <motion.div
+        <m.div
           {...fadeUp(0.45)}
-          className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10"
+          className="mt-16 mb-8 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10"
         >
           {[
-            { label: 'Local Businesses Served', value: '15+' },
-            { label: 'Videos Produced', value: '200+' },
-            { label: '3-Month Minimum', value: 'Real Results' },
+            { label: 'To booked-out schedules', value: 'From Empty' },
+            { label: 'To predictable leads', value: 'From Guessing' },
+            { label: 'To first choice', value: 'From Unknown' },
           ].map((stat) => (
             <div key={stat.label} className="flex flex-col items-center">
               <span className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-white">
@@ -98,11 +98,11 @@ export default function Hero() {
               <span className="text-sm text-[#C5C6C7] mt-1">{stat.label}</span>
             </div>
           ))}
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Scroll indicator */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.6 }}
@@ -110,7 +110,7 @@ export default function Hero() {
       >
         <span className="text-xs text-[#888] uppercase tracking-widest">Scroll</span>
         <div className="w-[1px] h-8 bg-gradient-to-b from-[#888] to-transparent" />
-      </motion.div>
+      </m.div>
     </section>
   );
 }

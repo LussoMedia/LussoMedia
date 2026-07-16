@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import BookingButton from './BookingButton';
 
 export default function FinalCTA() {
@@ -11,7 +11,7 @@ export default function FinalCTA() {
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         {/* Badge */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
@@ -20,10 +20,10 @@ export default function FinalCTA() {
         >
           <span className="w-1.5 h-1.5 rounded-full bg-[#008080] animate-pulse" />
           Free 45-Minute Strategy Call
-        </motion.div>
+        </m.div>
 
         {/* Heading */}
-        <motion.h2
+        <m.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
@@ -33,10 +33,10 @@ export default function FinalCTA() {
           Ready for Your Brand to
           <br />
           <span className="teal-gradient-text">Match Your Business?</span>
-        </motion.h2>
+        </m.h2>
 
         {/* Subhead */}
-        <motion.p
+        <m.p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
@@ -45,22 +45,22 @@ export default function FinalCTA() {
         >
           Book a free 45-minute strategy call. We'll audit your current brand presence and
           show you exactly what we'd build — and what it would do for your business.
-        </motion.p>
+        </m.p>
 
         {/* CTA */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="flex flex-col items-center gap-5"
         >
-          <BookingButton label="Book My Free Strategy Call" variant="primary" className="text-base px-10 py-4" />
-          <p className="text-[#888] text-sm">No pitch deck. No pressure. Just clarity.</p>
-        </motion.div>
+          <BookingButton label="Install Your System" variant="primary" className="text-base px-10 py-4" />
+          <p className="text-[#888] text-sm">A fully managed growth system for businesses ready for consistent demand.</p>
+        </m.div>
 
         {/* Trust strip */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -77,7 +77,7 @@ export default function FinalCTA() {
               <span className="text-[#C5C6C7] text-sm">{item.text}</span>
             </div>
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );
