@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, DM_Sans } from "next/font/google";
 import Script from "next/script";
 import MotionProvider from "@/components/MotionProvider";
+import Analytics, { AnalyticsNoscript } from "@/components/Analytics";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -16,45 +17,48 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
+const SITE_URL = "https://illussomedia.com";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://lusso-media.vercel.app"),
-  title: "Lusso Media — Done-for-You Content & Ad Partnership",
+  metadataBase: new URL(SITE_URL),
+  title: "Lusso Media — The Local Dominance System for Home-Service Contractors",
   description:
-    "Lusso Media gives local service businesses a full content and ad operation — strategy, production, and paid ads — without the overhead of a hire. Based in Southern Utah, serving businesses nationwide.",
+    "The Lusso Local Dominance System installs and operates the offer, website, content, advertising, reputation, and tracking infrastructure established home-service contractors need to become the first choice in their local market.",
   keywords: [
-    "content marketing agency",
-    "done for you social media",
-    "local business marketing",
-    "video production agency",
-    "Southern Utah marketing",
-    "paid ads management",
-    "strategic content partnership",
+    "home service marketing",
+    "contractor lead generation",
+    "local dominance system",
+    "HVAC marketing",
+    "plumbing marketing",
+    "roofing marketing",
+    "landscaping marketing",
+    "contractor customer acquisition",
   ],
   authors: [{ name: "Lusso Media" }],
   creator: "Lusso Media",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://lusso-media.vercel.app",
-    title: "Lusso Media — Done-for-You Content & Ad Partnership",
+    url: SITE_URL,
+    title: "Lusso Media — The Local Dominance System for Home-Service Contractors",
     description:
-      "Strategy, production, and paid ads — handled. For local service businesses serious about growth.",
+      "A done-for-you customer acquisition system that helps established home-service contractors become the first choice in their local market.",
     siteName: "Lusso Media",
     images: [
       {
-        url: "https://lusso-media.vercel.app/opengraph-image",
+        url: `${SITE_URL}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: "Lusso Media — Done-for-You Content & Ad Partnership",
+        alt: "Lusso Media — The Local Dominance System",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lusso Media — Done-for-You Content & Ad Partnership",
+    title: "Lusso Media — The Local Dominance System for Home-Service Contractors",
     description:
-      "Strategy, production, and paid ads — handled. For local service businesses serious about growth.",
-    images: ["https://lusso-media.vercel.app/opengraph-image"],
+      "A done-for-you customer acquisition system that helps established home-service contractors become the first choice in their local market.",
+    images: [`${SITE_URL}/opengraph-image`],
   },
   robots: {
     index: true,
@@ -73,34 +77,7 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${dmSans.variable}`}
     >
       <head>
-        {/* Google Tag Manager */}
-        <Script
-          id="gtm-script"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GT-NM2CJ7SK');`,
-          }}
-        />
-        {/* Google Analytics 4 */}
-        <Script
-          id="ga4-script"
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-FV6RWN2F88"
-        />
-        <Script
-          id="ga4-config"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-FV6RWN2F88');`,
-          }}
-        />
+        <Analytics />
         <Script
           id="cal-embed"
           strategy="afterInteractive"
@@ -138,15 +115,7 @@ Cal.ns["45min"]("ui", { hideEventTypeDetails: false, layout: "month_view" });
         />
       </head>
       <body className="min-h-screen bg-[#0D0D0D] text-[#F0F0F0] antialiased">
-        {/* GTM noscript fallback */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GT-NM2CJ7SK"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
+        <AnalyticsNoscript />
         <MotionProvider>{children}</MotionProvider>
       </body>
     </html>

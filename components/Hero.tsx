@@ -1,7 +1,10 @@
 'use client';
 
 import { m } from 'framer-motion';
-import BookingButton from './BookingButton';
+import Link from 'next/link';
+import { industries, industryQualifierLabel } from '@/lib/config/industries';
+import { primaryCTA, secondaryCTA } from '@/lib/config/navigation';
+import { trackEvent } from '@/lib/analytics';
 
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -36,13 +39,13 @@ export default function Hero() {
       />
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-24 md:pt-0">
-        {/* Badge */}
+        {/* Eyebrow */}
         <m.div
           {...fadeUp(0)}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#008080]/30 bg-[#008080]/10 text-[#008080] text-sm font-medium mb-8"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-[#008080] animate-pulse" />
-          Done-for-You Strategic Content Partnership
+          Built for established home-service contractors
         </m.div>
 
         {/* Headline */}
@@ -50,9 +53,7 @@ export default function Hero() {
           {...fadeUp(0.1)}
           className="font-[family-name:var(--font-space-grotesk)] text-5xl md:text-7xl font-bold text-white mb-6 leading-[1.05]"
         >
-          We Turn Service-Based Businesses Into
-          <br />
-          <span className="teal-gradient-text">The First Choice In Their Market.</span>
+          Become the <span className="teal-gradient-text">First Call</span> in Your Local Market.
         </m.h1>
 
         {/* Subheadline */}
@@ -60,8 +61,9 @@ export default function Hero() {
           {...fadeUp(0.2)}
           className="text-lg md:text-xl text-[#C5C6C7] max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          Lusso Media is a done-for-you content and ad partnership for service businesses
-          that are serious about growth. Strategy, production, and paid ads — all handled.
+          The Lusso Local Dominance System installs and operates the offer, website, content,
+          advertising, reputation, and tracking infrastructure established contractors need to
+          grow beyond referrals and become the first choice in their market.
         </m.p>
 
         {/* CTAs */}
@@ -69,36 +71,32 @@ export default function Hero() {
           {...fadeUp(0.3)}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <BookingButton label="Book a Free Strategy Call" variant="primary" className="text-base px-8 py-4" />
+          <Link
+            href={primaryCTA.href}
+            onClick={() => trackEvent('primary_cta_click', { location: 'hero' })}
+            className="booking-btn booking-btn--primary text-base px-8 py-4"
+          >
+            {primaryCTA.label}
+          </Link>
           <a
-            href="#case-studies"
+            href={secondaryCTA.href}
+            onClick={() => trackEvent('secondary_cta_click', { location: 'hero' })}
             className="booking-btn booking-btn--ghost text-base px-8 py-4 flex items-center gap-2"
           >
-            See Our Work
+            {secondaryCTA.label}
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </a>
         </m.div>
 
-        {/* Trust indicators */}
-        <m.div
-          {...fadeUp(0.45)}
-          className="mt-16 mb-8 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10"
+        {/* Qualification microcopy */}
+        <m.p
+          {...fadeUp(0.4)}
+          className="mt-8 text-sm text-[#888] tracking-wide"
         >
-          {[
-            { label: 'To booked-out schedules', value: 'From Empty' },
-            { label: 'To predictable leads', value: 'From Guessing' },
-            { label: 'To first choice', value: 'From Unknown' },
-          ].map((stat) => (
-            <div key={stat.label} className="flex flex-col items-center">
-              <span className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-white">
-                {stat.value}
-              </span>
-              <span className="text-sm text-[#C5C6C7] mt-1">{stat.label}</span>
-            </div>
-          ))}
-        </m.div>
+          {industries.map((i) => i.name).join(' • ')} • {industryQualifierLabel}
+        </m.p>
       </div>
 
       {/* Scroll indicator */}

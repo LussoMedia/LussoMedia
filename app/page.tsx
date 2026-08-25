@@ -1,33 +1,35 @@
 import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
-import ClientBar from '@/components/ClientBar';
-import Problem from '@/components/Problem';
-import Offer from '@/components/Offer';
-import HowItWorks from '@/components/HowItWorks';
-import Results from '@/components/Results';
+import ProofStrip from '@/components/ProofStrip';
+import ReferralCeiling from '@/components/ReferralCeiling';
+import FragmentedMarketing from '@/components/FragmentedMarketing';
+import DominanceSystemDiagram from '@/components/DominanceSystemDiagram';
+import FastWinTimeline from '@/components/FastWinTimeline';
 import CaseStudies from '@/components/CaseStudies';
+import IndustriesStrip from '@/components/IndustriesStrip';
+import SystemDeepDive from '@/components/SystemDeepDive';
+import NinetyDayRoadmap from '@/components/NinetyDayRoadmap';
+import TeamComparison from '@/components/TeamComparison';
+import BonusStack from '@/components/BonusStack';
+import GuaranteeSection from '@/components/GuaranteeSection';
+import QualificationSection from '@/components/QualificationSection';
 import Founder from '@/components/Founder';
 import FAQ from '@/components/FAQ';
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
-import {
-  getTestimonials,
-  getCaseStudies,
-  getFounder,
-  getClientLogos,
-} from '@/lib/queries';
+import { getFounder } from '@/lib/queries';
 
 // Revalidate every 60 seconds so Sanity content updates propagate quickly
 export const revalidate = 60;
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
+  '@type': 'ProfessionalService',
   name: 'Lusso Media',
   description:
-    'Done-for-you content and ad partnership for local service businesses. Strategy, production, and paid ads — all handled.',
+    'The Lusso Local Dominance System installs and operates the offer, website, content, advertising, reputation, and tracking infrastructure established home-service contractors need to become the first choice in their local market.',
   url: 'https://illussomedia.com',
-  email: 'hello@illussomedia.com',
+  email: 'admin@illussomedia.com',
   areaServed: 'United States',
   address: {
     '@type': 'PostalAddress',
@@ -37,24 +39,18 @@ const jsonLd = {
   sameAs: [
     'https://instagram.com/illussomedia',
     'https://tiktok.com/@illussomedia',
-    'https://linkedin.com/company/illussomedia',
+    'https://linkedin.com/company/lussomedia',
   ],
   offers: {
     '@type': 'Offer',
-    name: 'Strategic Content Partnership',
+    name: 'The Lusso Local Dominance System',
     description:
-      'Monthly strategy call, shoot day, 8-12 videos, full social management, ad funnel setup and management, and monthly performance reporting.',
+      'A done-for-you customer acquisition system that helps established home-service contractors become the first choice in their local market.',
   },
 };
 
 export default async function Home() {
-  // All fetches run in parallel; each returns null if Sanity isn't configured
-  const [testimonials, caseStudies, founder, clients] = await Promise.all([
-    getTestimonials(),
-    getCaseStudies(),
-    getFounder(),
-    getClientLogos(),
-  ]);
+  const founder = await getFounder();
 
   return (
     <>
@@ -65,12 +61,19 @@ export default async function Home() {
       <Nav />
       <main>
         <Hero />
-        <ClientBar clients={clients} />
-        <Problem />
-        <Offer />
-        <HowItWorks />
-        <Results testimonials={testimonials} />
-        <CaseStudies caseStudies={caseStudies} />
+        <ProofStrip />
+        <ReferralCeiling />
+        <FragmentedMarketing />
+        <DominanceSystemDiagram />
+        <FastWinTimeline />
+        <CaseStudies />
+        <IndustriesStrip />
+        <SystemDeepDive />
+        <NinetyDayRoadmap />
+        <TeamComparison />
+        <BonusStack />
+        <GuaranteeSection />
+        <QualificationSection />
         <Founder founder={founder} />
         <FAQ />
         <FinalCTA />

@@ -2,14 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import BookingButton from './BookingButton';
-
-const navLinks = [
-  { label: 'Home', href: '#hero' },
-  { label: 'What We Do', href: '#offer' },
-  { label: 'Our Work', href: '#case-studies' },
-  { label: 'About', href: '#founder' },
-];
+import Link from 'next/link';
+import { mainNavLinks, primaryCTA } from '@/lib/config/navigation';
+import { trackEvent } from '@/lib/analytics';
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -54,7 +49,7 @@ export default function Nav() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+            {mainNavLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
@@ -67,7 +62,13 @@ export default function Nav() {
 
           {/* Desktop CTA */}
           <div className="hidden md:block">
-            <BookingButton label="Book a Strategy Call" variant="primary" />
+            <Link
+              href={primaryCTA.href}
+              onClick={() => trackEvent('primary_cta_click', { location: 'nav' })}
+              className="booking-btn booking-btn--primary"
+            >
+              {primaryCTA.label}
+            </Link>
           </div>
 
           {/* Hamburger */}
@@ -133,7 +134,7 @@ export default function Nav() {
           </div>
 
           <nav className="flex flex-col gap-1 p-6 flex-1">
-            {navLinks.map((link) => (
+            {mainNavLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
@@ -146,11 +147,16 @@ export default function Nav() {
           </nav>
 
           <div className="p-6">
-            <BookingButton
-              label="Book a Strategy Call"
-              variant="primary"
-              className="w-full text-center"
-            />
+            <Link
+              href={primaryCTA.href}
+              onClick={() => {
+                trackEvent('primary_cta_click', { location: 'nav-mobile' });
+                setMenuOpen(false);
+              }}
+              className="booking-btn booking-btn--primary w-full text-center block"
+            >
+              {primaryCTA.label}
+            </Link>
           </div>
         </div>
       </div>

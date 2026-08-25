@@ -5,16 +5,19 @@ import Image from 'next/image';
 import { urlFor } from '@/lib/sanity';
 import type { SanityFounder } from '@/types/sanity';
 
+// NOTE: prior fallback content here included unverified vanity stats
+// ("500+ Clients Served," "2,000+ Videos Produced") — removed per Part 25.
+// Replace with real, verifiable figures once available.
 const defaultStats = [
-  { value: '500+', label: 'Clients Served' },
-  { value: '2,000+', label: 'Videos Produced' },
-  { value: '24+', label: 'Months of Execution' },
+  { value: 'Owner-Led', label: 'Direct access, not account managers' },
+  { value: 'Southern Utah', label: 'Based here, working nationwide' },
+  { value: 'Biweekly', label: 'Strategy cadence with every client' },
 ];
 
 const defaultBio = [
-  "Lusso Media was built in Southern Utah by Peter — a video producer and brand strategist who spent years watching local businesses get outpaced online by brands with a fraction of their real-world reputation.",
-  "So he built an agency designed specifically for them. One that shows up to your location, learns your business, and runs your content and ads like it's their own. No bloated agency overhead. No junior staff running your brand. Just a lean, fast-moving team that treats your growth like it's personal — because it is.",
-  "We've worked with restaurants, contractors, real estate teams, fitness studios, and service professionals across the US. The approach is the same every time: strategy first, execution always.",
+  "Lusso Media was built in Southern Utah by Peter, after years watching strong local contractors get outpaced online by competitors with a fraction of their real-world reputation.",
+  "The Local Dominance System exists because fragmented marketing — a video here, an ad there, a website nobody converts on — doesn't move the needle for an established operator. A connected system does.",
+  "We work directly with owner-operators who already do great work and are ready to fund a real customer-acquisition system, not another one-off marketing project.",
 ];
 
 interface Props {
@@ -27,7 +30,7 @@ export default function Founder({ founder }: Props) {
   const stats = (founder?.stats && founder.stats.length > 0) ? founder.stats : defaultStats;
 
   return (
-    <section id="founder" className="section-pad bg-[#111111]">
+    <section id="about" className="section-pad bg-[#111111]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Image column */}
@@ -83,7 +86,7 @@ export default function Founder({ founder }: Props) {
           >
             <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">About</p>
             <h2 className="font-[family-name:var(--font-space-grotesk)] text-4xl md:text-5xl font-bold text-white mb-6 leading-[1.05]">
-              Built by a Creator
+              A Growth Partner
               <br />
               Who Actually Shows Up.
             </h2>

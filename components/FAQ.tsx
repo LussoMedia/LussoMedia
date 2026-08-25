@@ -2,46 +2,15 @@
 
 import { useState } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
+import { faqs, FaqItem } from '@/lib/config/faqs';
 
-const faqs = [
-  {
-    question: "What's included in the partnership?",
-    answer:
-      "Everything you need to run a complete content and ad operation: a monthly strategy call with market research, one shoot day at your location, 8–12 professionally edited videos, full social posting and management across Facebook, Instagram, TikTok, YouTube Shorts, and Reels, a complete ad funnel with setup, copy, tracking, and retargeting, ad campaign management (you provide the ad spend), and a monthly performance report with your next month's roadmap.",
-  },
-  {
-    question: 'Why a 3-month minimum?',
-    answer:
-      "Month one is setup — we're learning your brand, building your content system, and launching the ad funnel. Month two is refinement — we see what's working and sharpen it. Month three is where momentum kicks in and results compound. A single month doesn't move the needle. A system does. We require three months because that's the minimum required to actually deliver on the promise.",
-  },
-  {
-    question: 'Do I need to be on camera?',
-    answer:
-      "Not necessarily. We build content strategies that work for your business, not just the owner. Some of our best-performing content is product shots, behind-the-scenes footage, and team-driven video. We'll tell you what works for your specific industry and market — and we'll make sure you're comfortable with whatever we build.",
-  },
-  {
-    question: 'What industries do you work with?',
-    answer:
-      "We work with established local service businesses: home services (HVAC, roofing, plumbing, landscaping), real estate, medical and wellness, fitness studios, restaurants, professional services, and similar. The common thread is that you do great work, your local reputation is strong, and your digital presence doesn't reflect that yet.",
-  },
-  {
-    question: "How is this different from a social media manager?",
-    answer:
-      "A social media manager handles posting. We handle strategy, production, ads, and reporting — end to end. That means we show up to shoot, we edit the content, we write the ad copy, we set up the funnel, we manage campaigns, and we report on results. You're not hiring a poster. You're getting a full marketing operation.",
-  },
-  {
-    question: 'What do I need to provide?',
-    answer:
-      "One shoot day per month and access to your business for context — walk us through what you do, introduce us to your team, show us the job site or space. We handle everything else. No equipment needed. No scripts to write. No posting to manage. Just show up once a month and run your business.",
-  },
-];
-
-function FAQItem({ faq, isOpen, onToggle }: { faq: typeof faqs[0]; isOpen: boolean; onToggle: () => void }) {
+function FAQItem({ faq, isOpen, onToggle }: { faq: FaqItem; isOpen: boolean; onToggle: () => void }) {
   return (
     <div className="border-b border-white/5 last:border-0">
       <button
         onClick={onToggle}
         className="w-full text-left py-6 flex items-start justify-between gap-6 group"
+        aria-expanded={isOpen}
       >
         <span className="font-[family-name:var(--font-space-grotesk)] text-base font-semibold text-white group-hover:text-[#008080] transition-colors leading-snug">
           {faq.question}
@@ -88,7 +57,6 @@ export default function FAQ() {
   return (
     <section id="faq" className="section-pad bg-[#0D0D0D]">
       <div className="max-w-3xl mx-auto px-6">
-        {/* Heading */}
         <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -103,7 +71,6 @@ export default function FAQ() {
           <div className="teal-divider mx-auto mt-6" />
         </m.div>
 
-        {/* Accordion */}
         <m.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -113,7 +80,7 @@ export default function FAQ() {
         >
           {faqs.map((faq, i) => (
             <FAQItem
-              key={i}
+              key={faq.question}
               faq={faq}
               isOpen={openIndex === i}
               onToggle={() => toggle(i)}

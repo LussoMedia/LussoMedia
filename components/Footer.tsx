@@ -1,13 +1,6 @@
 import Image from 'next/image';
-import BookingButton from './BookingButton';
-
-const navLinks = [
-  { label: 'Home', href: '#hero' },
-  { label: 'What We Do', href: '#offer' },
-  { label: 'Our Work', href: '#case-studies' },
-  { label: 'About', href: '#founder' },
-  { label: 'FAQ', href: '#faq' },
-];
+import Link from 'next/link';
+import { footerNavLinks, legalLinks, primaryCTA } from '@/lib/config/navigation';
 
 const socialLinks = [
   {
@@ -60,14 +53,16 @@ export default function Footer() {
               />
             </a>
             <p className="text-[#888] text-sm leading-relaxed max-w-sm mb-6">
-              A done-for-you content and ad partnership for service businesses serious about growth.
-              Strategy, production, and paid ads — all handled.
+              The Local Dominance System — done-for-you customer acquisition infrastructure for
+              established home-service contractors ready to become the first choice in their market.
             </p>
             <div className="flex items-center gap-1 mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-[#008080]" />
-              <span className="text-[#888] text-sm">Southern Utah — Serving Businesses Nationwide</span>
+              <span className="text-[#888] text-sm">Southern Utah — Serving Contractors Nationwide</span>
             </div>
-            <BookingButton label="Book a Free Strategy Call" variant="primary" />
+            <Link href={primaryCTA.href} className="booking-btn booking-btn--primary inline-block">
+              {primaryCTA.label}
+            </Link>
           </div>
 
           {/* Navigation */}
@@ -76,7 +71,7 @@ export default function Footer() {
               Navigate
             </p>
             <ul className="flex flex-col gap-3">
-              {navLinks.map((link) => (
+              {footerNavLinks.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
@@ -131,15 +126,18 @@ export default function Footer() {
       <div className="border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-[#555] text-xs">
-            &copy; 2025 Lusso Media. All rights reserved.
+            &copy; {new Date().getFullYear()} Lusso Media. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            <a href="#" className="text-[#555] text-xs hover:text-[#888] transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-[#555] text-xs hover:text-[#888] transition-colors">
-              Terms
-            </a>
+            {legalLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="text-[#555] text-xs hover:text-[#888] transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
