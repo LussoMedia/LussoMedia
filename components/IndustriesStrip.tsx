@@ -1,11 +1,8 @@
 'use client';
 
 import { m } from 'framer-motion';
+import Link from 'next/link';
 import { industries } from '@/lib/config/industries';
-
-// Dedicated vertical landing pages (/hvac, /plumbing, etc.) are a later
-// phase — anchors point back to the qualification section until those
-// routes exist. Swap href to `/${industry.slug}` once built.
 
 export default function IndustriesStrip() {
   return (
@@ -32,13 +29,13 @@ export default function IndustriesStrip() {
           className="flex flex-wrap items-center justify-center gap-3"
         >
           {industries.map((industry) => (
-            <a
+            <Link
               key={industry.slug}
-              href="#qualify"
+              href={`/${industry.slug}`}
               className="px-5 py-3 rounded-lg bg-[#141414] border border-white/10 text-[#C5C6C7] text-sm font-medium hover:border-[#008080]/50 hover:text-white transition-all duration-200"
             >
               {industry.name}
-            </a>
+            </Link>
           ))}
         </m.div>
 

@@ -1,6 +1,7 @@
 'use client';
 
 import { m } from 'framer-motion';
+import Link from 'next/link';
 import { caseStudies } from '@/lib/config/caseStudies';
 import { trackEvent } from '@/lib/analytics';
 
@@ -58,22 +59,22 @@ export default function CaseStudies() {
                 </div>
               </div>
 
-              <button
+              <Link
+                href={`/results/${cs.slug}`}
                 onClick={() => trackEvent('case_study_view', { client: cs.client })}
-                className="mt-auto pt-5 border-t border-white/5 flex items-center gap-2 text-[#008080] text-sm font-semibold text-left"
+                className="mt-auto pt-5 border-t border-white/5 flex items-center gap-2 text-[#008080] text-sm font-semibold"
               >
                 {cs.ctaLabel}
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </button>
+              </Link>
             </m.div>
           ))}
         </div>
 
         <p className="text-center text-[#666] text-xs max-w-2xl mx-auto mt-8">
-          Individual case-study pages with full breakdowns are in development. Results reflect a
-          partnership over time and are not guaranteed for every business.
+          Results reflect a partnership over time and are not guaranteed for every business.
         </p>
       </div>
     </section>
