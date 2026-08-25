@@ -6,12 +6,14 @@ import { routeApplication } from '@/lib/applicationRouting';
 import { trackEvent, captureUtms, getStoredUtms } from '@/lib/analytics';
 import { getStoredScoreLead } from '@/lib/leadStorage';
 import ProgressIndicator from '@/components/ProgressIndicator';
+import Honeypot from '@/components/Honeypot';
 import StepForm from './StepForm';
 import ApplicationResult from './ApplicationResult';
 
 export default function ApplicationFunnel() {
   const [stepIndex, setStepIndex] = useState(0);
   const [values, setValues] = useState<Record<string, string>>({});
+  const [honeypot, setHoneypot] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [started, setStarted] = useState(false);
 
@@ -52,11 +54,11 @@ export default function ApplicationFunnel() {
       trackEvent('application_complete', values);
       setSubmitted(true);
 
-      // Best-effort delivery to Notion via Zapier — never blocks the funnel.
+      // Best-effort delivery — never blocks the funnel.
       fetch('/api/leads/application', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ values, utm: getStoredUtms() }),
+        body: JSON.stringify({ values, utm: getStoredUtms(), companyFax: honeypot }),
       }).catch((err) => console.error('Application submission failed', err));
     } else {
       setStepIndex(stepIndex + 1);
@@ -78,6 +80,7 @@ export default function ApplicationFunnel() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center py-32">
+      <Honeypot value={honeypot} onChange={setHoneypot} />
       <ProgressIndicator step={stepIndex + 1} total={totalSteps} label="Application" />
       <StepForm
         key={step.id}

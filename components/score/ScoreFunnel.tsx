@@ -56,11 +56,14 @@ export default function ScoreFunnel() {
     trackEvent('dominance_score_lead_capture', { email: data.email, company: data.company });
     setStage('breakdown');
 
-    // Best-effort delivery to Notion via Zapier — never blocks the funnel.
+    // Best-effort delivery — never blocks the funnel. Sends raw `answers`
+    // rather than the client-computed `result`; the server recomputes the
+    // score itself so a tampered request can't fabricate a score.
+    const { companyFax, ...leadFields } = data;
     fetch('/api/leads/score', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...data, result, utm: getStoredUtms() }),
+      body: JSON.stringify({ ...leadFields, answers, companyFax, utm: getStoredUtms() }),
     }).catch((err) => console.error('Score lead submission failed', err));
   };
 

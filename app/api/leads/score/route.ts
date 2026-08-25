@@ -1,34 +1,52 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendLeadEmail } from '@/lib/email';
-import type { ScoreResult } from '@/lib/scoring';
+import { computeScore } from '@/lib/scoring';
+import { scoreRequestSchema } from '@/lib/validation';
+import { checkRateLimit, getClientKey } from '@/lib/rateLimit';
+import { stripControlChars } from '@/lib/sanitizeText';
 
-interface ScoreLeadPayload {
-  firstName: string;
-  company: string;
-  email: string;
-  phone?: string;
-  result: ScoreResult;
-  utm?: Record<string, string>;
-}
+const RATE_LIMIT = 5; // requests
+const RATE_WINDOW_MS = 60 * 60 * 1000; // per hour, per client
 
 export async function POST(req: NextRequest) {
-  let body: ScoreLeadPayload;
+  const clientKey = getClientKey(req);
+  const { allowed } = checkRateLimit(`score:${clientKey}`, RATE_LIMIT, RATE_WINDOW_MS);
+  if (!allowed) {
+    return NextResponse.json({ error: 'Too many requests. Please try again later.' }, { status: 429 });
+  }
+
+  let json: unknown;
   try {
-    body = await req.json();
+    json = await req.json();
   } catch {
     return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
   }
 
-  const { firstName, company, email, phone, result, utm } = body;
-
-  if (!firstName?.trim() || !company?.trim() || !email?.trim() || !result) {
-    return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+  const parsed = scoreRequestSchema.safeParse(json);
+  if (!parsed.success) {
+    return NextResponse.json({ error: 'Invalid submission' }, { status: 400 });
   }
 
-  const { sent } = await sendLeadEmail(`New Local Dominance Score Lead — ${company}`, [
-    { label: 'Name', value: `${firstName} — ${company}` },
-    { label: 'First Name', value: firstName },
-    { label: 'Company', value: company },
+  const { firstName, company, email, phone, answers, utm, companyFax } = parsed.data;
+
+  // Honeypot tripped — pretend success so the bot doesn't learn anything,
+  // but don't actually send an email.
+  if (companyFax) {
+    return NextResponse.json({ ok: true, sent: false });
+  }
+
+  // Recomputed server-side from raw answers rather than trusting a
+  // client-provided score, for the same reason application tier is
+  // recomputed server-side: a client can send anything in a JSON body.
+  const result = computeScore(answers);
+
+  const safeFirstName = stripControlChars(firstName);
+  const safeCompany = stripControlChars(company);
+
+  const { sent } = await sendLeadEmail(`New Local Dominance Score Lead — ${safeCompany}`, [
+    { label: 'Name', value: `${safeFirstName} — ${safeCompany}` },
+    { label: 'First Name', value: safeFirstName },
+    { label: 'Company', value: safeCompany },
     { label: 'Email', value: email },
     { label: 'Phone', value: phone || '' },
     { label: 'Overall Score', value: String(result.overall) },
@@ -37,9 +55,9 @@ export async function POST(req: NextRequest) {
     { label: 'Weakest Area', value: result.weakest },
     { label: 'Top 3 Growth Leaks', value: result.rankedWeakest.join(', ') },
     { label: 'Category Breakdown', value: result.categoryResults.map((c) => `${c.category}: ${c.score}`).join(' | ') },
-    { label: 'UTM Source', value: utm?.utm_source || '' },
-    { label: 'UTM Medium', value: utm?.utm_medium || '' },
-    { label: 'UTM Campaign', value: utm?.utm_campaign || '' },
+    { label: 'UTM Source', value: utm.utm_source || '' },
+    { label: 'UTM Medium', value: utm.utm_medium || '' },
+    { label: 'UTM Campaign', value: utm.utm_campaign || '' },
     { label: 'Submitted At', value: new Date().toISOString() },
   ]);
 

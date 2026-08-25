@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendLeadEmail } from '@/lib/email';
 import { routeApplication } from '@/lib/applicationRouting';
+import { applicationRequestSchema } from '@/lib/validation';
+import { checkRateLimit, getClientKey } from '@/lib/rateLimit';
+import { stripControlChars } from '@/lib/sanitizeText';
+
+const RATE_LIMIT = 5; // requests
+const RATE_WINDOW_MS = 60 * 60 * 1000; // per hour, per client
 
 const TIER_LABELS: Record<'A' | 'B' | 'C', string> = {
   A: 'A - Strong Fit',
@@ -9,7 +15,7 @@ const TIER_LABELS: Record<'A' | 'B' | 'C', string> = {
 };
 
 // The Notion "Local Dominance Applications" database's select options are
-// comma-free (see NOTION_SETUP.md). A few of the application's option
+// comma-free (see EMAIL_SETUP.md). A few of the application's option
 // labels (chosen for readability on the site) do contain commas — mapping
 // them here means what you copy from the email matches an existing Notion
 // dropdown option exactly, instead of creating a near-duplicate.
@@ -25,27 +31,41 @@ function sanitizeSelect(value: string): string {
 }
 
 export async function POST(req: NextRequest) {
-  let body: { values?: Record<string, string>; utm?: Record<string, string> };
+  const clientKey = getClientKey(req);
+  const { allowed } = checkRateLimit(`application:${clientKey}`, RATE_LIMIT, RATE_WINDOW_MS);
+  if (!allowed) {
+    return NextResponse.json({ error: 'Too many requests. Please try again later.' }, { status: 429 });
+  }
+
+  let json: unknown;
   try {
-    body = await req.json();
+    json = await req.json();
   } catch {
     return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
   }
 
-  const values = body.values ?? {};
-  const utm = body.utm ?? {};
+  const parsed = applicationRequestSchema.safeParse(json);
+  if (!parsed.success) {
+    return NextResponse.json({ error: 'Invalid submission' }, { status: 400 });
+  }
 
-  if (!values.companyName?.trim() || !values.email?.trim()) {
-    return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+  const { values, utm, companyFax } = parsed.data;
+
+  // Honeypot tripped — pretend success so the bot doesn't learn anything,
+  // but don't actually send an email or compute/expose a tier.
+  if (companyFax) {
+    return NextResponse.json({ ok: true, sent: false, tier: 'C' });
   }
 
   // Routing is recomputed server-side rather than trusting a client-sent
   // tier, so the email always reflects the same rules as the site.
   const { tier, reasons } = routeApplication(values);
 
-  const { sent } = await sendLeadEmail(`New Local Dominance Application (${TIER_LABELS[tier]}) — ${values.companyName}`, [
-    { label: 'Company', value: values.companyName },
-    { label: 'Contact Name', value: values.contactName || '' },
+  const safeCompanyName = stripControlChars(values.companyName);
+
+  const { sent } = await sendLeadEmail(`New Local Dominance Application (${TIER_LABELS[tier]}) — ${safeCompanyName}`, [
+    { label: 'Company', value: safeCompanyName },
+    { label: 'Contact Name', value: stripControlChars(values.contactName || '') },
     { label: 'Email', value: values.email },
     { label: 'Phone', value: values.phone || '' },
     { label: 'Website', value: values.website || '' },

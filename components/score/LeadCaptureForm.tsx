@@ -2,12 +2,14 @@
 
 import { useState, FormEvent } from 'react';
 import { m } from 'framer-motion';
+import Honeypot from '@/components/Honeypot';
 
 export interface LeadCaptureData {
   firstName: string;
   company: string;
   email: string;
   phone: string;
+  companyFax: string;
 }
 
 interface Props {
@@ -17,7 +19,8 @@ interface Props {
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function LeadCaptureForm({ onSubmit }: Props) {
-  const [data, setData] = useState<LeadCaptureData>({ firstName: '', company: '', email: '', phone: '' });
+  const [data, setData] = useState<Omit<LeadCaptureData, 'companyFax'>>({ firstName: '', company: '', email: '', phone: '' });
+  const [honeypot, setHoneypot] = useState('');
   const [errors, setErrors] = useState<Partial<Record<keyof LeadCaptureData, string>>>({});
   const [submitting, setSubmitting] = useState(false);
 
@@ -31,9 +34,7 @@ export default function LeadCaptureForm({ onSubmit }: Props) {
     if (Object.keys(nextErrors).length > 0) return;
 
     setSubmitting(true);
-    // No backend exists yet — see lib/leadStorage.ts. Wire a real submit
-    // (CRM/email/webhook) here before launch.
-    onSubmit(data);
+    onSubmit({ ...data, companyFax: honeypot });
   };
 
   return (
@@ -51,6 +52,8 @@ export default function LeadCaptureForm({ onSubmit }: Props) {
       <p className="text-[#888] text-sm text-center mb-8">
         Score by category, your top growth leaks, and immediate next steps.
       </p>
+
+      <Honeypot value={honeypot} onChange={setHoneypot} />
 
       <div className="flex flex-col gap-4">
         <div>
