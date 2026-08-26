@@ -1,6 +1,7 @@
 'use client';
 
 import { m } from 'framer-motion';
+import ScoreContextCTA from './ScoreContextCTA';
 
 const gotYouHere = ['Reputation', 'Referrals', 'Repeat customers', 'Word of mouth'];
 const getsYouNext = [
@@ -90,6 +91,15 @@ export default function ReferralCeiling() {
           Lusso doesn&rsquo;t replace referrals. We install the system that expands your
           reputation beyond the people who already know you.
         </m.p>
+
+        <div className="mt-14 pt-14 border-t border-white/5">
+          <ScoreContextCTA
+            eyebrow="Are Referrals Carrying Too Much of Your Growth?"
+            supporting="See how your current acquisition system compares across visibility, conversion, reputation, demand, lead handling, and measurement."
+            ctaLabel="See How You Stack Up Locally"
+            placement="referral_section"
+          />
+        </div>
       </div>
     </section>
   );

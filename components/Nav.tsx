@@ -3,12 +3,27 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { mainNavLinks, primaryCTA } from '@/lib/config/navigation';
+import { usePathname } from 'next/navigation';
+import { mainNavLinks, primaryCTA, scoreCTA } from '@/lib/config/navigation';
+import { industries } from '@/lib/config/industries';
 import { trackEvent } from '@/lib/analytics';
+import IndustriesDropdown from './nav/IndustriesDropdown';
+
+const industryPaths = industries.map((i) => `/${i.slug}`);
+
+function isActive(href: string, pathname: string): boolean {
+  if (href === '/') return pathname === '/';
+  if (href.startsWith('/#')) return false; // anchor links on the homepage — no distinct route to match
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
 
 export default function Nav() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [industriesOpen, setIndustriesOpen] = useState(false);
+
+  const industriesActive = industryPaths.some((p) => pathname === p || pathname.startsWith(`${p}/`));
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -25,6 +40,11 @@ export default function Nav() {
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
 
+  const closeMobile = () => {
+    setMenuOpen(false);
+    setIndustriesOpen(false);
+  };
+
   return (
     <>
       <header
@@ -35,29 +55,52 @@ export default function Nav() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          {/* Logo */}
-          <a href="#hero" className="flex items-center">
+          {/* Logo — always a real link to the homepage */}
+          <Link
+            href="/"
+            aria-label="Lusso Media — Local Dominance homepage"
+            onClick={() => trackEvent('logo_home_click', { placement: 'header' })}
+            className="flex items-center rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#008080] focus-visible:outline-offset-2"
+          >
             <Image
               src="/images/logo.png"
-              alt="Lusso Media"
+              alt=""
               width={48}
               height={48}
               className="h-10 w-auto object-contain"
               priority
             />
-          </a>
+          </Link>
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-8">
-            {mainNavLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-sm font-medium text-[#C5C6C7] hover:text-white transition-colors duration-150"
-              >
-                {link.label}
-              </a>
-            ))}
+            {mainNavLinks.map((link) => {
+              if ('industries' in link && link.industries) {
+                return <IndustriesDropdown key={link.label} active={industriesActive} />;
+              }
+              const active = isActive(link.href, pathname);
+              const isScore = 'isScore' in link && link.isScore;
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={() =>
+                    trackEvent(isScore ? 'dominance_score_cta_click' : 'nav_click', {
+                      nav_item: link.label,
+                      placement: 'desktop_nav',
+                      pathname,
+                      destination: link.href,
+                    })
+                  }
+                  className={`text-sm font-medium transition-colors duration-150 ${
+                    active ? 'text-white' : 'text-[#C5C6C7] hover:text-white'
+                  } ${isScore ? 'flex items-center gap-1.5' : ''}`}
+                >
+                  {isScore && <span className="w-1.5 h-1.5 rounded-full bg-[#008080]" />}
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Desktop CTA */}
@@ -105,25 +148,34 @@ export default function Nav() {
         {/* Backdrop */}
         <div
           className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-          onClick={() => setMenuOpen(false)}
+          onClick={closeMobile}
         />
 
         {/* Drawer */}
         <div
-          className={`absolute top-0 right-0 h-full w-4/5 max-w-sm bg-[#111111] border-l border-white/5 flex flex-col transition-transform duration-300 ${
+          className={`absolute top-0 right-0 h-full w-4/5 max-w-sm bg-[#111111] border-l border-white/5 flex flex-col overflow-y-auto transition-transform duration-300 ${
             menuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
-          <div className="flex items-center justify-between px-6 h-16 border-b border-white/5">
-            <Image
-              src="/images/logo.png"
-              alt="Lusso Media"
-              width={48}
-              height={48}
-              className="h-9 w-auto object-contain"
-            />
+          <div className="flex items-center justify-between px-6 h-16 border-b border-white/5 flex-shrink-0">
+            <Link
+              href="/"
+              aria-label="Lusso Media — Local Dominance homepage"
+              onClick={() => {
+                trackEvent('logo_home_click', { placement: 'mobile_menu' });
+                closeMobile();
+              }}
+            >
+              <Image
+                src="/images/logo.png"
+                alt=""
+                width={48}
+                height={48}
+                className="h-9 w-auto object-contain"
+              />
+            </Link>
             <button
-              onClick={() => setMenuOpen(false)}
+              onClick={closeMobile}
               className="text-[#C5C6C7] hover:text-white transition-colors"
               aria-label="Close menu"
             >
@@ -134,24 +186,78 @@ export default function Nav() {
           </div>
 
           <nav className="flex flex-col gap-1 p-6 flex-1">
-            {mainNavLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="py-4 text-lg font-medium text-[#C5C6C7] hover:text-white border-b border-white/5 transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
+            {mainNavLinks.map((link) => {
+              if ('industries' in link && link.industries) {
+                return (
+                  <div key={link.label} className="border-b border-white/5">
+                    <button
+                      onClick={() => setIndustriesOpen((v) => !v)}
+                      aria-expanded={industriesOpen}
+                      className={`w-full py-4 text-lg font-medium flex items-center justify-between transition-colors ${
+                        industriesActive ? 'text-white' : 'text-[#C5C6C7] hover:text-white'
+                      }`}
+                    >
+                      Industries
+                      <svg width="14" height="14" viewBox="0 0 12 12" fill="none" className={`transition-transform duration-200 ${industriesOpen ? 'rotate-180' : ''}`}>
+                        <path d="M2.5 4.5L6 8l3.5-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </button>
+                    {industriesOpen && (
+                      <div className="pb-4 flex flex-col gap-1">
+                        {industries.map((industry) => (
+                          <Link
+                            key={industry.slug}
+                            href={`/${industry.slug}`}
+                            onClick={() => {
+                              trackEvent('nav_click', { nav_item: industry.name, placement: 'mobile_menu', destination: `/${industry.slug}` });
+                              closeMobile();
+                            }}
+                            className="py-2.5 pl-4 text-base text-[#888] hover:text-white transition-colors"
+                          >
+                            {industry.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              const active = isActive(link.href, pathname);
+              const isScore = 'isScore' in link && link.isScore;
+
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => {
+                    trackEvent(isScore ? 'dominance_score_cta_click' : 'nav_click', {
+                      nav_item: link.label,
+                      placement: 'mobile_nav',
+                      pathname,
+                      destination: link.href,
+                    });
+                    closeMobile();
+                  }}
+                  className={`py-4 text-lg font-medium border-b border-white/5 transition-colors ${
+                    active ? 'text-white' : 'text-[#C5C6C7] hover:text-white'
+                  }`}
+                >
+                  {link.label}
+                  {isScore && (
+                    <span className="block text-xs text-[#888] font-normal mt-0.5">{scoreCTA.microcopy}</span>
+                  )}
+                </Link>
+              );
+            })}
           </nav>
 
-          <div className="p-6">
+          <div className="p-6 flex-shrink-0">
             <Link
               href={primaryCTA.href}
               onClick={() => {
                 trackEvent('primary_cta_click', { location: 'nav-mobile' });
-                setMenuOpen(false);
+                closeMobile();
               }}
               className="booking-btn booking-btn--primary w-full text-center block"
             >

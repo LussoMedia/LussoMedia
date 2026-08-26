@@ -71,7 +71,7 @@ export default function Founder({ founder }: Props) {
                 <div className="w-2 h-2 rounded-full bg-[#008080] animate-pulse" />
                 <div>
                   <p className="text-white text-sm font-semibold font-[family-name:var(--font-space-grotesk)]">Based in Southern Utah</p>
-                  <p className="text-[#888] text-xs">Serving Businesses Nationwide</p>
+                  <p className="text-[#888] text-xs">Serving Contractors Nationwide</p>
                 </div>
               </div>
             </div>

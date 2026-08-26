@@ -18,11 +18,15 @@ export interface IndustryPage {
   projectExamples: string[];
   faq: { question: string; answer: string }[];
   proofCaseStudySlug?: string;
+  // Supporting line under the industry page's Score CTA (Part 18) — kept
+  // short and specific to the vertical rather than generic.
+  scoreLeakLine: string;
 }
 
 export const industryPages: IndustryPage[] = [
   {
     slug: 'hvac',
+    scoreLeakLine: 'See where your HVAC growth system may be leaking.',
     name: 'HVAC',
     h1: 'Become the HVAC Company Homeowners Call First.',
     eyebrow: 'For established HVAC contractors',
@@ -63,6 +67,7 @@ export const industryPages: IndustryPage[] = [
   },
   {
     slug: 'plumbing',
+    scoreLeakLine: 'See where your plumbing growth system may be leaking.',
     name: 'Plumbing',
     h1: 'Turn Your Local Reputation Into Predictable Plumbing Demand.',
     eyebrow: 'For established plumbing contractors',
@@ -104,6 +109,7 @@ export const industryPages: IndustryPage[] = [
   },
   {
     slug: 'roofing',
+    scoreLeakLine: 'See where your roofing growth system may be leaking.',
     name: 'Roofing',
     h1: 'Win More of the Roofing Projects Already Being Searched for in Your Market.',
     eyebrow: 'For established roofing contractors',
@@ -144,6 +150,7 @@ export const industryPages: IndustryPage[] = [
   },
   {
     slug: 'landscaping',
+    scoreLeakLine: 'See how your local market position compares.',
     name: 'Landscaping',
     h1: 'Win More of the High-Value Outdoor Projects in Your Market.',
     eyebrow: 'For established landscaping & design/build contractors',
@@ -185,6 +192,7 @@ export const industryPages: IndustryPage[] = [
   },
   {
     slug: 'concrete',
+    scoreLeakLine: 'See where your project pipeline may be leaking.',
     name: 'Concrete & Hardscaping',
     h1: 'Become the Contractor Homeowners Trust for Their Next Major Outdoor Project.',
     eyebrow: 'For established concrete & hardscaping contractors',

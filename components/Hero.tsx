@@ -3,7 +3,7 @@
 import { m } from 'framer-motion';
 import Link from 'next/link';
 import { industries, industryQualifierLabel } from '@/lib/config/industries';
-import { primaryCTA, secondaryCTA } from '@/lib/config/navigation';
+import { primaryCTA, secondaryCTA, scoreCTA } from '@/lib/config/navigation';
 import { trackEvent } from '@/lib/analytics';
 
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -78,24 +78,38 @@ export default function Hero() {
           >
             {primaryCTA.label}
           </Link>
-          <a
-            href={secondaryCTA.href}
-            onClick={() => trackEvent('secondary_cta_click', { location: 'hero' })}
+          <Link
+            href={scoreCTA.href}
+            onClick={() => trackEvent('dominance_score_cta_click', { placement: 'hero' })}
             className="booking-btn booking-btn--ghost text-base px-8 py-4 flex items-center gap-2"
           >
-            {secondaryCTA.label}
+            {scoreCTA.label}
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-          </a>
+          </Link>
         </m.div>
 
-        {/* Qualification microcopy */}
+        {/* Score expectation-setting */}
+        <m.p {...fadeUp(0.35)} className="mt-4 text-xs text-[#666]">
+          {scoreCTA.microcopy}
+        </m.p>
+
+        {/* Qualification microcopy + tertiary results link */}
         <m.p
           {...fadeUp(0.4)}
-          className="mt-8 text-sm text-[#888] tracking-wide"
+          className="mt-6 text-sm text-[#888] tracking-wide"
         >
           {industries.map((i) => i.name).join(' • ')} • {industryQualifierLabel}
+        </m.p>
+        <m.p {...fadeUp(0.45)} className="mt-3 text-sm">
+          <a
+            href={secondaryCTA.href}
+            onClick={() => trackEvent('secondary_cta_click', { location: 'hero' })}
+            className="text-[#888] hover:text-[#008080] underline underline-offset-2 transition-colors"
+          >
+            {secondaryCTA.label}
+          </a>
         </m.p>
       </div>
 

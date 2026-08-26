@@ -62,7 +62,7 @@ export default function CaseStudyMidCTA({ caseStudySlug }: { caseStudySlug: stri
     <section className="section-pad bg-[#0D0D0D] text-center">
       <div className="max-w-xl mx-auto px-6">
         <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl md:text-3xl font-bold text-white mb-4">
-          How Does Your Business Stack Up Locally?
+          How Does Your Business Compare?
         </h2>
         <p className="text-[#C5C6C7] mb-8 leading-relaxed">
           Measure your visibility, offer, conversion infrastructure, reputation, demand generation,
@@ -70,13 +70,14 @@ export default function CaseStudyMidCTA({ caseStudySlug }: { caseStudySlug: stri
         </p>
         <Link
           href="/local-dominance-score"
-          onClick={() =>
+          onClick={() => {
             trackEvent('case_study_score_cta_click', {
               case_study: caseStudySlug,
               placement: 'mid-page',
               ab_variant: variant,
-            })
-          }
+            });
+            trackEvent('dominance_score_cta_click', { placement: 'case_study' });
+          }}
           className="booking-btn booking-btn--ghost text-base px-8 py-4 inline-block"
         >
           See How You Stack Up Locally

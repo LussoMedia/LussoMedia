@@ -4,7 +4,7 @@ import { m } from 'framer-motion';
 import Link from 'next/link';
 import { IndustryPage } from '@/lib/config/industryPages';
 import { caseStudies } from '@/lib/config/caseStudies';
-import { primaryCTA, secondaryCTA } from '@/lib/config/navigation';
+import { primaryCTA, scoreCTA } from '@/lib/config/navigation';
 import { trackEvent } from '@/lib/analytics';
 
 export default function IndustryPageTemplate({ industry }: { industry: IndustryPage }) {
@@ -58,10 +58,15 @@ export default function IndustryPageTemplate({ industry }: { industry: IndustryP
             >
               {primaryCTA.label}
             </Link>
-            <a href={secondaryCTA.href} className="booking-btn booking-btn--ghost text-base px-8 py-4">
-              {secondaryCTA.label}
-            </a>
+            <Link
+              href={scoreCTA.href}
+              onClick={() => trackEvent('dominance_score_cta_click', { placement: 'industry_page' })}
+              className="booking-btn booking-btn--ghost text-base px-8 py-4"
+            >
+              {scoreCTA.label}
+            </Link>
           </m.div>
+          <p className="text-[#666] text-xs mt-4">{industry.scoreLeakLine}</p>
         </div>
       </section>
 

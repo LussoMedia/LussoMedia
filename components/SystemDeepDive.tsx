@@ -3,6 +3,7 @@
 import { m } from 'framer-motion';
 import { systemComponents } from '@/lib/config/systemComponents';
 import ObjectionNote from './ObjectionNote';
+import ScoreContextCTA from './ScoreContextCTA';
 
 interface Props {
   page?: string;
@@ -76,6 +77,15 @@ export default function SystemDeepDive({ page = 'system' }: Props) {
               </div>
             </m.div>
           ))}
+        </div>
+
+        <div className="mt-14 pt-14 border-t border-white/5">
+          <ScoreContextCTA
+            eyebrow="Which Part of Your Growth System Is Weakest?"
+            supporting="The Local Dominance Score helps identify where your current system is strongest and where opportunities may be leaking."
+            ctaLabel="Find My Biggest Growth Leak"
+            placement="system_section"
+          />
         </div>
       </div>
     </section>

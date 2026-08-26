@@ -4,6 +4,7 @@ import { m } from 'framer-motion';
 import Link from 'next/link';
 import { strongFit, probablyNotFit } from '@/lib/config/qualification';
 import { trackEvent } from '@/lib/analytics';
+import { scoreCTA } from '@/lib/config/navigation';
 import ObjectionNote from './ObjectionNote';
 
 export default function QualificationSection() {
@@ -85,16 +86,16 @@ export default function QualificationSection() {
             Short application • Qualification first • Strategy call if there&rsquo;s a fit
           </p>
           <p className="text-[#888] text-sm mt-5">
-            Not sure yet?{' '}
-            <Link
-              href="/local-dominance-score"
-              onClick={() => trackEvent('dominance_score_cta_click', { location: 'qualification' })}
-              className="text-[#008080] hover:text-[#00a8a8] underline"
-            >
-              Get your free Local Dominance Score
-            </Link>{' '}
-            first.
+            Not ready to apply yet? See where your current growth system is strongest and where
+            opportunities may be leaking.
           </p>
+          <Link
+            href={scoreCTA.href}
+            onClick={() => trackEvent('dominance_score_cta_click', { placement: 'qualification' })}
+            className="text-[#008080] hover:text-[#00a8a8] underline text-sm font-medium mt-1 inline-block"
+          >
+            See How You Stack Up Locally
+          </Link>
         </m.div>
       </div>
     </section>

@@ -1,6 +1,9 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { footerNavLinks, legalLinks, primaryCTA } from '@/lib/config/navigation';
+import { trackEvent } from '@/lib/analytics';
 
 const socialLinks = [
   {
@@ -43,15 +46,20 @@ export default function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand column */}
           <div className="lg:col-span-2">
-            <a href="#hero" className="inline-block mb-5">
+            <Link
+              href="/"
+              aria-label="Lusso Media — Local Dominance homepage"
+              onClick={() => trackEvent('logo_home_click', { placement: 'footer' })}
+              className="inline-block mb-5 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#008080] focus-visible:outline-offset-2"
+            >
               <Image
                 src="/images/logo.png"
-                alt="Lusso Media"
+                alt=""
                 width={56}
                 height={56}
                 className="h-12 w-auto object-contain"
               />
-            </a>
+            </Link>
             <p className="text-[#888] text-sm leading-relaxed max-w-sm mb-6">
               The Local Dominance System — done-for-you customer acquisition infrastructure for
               established home-service contractors ready to become the first choice in their market.
@@ -60,7 +68,11 @@ export default function Footer() {
               <span className="w-1.5 h-1.5 rounded-full bg-[#008080]" />
               <span className="text-[#888] text-sm">Southern Utah — Serving Contractors Nationwide</span>
             </div>
-            <Link href={primaryCTA.href} className="booking-btn booking-btn--primary inline-block">
+            <Link
+              href={primaryCTA.href}
+              onClick={() => trackEvent('primary_cta_click', { location: 'footer' })}
+              className="booking-btn booking-btn--primary inline-block"
+            >
               {primaryCTA.label}
             </Link>
           </div>
@@ -71,16 +83,26 @@ export default function Footer() {
               Navigate
             </p>
             <ul className="flex flex-col gap-3">
-              {footerNavLinks.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="text-[#888] text-sm hover:text-[#008080] transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
+              {footerNavLinks.map((link) => {
+                const isScore = link.href === '/local-dominance-score';
+                return (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      onClick={() =>
+                        trackEvent(isScore ? 'dominance_score_cta_click' : 'nav_click', {
+                          nav_item: link.label,
+                          placement: 'footer',
+                          destination: link.href,
+                        })
+                      }
+                      className="text-[#888] text-sm hover:text-[#008080] transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
