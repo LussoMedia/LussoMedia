@@ -12,22 +12,35 @@ Application step 1 done    → Brevo contact → "Local Dominance Applications" 
 Application final submit   → same contact  → APPLICATION_STATUS=completed
 ```
 
-## ⚠️ Before this works in production: fix the IP restriction
+## ⚠️ Confirmed broken in production right now: Brevo's IP restriction
 
-Your Brevo account has **IP authorization** enabled (Settings → Security →
-Authorized IPs). During setup, I had to get my own IP added to the allowlist
-to make API calls at all. **That won't be enough for the live site** —
-Vercel's serverless functions run from a rotating pool of IPs, not one
-fixed address, so production calls to Brevo will likely get blocked the
-same way mine initially were, unpredictably.
+**This is not theoretical — it was reproduced live.** Three identical
+requests to the production API within seconds of each other: two were
+silently rejected by Brevo, one succeeded. Same code, same env vars, same
+deployment. The only variable is which of Vercel's many rotating egress
+IPs happened to handle each request — and Brevo's account has **IP
+authorization** enabled (Settings → Security → Authorized IPs), which
+blocks any IP not on its allowlist.
 
-You attempted to find a full on/off toggle for this and hit an error
-("Something went wrong, please try again") — worth trying again, or
-contacting Brevo support to fully disable IP-based restriction for API
-keys (you're still protected by the API key itself). Until that's resolved,
-treat the Brevo sync as **not reliable in production** — it'll work
-sometimes and silently fail (logged server-side, never blocks the visitor)
-other times.
+Adding individual IPs (what we did to get setup working) cannot fix this —
+Vercel doesn't give you a finite list of IPs to allowlist; it's a large,
+changing pool. **Until IP authorization is fully disabled in Brevo (not
+just "add more IPs"), expect roughly random failures** — some contacts
+will sync, some won't, with no pattern a user would notice (the site never
+shows an error either way, by design, so leads still convert normally —
+this only affects whether they land in Brevo).
+
+**What to try:**
+1. Brevo → Settings → Security → Authorized IPs → look for a toggle to
+   disable the feature entirely for API keys (an earlier attempt at this
+   hit an error — worth retrying, possibly in a different browser or after
+   a page refresh).
+2. If that keeps failing, contact Brevo support directly and ask them to
+   disable IP-based restriction for API keys on this account — you're
+   still protected by the API key itself, which is the standard setup for
+   apps calling from serverless/dynamic infrastructure like Vercel.
+3. Once disabled, re-test: submit a real entry through `/apply` or
+   `/local-dominance-score` and confirm the contact appears in Brevo.
 
 ## What's already set up
 
