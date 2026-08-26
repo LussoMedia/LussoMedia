@@ -50,6 +50,22 @@ export default function ApplicationFunnel() {
     }
     trackEvent('application_step_complete', { step: step.id });
 
+    // Part 17 — as soon as we have contact info (end of step 1), seed the
+    // abandonment-recovery automation. Silent — no admin email, no tier.
+    // Overwritten to "completed" if they finish (see final submit below).
+    if (step.id === 'business' && values.email && values.companyName) {
+      fetch('/api/leads/application-start', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contactName: values.contactName,
+          email: values.email,
+          companyName: values.companyName,
+          companyFax: honeypot,
+        }),
+      }).catch((err) => console.error('Application-start sync failed', err));
+    }
+
     if (isLast) {
       trackEvent('application_complete', values);
       setSubmitted(true);

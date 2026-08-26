@@ -28,7 +28,8 @@ export type AnalyticsEvent =
   | 'calendar_view'
   | 'call_booked'
   | 'confirmation_page_view'
-  | 'case_study_view_from_confirmation';
+  | 'case_study_view_from_confirmation'
+  | 'ab_test_assigned';
 
 declare global {
   interface Window {

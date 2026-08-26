@@ -40,6 +40,17 @@ export const applicationValuesSchema = z.object({
   investmentReadiness: shortText(120),
 });
 
+// Part 17 — abandonment recovery. Fired once contact info is captured
+// (end of step 1) but before final submission, so a contact who never
+// finishes can still be recovered. Deliberately minimal — only what's
+// needed to identify and greet them.
+export const applicationStartSchema = z.object({
+  contactName: shortText(120),
+  email: z.string().trim().email().max(200),
+  companyName: z.string().trim().min(1).max(150),
+  companyFax: honeypot,
+});
+
 export const applicationRequestSchema = z.object({
   values: applicationValuesSchema,
   utm: z

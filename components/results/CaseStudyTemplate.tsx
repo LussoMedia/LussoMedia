@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { CaseStudy } from '@/lib/config/caseStudies';
 import { primaryCTA } from '@/lib/config/navigation';
 import { trackEvent } from '@/lib/analytics';
+import CaseStudyMidCTA from './CaseStudyMidCTA';
 
 export default function CaseStudyTemplate({ caseStudy }: { caseStudy: CaseStudy }) {
   const onMedia = (label: string) =>
@@ -152,25 +153,8 @@ export default function CaseStudyTemplate({ caseStudy }: { caseStudy: CaseStudy 
         </section>
       )}
 
-      {/* Mid-page score CTA */}
-      <section className="section-pad bg-[#0D0D0D] text-center">
-        <div className="max-w-xl mx-auto px-6">
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl md:text-3xl font-bold text-white mb-4">
-            How Does Your Business Stack Up Locally?
-          </h2>
-          <p className="text-[#C5C6C7] mb-8 leading-relaxed">
-            Measure your visibility, offer, conversion infrastructure, reputation, demand generation,
-            lead handling, and tracking.
-          </p>
-          <Link
-            href="/local-dominance-score"
-            onClick={() => trackEvent('case_study_score_cta_click', { case_study: caseStudy.slug })}
-            className="booking-btn booking-btn--ghost text-base px-8 py-4 inline-block"
-          >
-            See How You Stack Up Locally
-          </Link>
-        </div>
-      </section>
+      {/* Mid-page CTA — A/B test: Score first vs. direct to Apply */}
+      <CaseStudyMidCTA caseStudySlug={caseStudy.slug} />
 
       {/* Outcome */}
       <section className="section-pad bg-[#111111] border-y border-white/5">

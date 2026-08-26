@@ -4,6 +4,7 @@ import { routeApplication } from '@/lib/applicationRouting';
 import { applicationRequestSchema } from '@/lib/validation';
 import { checkRateLimit, getClientKey } from '@/lib/rateLimit';
 import { stripControlChars } from '@/lib/sanitizeText';
+import { upsertContact, BREVO_LISTS } from '@/lib/brevo';
 
 const RATE_LIMIT = 5; // requests
 const RATE_WINDOW_MS = 60 * 60 * 1000; // per hour, per client
@@ -93,6 +94,26 @@ export async function POST(req: NextRequest) {
     { label: 'UTM Campaign', value: utm.utm_campaign || '' },
     { label: 'Submitted At', value: new Date().toISOString() },
   ]);
+
+  // Syncs the contact into Brevo's "Local Dominance Applications" list,
+  // marking APPLICATION_STATUS complete — this also cancels the
+  // abandonment-recovery automation for this contact if it was running
+  // (Part 17; see BREVO_SETUP.md for the Brevo-side workflow).
+  upsertContact({
+    email: values.email,
+    attributes: {
+      FIRSTNAME: stripControlChars(values.contactName || ''),
+      CONTACT_NAME: stripControlChars(values.contactName || ''),
+      COMPANY: safeCompanyName,
+      SMS: values.phone || '',
+      INDUSTRY: values.industry || '',
+      MONTHLY_REVENUE: values.monthlyRevenue || '',
+      INVESTMENT_READINESS: sanitizeSelect(values.investmentReadiness || ''),
+      TIER: TIER_LABELS[tier],
+      APPLICATION_STATUS: 'completed',
+    },
+    listIds: [BREVO_LISTS.applications],
+  }).catch((err) => console.error('[brevo] Application sync failed', err));
 
   return NextResponse.json({ ok: true, sent, tier });
 }

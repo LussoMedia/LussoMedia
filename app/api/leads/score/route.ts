@@ -6,6 +6,7 @@ import { checkRateLimit, getClientKey } from '@/lib/rateLimit';
 import { stripControlChars } from '@/lib/sanitizeText';
 import { recommendations } from '@/lib/config/scoreRecommendations';
 import { buildInterpretation } from '@/lib/scoreInterpretation';
+import { upsertContact, BREVO_LISTS } from '@/lib/brevo';
 
 const RATE_LIMIT = 5; // requests
 const RATE_WINDOW_MS = 60 * 60 * 1000; // per hour, per client
@@ -80,6 +81,24 @@ export async function POST(req: NextRequest) {
       { label: 'Next Step', value: 'https://illussomedia.com/apply' },
     ]
   ).catch((err) => console.error('[email] Visitor results email failed', err));
+
+  // Syncs the contact into Brevo's "Local Dominance Score Leads" list —
+  // this is the data side of the nurture sequence (Part 16); the actual
+  // 7-email automation is built in Brevo itself. See BREVO_SETUP.md.
+  upsertContact({
+    email,
+    attributes: {
+      FIRSTNAME: safeFirstName,
+      COMPANY: safeCompany,
+      SMS: phone || '',
+      SCORE_OVERALL: result.overall,
+      SCORE_BAND: result.band.label,
+      SCORE_STRONGEST: result.strongest,
+      SCORE_WEAKEST: result.weakest,
+      SCORE_TOP_LEAKS: result.rankedWeakest.join(', '),
+    },
+    listIds: [BREVO_LISTS.scoreLeads],
+  }).catch((err) => console.error('[brevo] Score lead sync failed', err));
 
   // Always 200 to the client — an email delivery failure shouldn't block
   // the visitor's funnel experience. `sent` is logged server-side for
