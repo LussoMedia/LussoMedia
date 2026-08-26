@@ -47,12 +47,18 @@ export const caseStudies: CaseStudy[] = [
     tag: 'Business Growth',
     featured: true,
     heroImage: {
-      src: '/images/case-studies/full-curl-landscaping/yard-01.jpg',
-      alt: 'A completed Full Curl Landscaping residential project — fresh sod and clean lawn edging',
+      src: '/images/case-studies/full-curl-landscaping/crew-bts-01.jpg',
+      alt: 'The Full Curl Landscaping crew on-site during a project shoot, mountains in the background',
       width: 1800,
-      height: 1200,
+      height: 1197,
     },
     gallery: [
+      {
+        src: '/images/case-studies/full-curl-landscaping/yard-01.jpg',
+        alt: 'A completed Full Curl Landscaping residential project — fresh sod and clean lawn edging',
+        width: 1800,
+        height: 1200,
+      },
       {
         src: '/images/case-studies/full-curl-landscaping/aerial-01.jpg',
         alt: 'Aerial view of a completed Full Curl Landscaping property — custom lawn shaping, rock beds, and full property landscaping',
