@@ -46,9 +46,11 @@ export default function LeadCaptureForm({ onSubmit }: Props) {
       className="max-w-md mx-auto px-6"
       noValidate
     >
-      <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-white mb-2 text-center">
+      {/* Only heading visible at this stage (ScoreReveal's h1 has
+          unmounted) — Part 27/31. */}
+      <h1 className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-white mb-2 text-center">
         Unlock Your Full Breakdown
-      </h2>
+      </h1>
       <p className="text-[#888] text-sm text-center mb-8">
         Score by category, your top growth leaks, and immediate next steps.
       </p>

@@ -41,9 +41,11 @@ export default function StepForm({ step, values, onChange, onNext, onBack, isLas
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
       className="max-w-xl mx-auto px-6"
     >
-      <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl md:text-3xl font-bold text-white mb-2 text-center">
+      {/* This funnel has no other h1 — each step functions as its own
+          "page" for assistive tech, so its title is the h1 (Part 27/31). */}
+      <h1 className="font-[family-name:var(--font-space-grotesk)] text-2xl md:text-3xl font-bold text-white mb-2 text-center">
         {step.title}
-      </h2>
+      </h1>
       {step.description && (
         <p className="text-[#C5C6C7] text-center mb-8 leading-relaxed">{step.description}</p>
       )}

@@ -22,9 +22,11 @@ export default function QuestionStep({ question, selected, onAnswer, onBack }: P
       <p className="text-xs uppercase tracking-[0.15em] text-[#008080] mb-4 text-center">
         {question.category}
       </p>
-      <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl md:text-3xl font-bold text-white mb-10 text-center leading-snug">
+      {/* ScoreIntro's h1 unmounts once questions start — this is the only
+          heading on screen at this stage, so it's the h1 (Part 27/31). */}
+      <h1 className="font-[family-name:var(--font-space-grotesk)] text-2xl md:text-3xl font-bold text-white mb-10 text-center leading-snug">
         {question.question}
-      </h2>
+      </h1>
 
       <div className="flex flex-col gap-3">
         {question.options.map((option, i) => (

@@ -28,9 +28,9 @@ export default function ScoreBreakdown({ result, firstName }: Props) {
       className="max-w-3xl mx-auto px-6 print-result"
     >
       <div className="text-center mb-8 print:mb-6">
-        <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4 print:text-black">
+        <h1 className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4 print:text-black font-normal">
           {firstName ? `${firstName}'s` : 'Your'} Local Dominance Score
-        </p>
+        </h1>
         <p className="font-[family-name:var(--font-space-grotesk)] text-6xl font-bold text-white mb-2 print:text-black">
           {result.overall}<span className="text-2xl text-[#888]"> / 100</span>
         </p>
