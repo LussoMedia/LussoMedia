@@ -10,16 +10,25 @@ export type AnalyticsEvent =
   | 'primary_cta_click'
   | 'secondary_cta_click'
   | 'case_study_view'
+  | 'case_study_media_interaction'
+  | 'case_study_score_cta_click'
+  | 'case_study_plan_cta_click'
+  | 'objection_expand'
   | 'dominance_score_start'
   | 'dominance_score_question'
   | 'dominance_score_complete'
   | 'dominance_score_lead_capture'
+  | 'dominance_score_cta_click'
+  | 'dominance_score_plan_click'
+  | 'dominance_score_result_save'
   | 'application_start'
   | 'application_step_complete'
   | 'application_qualified'
   | 'application_complete'
   | 'calendar_view'
-  | 'call_booked';
+  | 'call_booked'
+  | 'confirmation_page_view'
+  | 'case_study_view_from_confirmation';
 
 declare global {
   interface Window {

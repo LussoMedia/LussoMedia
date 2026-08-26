@@ -24,7 +24,7 @@ function escapeHtml(str: string): string {
     .replace(/"/g, '&quot;');
 }
 
-export async function sendLeadEmail(subject: string, fields: EmailField[]) {
+export async function sendLeadEmail(subject: string, fields: EmailField[], to: string = NOTIFICATION_EMAIL) {
   if (!resend) {
     console.warn('[email] RESEND_API_KEY not configured — notification email not sent.', { subject });
     return { sent: false as const };
@@ -51,7 +51,7 @@ export async function sendLeadEmail(subject: string, fields: EmailField[]) {
   try {
     const result = await resend.emails.send({
       from: FROM_EMAIL,
-      to: NOTIFICATION_EMAIL,
+      to,
       subject,
       text,
       html,
@@ -65,4 +65,11 @@ export async function sendLeadEmail(subject: string, fields: EmailField[]) {
     console.error('[email] Failed to send lead notification email', err);
     return { sent: false as const };
   }
+}
+
+// Sends a friendlier version of the results straight to the visitor who
+// requested them (Part 15 — "Email My Results"), separate from the
+// internal admin notification sendLeadEmail() already handles.
+export async function sendVisitorResultsEmail(to: string, subject: string, fields: EmailField[]) {
+  return sendLeadEmail(subject, fields, to);
 }

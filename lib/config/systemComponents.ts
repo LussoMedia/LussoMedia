@@ -9,6 +9,9 @@ export interface SystemComponent {
   problem: string;
   installs: string[];
   whyItMatters: string;
+  // Contextual objection handling (Part 9) — only components where a
+  // common doubt naturally arises carry one.
+  objection?: { question: string; answer: string };
 }
 
 export const systemComponents: SystemComponent[] = [
@@ -60,6 +63,11 @@ export const systemComponents: SystemComponent[] = [
     ],
     whyItMatters:
       'This system is template and configuration driven, built and refined fast — not a bespoke 50-page site built from scratch for every client.',
+    objection: {
+      question: 'Already have a good website?',
+      answer:
+        "We don't rebuild assets simply to put our name on them. We evaluate the existing conversion path first and only replace or improve what is limiting performance.",
+    },
   },
   {
     number: '04',
@@ -73,6 +81,11 @@ export const systemComponents: SystemComponent[] = [
     ],
     whyItMatters:
       'Consistent, credible presence compounds trust with everyone who sees it — not just the people who click an ad.',
+    objection: {
+      question: "Don't want to sound scripted on camera?",
+      answer:
+        "You don't have to. Creative can combine guided conversations, jobsite footage, expert commentary, scripted direct response, project showcases, and other formats based on what fits the brand and performs in the market.",
+    },
   },
   {
     number: '05',
@@ -91,6 +104,11 @@ export const systemComponents: SystemComponent[] = [
     ],
     whyItMatters:
       "Lusso isn't a Meta Ads shop — this is one component of a system that makes ad spend perform.",
+    objection: {
+      question: 'Already running ads?',
+      answer:
+        "Good campaigns don't need to be thrown away. We audit what already exists, preserve what is working, and improve the offer, creative, targeting, tracking, or conversion path where the data shows a constraint.",
+    },
   },
   {
     number: '06',
@@ -122,5 +140,10 @@ export const systemComponents: SystemComponent[] = [
     ],
     whyItMatters:
       'Reporting is currently manual and tied to real business outcomes, not a live dashboard of vanity numbers.',
+    objection: {
+      question: "Don't know your close rate yet?",
+      answer:
+        "That's common. We establish the baseline and improve tracking so future decisions can be made against actual business outcomes instead of assumptions.",
+    },
   },
 ];

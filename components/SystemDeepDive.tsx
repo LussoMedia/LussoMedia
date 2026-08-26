@@ -2,8 +2,13 @@
 
 import { m } from 'framer-motion';
 import { systemComponents } from '@/lib/config/systemComponents';
+import ObjectionNote from './ObjectionNote';
 
-export default function SystemDeepDive() {
+interface Props {
+  page?: string;
+}
+
+export default function SystemDeepDive({ page = 'system' }: Props) {
   return (
     <section id="system-details" className="section-pad bg-[#111111] border-y border-white/5">
       <div className="max-w-4xl mx-auto px-6">
@@ -57,6 +62,16 @@ export default function SystemDeepDive() {
                       <p className="text-[#C5C6C7] leading-relaxed">{c.whyItMatters}</p>
                     </div>
                   </div>
+
+                  {c.objection && (
+                    <ObjectionNote
+                      question={c.objection.question}
+                      answer={c.objection.answer}
+                      objectionType={c.name}
+                      page={page}
+                      section={`component-${c.number}`}
+                    />
+                  )}
                 </div>
               </div>
             </m.div>

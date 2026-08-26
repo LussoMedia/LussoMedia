@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import BookingButton from '@/components/BookingButton';
+import CalBookingListener from '@/components/CalBookingListener';
 
 // Part 28: booking access is only supposed to be shown after strong-fit
 // qualification via /apply. This route isn't linked from primary navigation
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
 export default function BookPage() {
   return (
     <>
+      <CalBookingListener />
       <Nav />
       <main className="min-h-screen flex items-center justify-center py-32 px-6">
         <div className="max-w-lg mx-auto text-center">
@@ -32,7 +34,7 @@ export default function BookPage() {
             label="Choose a Time"
             variant="primary"
             className="text-base px-10 py-4"
-            event="call_booked"
+            event="calendar_view"
           />
         </div>
       </main>

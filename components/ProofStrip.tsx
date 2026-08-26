@@ -1,6 +1,7 @@
 'use client';
 
 import { m } from 'framer-motion';
+import Image from 'next/image';
 import { caseStudies } from '@/lib/config/caseStudies';
 
 export default function ProofStrip() {
@@ -28,13 +29,28 @@ export default function ProofStrip() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="bg-[#141414] border border-white/5 rounded-xl p-8"
+              className="bg-[#141414] border border-white/5 rounded-xl overflow-hidden flex flex-col"
             >
-              <p className="text-xs uppercase tracking-[0.1em] text-[#008080] mb-2">{cs.industry}</p>
-              <h3 className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold text-white mb-4">
-                {cs.client}
-              </h3>
-              <p className="text-[#C5C6C7] text-sm leading-relaxed">{cs.outcome}</p>
+              {cs.heroImage && (
+                <div className="relative w-full aspect-[16/9]">
+                  <Image
+                    src={cs.heroImage.src}
+                    alt={cs.heroImage.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent" />
+                </div>
+              )}
+              <div className="p-8">
+                <p className="text-xs uppercase tracking-[0.1em] text-[#008080] mb-2">{cs.industry}</p>
+                <h3 className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold text-white mb-4">
+                  {cs.client}
+                </h3>
+                <p className="text-[#C5C6C7] text-sm leading-relaxed">{cs.outcome}</p>
+              </div>
             </m.div>
           ))}
         </div>

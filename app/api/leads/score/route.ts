@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sendLeadEmail } from '@/lib/email';
+import { sendLeadEmail, sendVisitorResultsEmail } from '@/lib/email';
 import { computeScore } from '@/lib/scoring';
 import { scoreRequestSchema } from '@/lib/validation';
 import { checkRateLimit, getClientKey } from '@/lib/rateLimit';
 import { stripControlChars } from '@/lib/sanitizeText';
+import { recommendations } from '@/lib/config/scoreRecommendations';
+import { buildInterpretation } from '@/lib/scoreInterpretation';
 
 const RATE_LIMIT = 5; // requests
 const RATE_WINDOW_MS = 60 * 60 * 1000; // per hour, per client
@@ -60,6 +62,24 @@ export async function POST(req: NextRequest) {
     { label: 'UTM Campaign', value: utm.utm_campaign || '' },
     { label: 'Submitted At', value: new Date().toISOString() },
   ]);
+
+  // Best-effort copy to the visitor themselves (Part 15 — "Email My
+  // Results"), separate from and non-blocking on the admin notification.
+  const topLeak = recommendations[result.weakest];
+  sendVisitorResultsEmail(
+    email,
+    `${safeFirstName ? `${safeFirstName}, y` : 'Y'}our Local Dominance Score: ${result.overall}/100`,
+    [
+      { label: 'Overall Score', value: `${result.overall} / 100 — ${result.band.label}` },
+      { label: 'Strongest Area', value: result.strongest },
+      { label: 'Biggest Growth Leak', value: result.weakest },
+      { label: 'What This Means', value: buildInterpretation(result) },
+      { label: 'Recommended Priority', value: topLeak.priority },
+      { label: 'Immediate Action', value: topLeak.actions[0] },
+      { label: 'Full Breakdown', value: 'https://illussomedia.com/local-dominance-score' },
+      { label: 'Next Step', value: 'https://illussomedia.com/apply' },
+    ]
+  ).catch((err) => console.error('[email] Visitor results email failed', err));
 
   // Always 200 to the client — an email delivery failure shouldn't block
   // the visitor's funnel experience. `sent` is logged server-side for

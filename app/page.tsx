@@ -68,7 +68,7 @@ export default async function Home() {
         <FastWinTimeline />
         <CaseStudies />
         <IndustriesStrip />
-        <SystemDeepDive />
+        <SystemDeepDive page="home" />
         <NinetyDayRoadmap />
         <TeamComparison />
         <BonusStack />

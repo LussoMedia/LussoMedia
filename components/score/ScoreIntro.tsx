@@ -25,7 +25,9 @@ export default function ScoreIntro({ onStart }: Props) {
       <button onClick={onStart} className="booking-btn booking-btn--primary text-base px-10 py-4">
         Get My Score
       </button>
-      <p className="text-[#666] text-xs mt-5">Takes about 2 minutes. No email required to start.</p>
+      <p className="text-[#666] text-xs mt-5">
+        About 2 minutes • No email required to start • Instant initial score
+      </p>
     </m.div>
   );
 }

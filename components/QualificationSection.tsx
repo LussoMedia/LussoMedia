@@ -4,6 +4,7 @@ import { m } from 'framer-motion';
 import Link from 'next/link';
 import { strongFit, probablyNotFit } from '@/lib/config/qualification';
 import { trackEvent } from '@/lib/analytics';
+import ObjectionNote from './ObjectionNote';
 
 export default function QualificationSection() {
   return (
@@ -56,6 +57,13 @@ export default function QualificationSection() {
                 </li>
               ))}
             </ul>
+            <ObjectionNote
+              question="What if our team isn't closing enough leads?"
+              answer="Lusso does not replace the sales function, but if lead quality is strong and conversion is weak, we can identify the sales bottleneck and provide scripts, follow-up frameworks, and targeted conversion support."
+              objectionType="sales-close-rate"
+              page="home"
+              section="qualification"
+            />
           </m.div>
         </div>
 
@@ -73,9 +81,16 @@ export default function QualificationSection() {
           >
             See If Your Business Qualifies
           </Link>
+          <p className="text-[#666] text-xs mt-3">
+            Short application • Qualification first • Strategy call if there&rsquo;s a fit
+          </p>
           <p className="text-[#888] text-sm mt-5">
             Not sure yet?{' '}
-            <Link href="/local-dominance-score" className="text-[#008080] hover:text-[#00a8a8] underline">
+            <Link
+              href="/local-dominance-score"
+              onClick={() => trackEvent('dominance_score_cta_click', { location: 'qualification' })}
+              className="text-[#008080] hover:text-[#00a8a8] underline"
+            >
               Get your free Local Dominance Score
             </Link>{' '}
             first.

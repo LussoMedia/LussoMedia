@@ -215,3 +215,19 @@ h1, h2, h3, h4, h5, h6 {
     animation-duration: 80s;
   }
 }
+
+/* ── Print (Local Dominance Score save/print result — Part 15) ── */
+@media print {
+  header,
+  footer {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .print-result {
+    max-width: 100% !important;
+    padding-top: 0 !important;
+  }
+}

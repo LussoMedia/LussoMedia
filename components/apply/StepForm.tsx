@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { m } from 'framer-motion';
 import { ApplicationStep, ApplicationField } from '@/lib/config/application';
 import FieldRenderer from './FieldRenderer';
+import ObjectionNote from '@/components/ObjectionNote';
 
 interface Props {
   step: ApplicationStep;
@@ -59,6 +60,16 @@ export default function StepForm({ step, values, onChange, onNext, onBack, isLas
           />
         ))}
       </div>
+
+      {step.id === 'investment' && (
+        <ObjectionNote
+          question="Why invest this much in marketing?"
+          answer="The goal is not to spend more on marketing. The goal is to determine what acquiring an additional profitable customer can reasonably be worth based on your ticket, margin, close rate, capacity, and market."
+          objectionType="investment-amount"
+          page="apply"
+          section="investment-step"
+        />
+      )}
 
       <div className="flex items-center justify-between mt-10">
         {onBack ? (
