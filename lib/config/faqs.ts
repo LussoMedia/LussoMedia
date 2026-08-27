@@ -42,7 +42,7 @@ export const faqs: FaqItem[] = [
   {
     question: 'Do you follow up with leads?',
     answer:
-      "Lead response, quoting, and closing stay with your team — that's where you have the most control and context. We install the Lead-to-Booked-Job Playbook to help your team convert what we generate, and can provide sales support if lead quality is strong but close rate exposes a bottleneck.",
+      "Lead response, quoting, and closing stay with your team — that's where you have the most control and context. We install the Lead-to-Booked-Job Conversion Intensive to personally train the person responsible for converting what we generate, and can provide sales support if lead quality is strong but close rate exposes a bottleneck.",
   },
   {
     question: 'What if our sales team is not converting leads?',

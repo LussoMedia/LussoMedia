@@ -6,10 +6,13 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { mainNavLinks, primaryCTA, scoreCTA } from '@/lib/config/navigation';
 import { industries } from '@/lib/config/industries';
+import { playbook } from '@/lib/config/playbook';
 import { trackEvent } from '@/lib/analytics';
 import IndustriesDropdown from './nav/IndustriesDropdown';
+import GrowthToolsDropdown from './nav/GrowthToolsDropdown';
 
 const industryPaths = industries.map((i) => `/${i.slug}`);
+const growthToolsPaths = [scoreCTA.href, playbook.href, playbook.thankYouHref];
 
 function isActive(href: string, pathname: string): boolean {
   if (href === '/') return pathname === '/';
@@ -22,8 +25,10 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [industriesOpen, setIndustriesOpen] = useState(false);
+  const [growthToolsOpen, setGrowthToolsOpen] = useState(false);
 
   const industriesActive = industryPaths.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+  const growthToolsActive = growthToolsPaths.some((p) => pathname === p || pathname.startsWith(`${p}/`));
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -43,6 +48,7 @@ export default function Nav() {
   const closeMobile = () => {
     setMenuOpen(false);
     setIndustriesOpen(false);
+    setGrowthToolsOpen(false);
   };
 
   return (
@@ -78,14 +84,16 @@ export default function Nav() {
               if ('industries' in link && link.industries) {
                 return <IndustriesDropdown key={link.label} active={industriesActive} />;
               }
+              if ('growthTools' in link && link.growthTools) {
+                return <GrowthToolsDropdown key={link.label} active={growthToolsActive} />;
+              }
               const active = isActive(link.href, pathname);
-              const isScore = 'isScore' in link && link.isScore;
               return (
                 <Link
                   key={link.label}
                   href={link.href}
                   onClick={() =>
-                    trackEvent(isScore ? 'dominance_score_cta_click' : 'nav_click', {
+                    trackEvent('nav_click', {
                       nav_item: link.label,
                       placement: 'desktop_nav',
                       pathname,
@@ -94,9 +102,8 @@ export default function Nav() {
                   }
                   className={`text-sm font-medium transition-colors duration-150 ${
                     active ? 'text-white' : 'text-[#C5C6C7] hover:text-white'
-                  } ${isScore ? 'flex items-center gap-1.5' : ''}`}
+                  }`}
                 >
-                  {isScore && <span className="w-1.5 h-1.5 rounded-full bg-[#008080]" />}
                   {link.label}
                 </Link>
               );
@@ -223,15 +230,65 @@ export default function Nav() {
                 );
               }
 
+              if ('growthTools' in link && link.growthTools) {
+                return (
+                  <div key={link.label} className="border-b border-white/5">
+                    <button
+                      onClick={() => {
+                        setGrowthToolsOpen((v) => {
+                          const next = !v;
+                          if (next) trackEvent('growth_tools_opened', { placement: 'mobile_nav' });
+                          return next;
+                        });
+                      }}
+                      aria-expanded={growthToolsOpen}
+                      className={`w-full py-4 text-lg font-medium flex items-center justify-between transition-colors ${
+                        growthToolsActive ? 'text-white' : 'text-[#C5C6C7] hover:text-white'
+                      }`}
+                    >
+                      Growth Tools
+                      <svg width="14" height="14" viewBox="0 0 12 12" fill="none" className={`transition-transform duration-200 ${growthToolsOpen ? 'rotate-180' : ''}`}>
+                        <path d="M2.5 4.5L6 8l3.5-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </button>
+                    {growthToolsOpen && (
+                      <div className="pb-4 flex flex-col gap-2">
+                        <Link
+                          href={scoreCTA.href}
+                          onClick={() => {
+                            trackEvent('dominance_score_cta_click', { placement: 'mobile_growth_tools' });
+                            closeMobile();
+                          }}
+                          className="pl-4 pr-2 py-2.5 rounded-lg hover:bg-white/5 transition-colors"
+                        >
+                          <p className="text-xs uppercase tracking-[0.1em] text-[#008080] mb-1">How Do You Stack Up Locally?</p>
+                          <p className="text-base text-white">{scoreCTA.microcopy}</p>
+                        </Link>
+                        <Link
+                          href={playbook.href}
+                          onClick={() => {
+                            trackEvent('playbook_nav_clicked', { placement: 'mobile_growth_tools' });
+                            closeMobile();
+                          }}
+                          className="pl-4 pr-2 py-2.5 rounded-lg hover:bg-white/5 transition-colors"
+                        >
+                          <p className="text-xs uppercase tracking-[0.1em] text-[#008080] mb-1">{playbook.navEyebrow}</p>
+                          <p className="text-base text-white">{playbook.navLabel}</p>
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
               const active = isActive(link.href, pathname);
-              const isScore = 'isScore' in link && link.isScore;
 
               return (
                 <Link
                   key={link.label}
                   href={link.href}
                   onClick={() => {
-                    trackEvent(isScore ? 'dominance_score_cta_click' : 'nav_click', {
+                    trackEvent('nav_click', {
                       nav_item: link.label,
                       placement: 'mobile_nav',
                       pathname,
@@ -244,9 +301,6 @@ export default function Nav() {
                   }`}
                 >
                   {link.label}
-                  {isScore && (
-                    <span className="block text-xs text-[#888] font-normal mt-0.5">{scoreCTA.microcopy}</span>
-                  )}
                 </Link>
               );
             })}

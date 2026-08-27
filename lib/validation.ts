@@ -89,3 +89,21 @@ export const scoreRequestSchema = z.object({
     .default({}),
   companyFax: honeypot,
 });
+
+// Playbook lead-magnet funnel — deliberately minimal (first name + email
+// only; no phone, company, or business data — see the funnel brief's Part
+// 4/Section 08 "Do NOT ask for" list).
+export const playbookRequestSchema = z.object({
+  firstName: z.string().trim().min(1).max(100),
+  email: z.string().trim().email().max(200),
+  utm: z
+    .object({
+      utm_source: shortText(150),
+      utm_medium: shortText(150),
+      utm_campaign: shortText(150),
+    })
+    .partial()
+    .optional()
+    .default({}),
+  companyFax: honeypot,
+});

@@ -14,6 +14,7 @@ const BASE_URL = 'https://api.brevo.com/v3';
 export const BREVO_LISTS = {
   scoreLeads: Number(process.env.BREVO_SCORE_LIST_ID) || 4,
   applications: Number(process.env.BREVO_APPLICATION_LIST_ID) || 5,
+  playbookLeads: Number(process.env.BREVO_PLAYBOOK_LIST_ID) || 6,
 };
 
 interface UpsertContactArgs {

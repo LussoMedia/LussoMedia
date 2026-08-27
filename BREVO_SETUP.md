@@ -10,6 +10,7 @@ something to duplicate in this codebase.
 Score funnel submit        → Brevo contact → "Local Dominance Score Leads" list (ID 4)
 Application step 1 done    → Brevo contact → "Local Dominance Applications" list (ID 5), APPLICATION_STATUS=started
 Application final submit   → same contact  → APPLICATION_STATUS=completed
+Playbook form submit       → Brevo contact → "Playbook Leads" list (ID 6 — not yet created, see below)
 ```
 
 ## ⚠️ Confirmed broken in production right now: Brevo's IP restriction
@@ -50,13 +51,55 @@ this only affects whether they land in Brevo).
 - **Custom attributes:** `COMPANY`, `SCORE_OVERALL`, `SCORE_BAND`,
   `SCORE_STRONGEST`, `SCORE_WEAKEST`, `SCORE_TOP_LEAKS`, `CONTACT_NAME`,
   `INDUSTRY`, `TIER`, `APPLICATION_STATUS`, `MONTHLY_REVENUE`,
-  `INVESTMENT_READINESS` (plus Brevo's built-in `FIRSTNAME`/`SMS`)
+  `INVESTMENT_READINESS`, `LEAD_SOURCE` (plus Brevo's built-in
+  `FIRSTNAME`/`SMS`)
 - **Env vars** (already in `.env.local`; add to Vercel too):
   ```bash
   BREVO_API_KEY=xkeysib-...
   BREVO_SCORE_LIST_ID=4
   BREVO_APPLICATION_LIST_ID=5
   ```
+
+## Still needed — the playbook lead list (Part 10 of the playbook-funnel brief)
+
+The `/lead-to-booked-job-playbook` form syncs to `BREVO_PLAYBOOK_LIST_ID`,
+which **falls back to `6` if unset** — but no list `6` exists yet. Until you
+create the real list and set the env var, playbook contacts will either
+land in the wrong place or silently fail to sync (the site never shows an
+error either way, by design — see the IP-restriction note above for why
+"silent" is already the existing behavior for sync failures).
+
+1. Brevo → **Contacts → Lists → Create a list**. Name it something like
+   **"Playbook Leads"**, folder: "Local Dominance Website" (same folder as
+   the other two, for consistency).
+2. Open the new list and note its **ID** from the URL or the list settings
+   panel (Brevo assigns these sequentially — likely `6`, but confirm rather
+   than assume).
+3. Add the env var **locally** (`.env.local`) and **in Vercel** (Project →
+   Settings → Environment Variables, all environments you use):
+   ```bash
+   BREVO_PLAYBOOK_LIST_ID=<the real id>
+   ```
+4. Confirm the custom attribute `LEAD_SOURCE` exists (Contacts → Settings →
+   Contact Attributes) — the playbook route sets it to `"playbook"` so you
+   can filter/segment this list separately from Score and Application leads
+   if they ever get merged into one master list later.
+5. Redeploy (or restart `next dev` locally) so the new env var is picked up.
+6. **Test:** submit a real entry through `/lead-to-booked-job-playbook` and
+   confirm the contact appears in the new list within a few seconds.
+
+### Optional — Automation 3: Playbook Nurture
+
+Not required to ship (the delivery email already sends immediately from the
+route itself — see `sendPlaybookDeliveryEmail` in `lib/email.ts`), but if
+you want a Brevo-side nurture sequence layered on top the same way Score
+leads get one:
+
+1. **Automations → Create a workflow → Start from scratch.**
+2. **Trigger:** "Contact added to a list" → **Playbook Leads**.
+3. Build out whatever cadence you want, using `{{ contact.FIRSTNAME }}`.
+4. Exit condition: stop the sequence if the contact is later added to
+   **Local Dominance Applications** — same reasoning as the Score sequence.
 
 ## Automation 1 — Score Lead Nurture Sequence (Part 16)
 
@@ -242,8 +285,9 @@ https://illussomedia.com/apply
 
 ## Testing
 
-1. Set all three `BREVO_*` env vars locally and in Vercel.
-2. Submit a test entry through `/local-dominance-score` or `/apply`.
+1. Set all four `BREVO_*` env vars locally and in Vercel.
+2. Submit a test entry through `/local-dominance-score`, `/apply`, or
+   `/lead-to-booked-job-playbook`.
 3. Check **Contacts** in Brevo — the contact should appear in the right
    list with the right attributes within a few seconds.
 4. Check the automation's **Automation → [workflow] → Statistics** tab to

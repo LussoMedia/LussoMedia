@@ -13,9 +13,10 @@ interface Props {
   onNext: () => void;
   onBack?: () => void;
   isLast: boolean;
+  submitting?: boolean;
 }
 
-export default function StepForm({ step, values, onChange, onNext, onBack, isLast }: Props) {
+export default function StepForm({ step, values, onChange, onNext, onBack, isLast, submitting }: Props) {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validate = (): boolean => {
@@ -30,6 +31,7 @@ export default function StepForm({ step, values, onChange, onNext, onBack, isLas
   };
 
   const handleContinue = () => {
+    if (submitting) return; // guards against duplicate submits on the final step
     if (validate()) onNext();
   };
 
@@ -79,8 +81,12 @@ export default function StepForm({ step, values, onChange, onNext, onBack, isLas
             &larr; Back
           </button>
         ) : <span />}
-        <button onClick={handleContinue} className="booking-btn booking-btn--primary px-8 py-3">
-          {isLast ? 'Submit Application' : 'Continue'}
+        <button
+          onClick={handleContinue}
+          disabled={isLast && submitting}
+          className="booking-btn booking-btn--primary px-8 py-3 disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+          {isLast ? (submitting ? 'Submitting…' : 'Submit Application') : 'Continue'}
         </button>
       </div>
     </m.div>

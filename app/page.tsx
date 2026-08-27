@@ -11,6 +11,8 @@ import SystemDeepDive from '@/components/SystemDeepDive';
 import NinetyDayRoadmap from '@/components/NinetyDayRoadmap';
 import TeamComparison from '@/components/TeamComparison';
 import BonusStack from '@/components/BonusStack';
+import DiyVsDwyNote from '@/components/DiyVsDwyNote';
+import HomepagePlaybookSection from '@/components/HomepagePlaybookSection';
 import GuaranteeSection from '@/components/GuaranteeSection';
 import QualificationSection from '@/components/QualificationSection';
 import Founder from '@/components/Founder';
@@ -72,6 +74,8 @@ export default async function Home() {
         <NinetyDayRoadmap />
         <TeamComparison />
         <BonusStack />
+        <DiyVsDwyNote />
+        <HomepagePlaybookSection />
         <GuaranteeSection />
         <QualificationSection />
         <Founder founder={founder} />

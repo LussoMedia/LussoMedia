@@ -31,7 +31,20 @@ export type AnalyticsEvent =
   | 'case_study_view_from_confirmation'
   | 'ab_test_assigned'
   | 'nav_click'
-  | 'logo_home_click';
+  | 'logo_home_click'
+  | 'application_review_page_view'
+  | 'review_page_results_click'
+  | 'review_page_system_click'
+  | 'review_page_faq_expand'
+  | 'growth_tools_opened'
+  | 'playbook_nav_clicked'
+  | 'playbook_landing_view'
+  | 'playbook_see_inside_clicked'
+  | 'playbook_form_started'
+  | 'playbook_form_submitted'
+  | 'playbook_download_clicked'
+  | 'playbook_score_cta_clicked'
+  | 'homepage_playbook_clicked';
 
 declare global {
   interface Window {

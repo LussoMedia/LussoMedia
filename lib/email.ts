@@ -73,3 +73,53 @@ export async function sendLeadEmail(subject: string, fields: EmailField[], to: s
 export async function sendVisitorResultsEmail(to: string, subject: string, fields: EmailField[]) {
   return sendLeadEmail(subject, fields, to);
 }
+
+// Application confirmation email (Part 17) — sent to the applicant after a
+// successful submission. Best-effort and non-blocking: called after the
+// admin notification / CRM sync already determined the submission was
+// delivered, so a failure here never changes what the visitor sees on-page.
+export async function sendApplicationConfirmationEmail(to: string, contactName: string) {
+  const greeting = contactName ? `${contactName}, thanks` : 'Thanks';
+  return sendLeadEmail(
+    'We Received Your Lusso Application',
+    [
+      {
+        label: 'What Happens Next',
+        value: `${greeting} for the detail. We received the information you submitted. We'll review your market, service economics, capacity, and growth goals before recommending the next step. If there's a clear fit, we'll send you the next step; if we need more context first, we'll reach out with a few focused questions.`,
+      },
+      {
+        label: 'While You Wait',
+        value: 'It helps to have rough numbers ready for average job value, gross margin, close rate, current lead volume, and available capacity.',
+      },
+      { label: 'Full Curl Landscaping Case Study', value: 'https://illussomedia.com/results/full-curl-landscaping' },
+      { label: 'The Local Dominance System', value: 'https://illussomedia.com/system' },
+    ],
+    to
+  );
+}
+
+// Playbook delivery email — sent after a successful lead-capture submission
+// on /lead-to-booked-job-playbook. The thank-you page already offers an
+// immediate in-browser download (Part 5 — never make the visitor wait on
+// email for the file itself); this email is the supplementary copy so they
+// have the link in their inbox too. Best-effort/non-blocking, same pattern
+// as sendApplicationConfirmationEmail.
+export async function sendPlaybookDeliveryEmail(to: string, firstName: string) {
+  const greeting = firstName ? `${firstName}, your` : 'Your';
+  return sendLeadEmail(
+    'Your 90-Day Lead-to-Booked-Job Playbook',
+    [
+      {
+        label: 'Ready',
+        value: `${greeting} playbook is ready. The 90-Day Home Service Lead-to-Booked-Job Playbook walks through the systems for capturing, qualifying, responding to, following up with, and converting more local opportunities. Start with the section that matches the biggest constraint in your current lead process.`,
+      },
+      { label: 'Download the Playbook', value: 'https://illussomedia.com/resources/90-day-home-service-lead-to-booked-job-playbook.pdf' },
+      {
+        label: 'Next',
+        value: "Once you've gone through it, the next question is whether the rest of your growth system is working together.",
+      },
+      { label: 'Take the 2-Minute Local Dominance Score', value: 'https://illussomedia.com/local-dominance-score' },
+    ],
+    to
+  );
+}

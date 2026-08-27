@@ -34,7 +34,7 @@ export default function BonusStack() {
                 <span className="text-[#008080] text-sm font-semibold whitespace-nowrap">{bonus.value}</span>
               </div>
               <p className="text-[#888] text-sm mb-5">{bonus.purpose}</p>
-              <ul className="space-y-2 mt-auto">
+              <ul className="space-y-2 mb-5">
                 {bonus.includes.map((item) => (
                   <li key={item} className="text-[#C5C6C7] text-sm flex gap-2">
                     <span className="text-[#008080] flex-shrink-0">•</span>
@@ -42,6 +42,11 @@ export default function BonusStack() {
                   </li>
                 ))}
               </ul>
+              {bonus.whyItMatters && (
+                <p className="text-[#888] text-xs leading-relaxed mt-auto pt-4 border-t border-white/5">
+                  {bonus.whyItMatters}
+                </p>
+              )}
             </m.div>
           ))}
         </div>

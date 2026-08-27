@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sendLeadEmail } from '@/lib/email';
+import { sendLeadEmail, sendApplicationConfirmationEmail } from '@/lib/email';
 import { routeApplication } from '@/lib/applicationRouting';
 import { applicationRequestSchema } from '@/lib/validation';
 import { checkRateLimit, getClientKey } from '@/lib/rateLimit';
@@ -98,8 +98,11 @@ export async function POST(req: NextRequest) {
   // Syncs the contact into Brevo's "Local Dominance Applications" list,
   // marking APPLICATION_STATUS complete — this also cancels the
   // abandonment-recovery automation for this contact if it was running
-  // (Part 17; see BREVO_SETUP.md for the Brevo-side workflow).
-  upsertContact({
+  // (Part 17; see BREVO_SETUP.md for the Brevo-side workflow). Awaited
+  // (unlike the fire-and-forget pattern used elsewhere) because this is one
+  // of the two channels that determine whether the submission actually
+  // landed anywhere — see `delivered` below.
+  const brevoResult = await upsertContact({
     email: values.email,
     attributes: {
       FIRSTNAME: stripControlChars(values.contactName || ''),
@@ -113,7 +116,27 @@ export async function POST(req: NextRequest) {
       APPLICATION_STATUS: 'completed',
     },
     listIds: [BREVO_LISTS.applications],
-  }).catch((err) => console.error('[brevo] Application sync failed', err));
+  }).catch((err) => {
+    console.error('[brevo] Application sync failed', err);
+    return { ok: false as const };
+  });
+
+  // The application only counts as "received" if it actually landed
+  // somewhere real — the admin notification email or the CRM record. If
+  // both channels are unconfigured or failing, the client must not show a
+  // success screen (see app/apply — the review page is not shown unless
+  // this is true).
+  const delivered = sent || brevoResult.ok;
+
+  if (!delivered) {
+    return NextResponse.json({ ok: false, error: 'delivery_failed' }, { status: 502 });
+  }
+
+  // Best-effort confirmation to the applicant — never gates the response;
+  // a failure here doesn't change what the visitor sees on-page.
+  sendApplicationConfirmationEmail(values.email, stripControlChars(values.contactName || '')).catch((err) =>
+    console.error('[email] Application confirmation email failed', err)
+  );
 
   return NextResponse.json({ ok: true, sent, tier });
 }
