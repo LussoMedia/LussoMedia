@@ -78,8 +78,12 @@ export default function Nav() {
             />
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          {/* Desktop nav — activates at `xl` (1280px), not `md`. The full
+              nav (logo + 6 links incl. two dropdowns + CTA) needs ~960px
+              minimum with zero gap; `md` (768px) left a ~300–500px dead
+              zone across tablet/laptop widths where items visibly
+              collided. `xl` clears that with comfortable margin. */}
+          <nav className="hidden xl:flex items-center gap-8">
             {mainNavLinks.map((link) => {
               if ('industries' in link && link.industries) {
                 return <IndustriesDropdown key={link.label} active={industriesActive} />;
@@ -111,7 +115,7 @@ export default function Nav() {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden md:block">
+          <div className="hidden xl:block">
             <Link
               href={primaryCTA.href}
               onClick={() => trackEvent('primary_cta_click', { location: 'nav' })}
@@ -121,10 +125,10 @@ export default function Nav() {
             </Link>
           </div>
 
-          {/* Hamburger */}
+          {/* Hamburger — mirrors the nav/CTA breakpoint above */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] group"
+            className="xl:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] group"
             aria-label="Toggle menu"
           >
             <span
@@ -146,9 +150,9 @@ export default function Nav() {
         </div>
       </header>
 
-      {/* Mobile drawer */}
+      {/* Mobile/compact drawer */}
       <div
-        className={`fixed inset-0 z-40 md:hidden transition-opacity duration-300 ${
+        className={`fixed inset-0 z-40 xl:hidden transition-opacity duration-300 ${
           menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >

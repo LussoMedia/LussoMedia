@@ -18,7 +18,7 @@ export interface Bonus {
 export const bonuses: Bonus[] = [
   {
     name: 'Lead-to-Booked-Job Conversion Intensive',
-    value: '$1,250',
+    value: '$2,500',
     purpose:
       'Personalized done-with-you conversion training for the team member responsible for handling incoming opportunities.',
     includes: [
@@ -59,4 +59,4 @@ export const bonuses: Bonus[] = [
   },
 ];
 
-export const totalAdditionalValue = '$3,500';
+export const totalAdditionalValue = '$4,750';

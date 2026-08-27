@@ -97,7 +97,12 @@ export default function Founder({ founder }: Props) {
               ))}
             </div>
 
-            <div className="grid grid-cols-3 gap-6">
+            {/* Mobile stacks these vertically — at true mobile widths
+                (<640px) three equal columns compress two-word values like
+                "Southern Utah" into ~90px each, colliding. `sm:` (640px)
+                is safe because this column is full-width until `lg`
+                (1024px), where the image/content split begins. */}
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
               {stats.map((stat, i) => (
                 <m.div
                   key={i}
