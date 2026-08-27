@@ -66,7 +66,9 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-1 mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-[#008080]" />
-              <span className="text-[#888] text-sm">Southern Utah — Serving Contractors Nationwide</span>
+              <span className="text-[#888] text-sm">
+                Based in St. George, Utah — Serving Home-Service Contractors Nationwide
+              </span>
             </div>
             <Link
               href={primaryCTA.href}

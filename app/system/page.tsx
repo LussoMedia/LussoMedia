@@ -11,11 +11,18 @@ import MarketProtection from '@/components/MarketProtection';
 import { primaryCTA, secondaryCTA } from '@/lib/config/navigation';
 
 export const metadata: Metadata = {
-  title: 'The Local Dominance System — Lusso Media',
+  title: 'The Local Dominance System™',
   description:
-    'A done-for-you customer acquisition system built around Market Intelligence, Offer Engineering, Conversion Infrastructure, Authority, Demand Generation, Reputation, and Revenue Intelligence.',
+    'A fully managed demand-generation and lead-conversion system for contractors — Market Intelligence, Offer Engineering, Conversion Infrastructure, Authority, Demand, Reputation, and Revenue Intelligence.',
   alternates: { canonical: 'https://illussomedia.com/system' },
   robots: { index: true, follow: true },
+  openGraph: {
+    type: 'website',
+    url: 'https://illussomedia.com/system',
+    title: 'The Local Dominance System™ | Lusso Media',
+    description:
+      'A fully managed demand-generation, lead-conversion, and local-authority system for established home-service contractors.',
+  },
 };
 
 export default function SystemPage() {

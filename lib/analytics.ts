@@ -47,7 +47,8 @@ export type AnalyticsEvent =
   | 'homepage_playbook_clicked'
   | 'guarantee_terms_click'
   | 'market_protection_apply_click'
-  | 'score_to_application_click';
+  | 'score_to_application_click'
+  | 'guide_related_industry_click';
 
 declare global {
   interface Window {

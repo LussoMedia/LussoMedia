@@ -22,6 +22,7 @@ import FAQ from '@/components/FAQ';
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
 import { getFounder } from '@/lib/queries';
+import { faqs } from '@/lib/config/faqs';
 
 // Revalidate every 60 seconds so Sanity content updates propagate quickly
 export const revalidate = 60;
@@ -34,7 +35,15 @@ const jsonLd = {
     'The Lusso Local Dominance System installs and operates the offer, website, content, advertising, reputation, and tracking infrastructure established home-service contractors need to become the first choice in their local market.',
   url: 'https://illussomedia.com',
   email: 'admin@illussomedia.com',
-  areaServed: 'United States',
+  // Southern Utah is where Lusso is based and where local search relevance
+  // matters most, without positioning the business as exclusive to it —
+  // areaServed also names the country-wide reach described on-page.
+  areaServed: [
+    { '@type': 'City', name: 'St. George, Utah' },
+    { '@type': 'City', name: 'Cedar City, Utah' },
+    { '@type': 'AdministrativeArea', name: 'Southern Utah' },
+    { '@type': 'Country', name: 'United States' },
+  ],
   address: {
     '@type': 'PostalAddress',
     addressRegion: 'UT',
@@ -47,10 +56,20 @@ const jsonLd = {
   ],
   offers: {
     '@type': 'Offer',
-    name: 'The Lusso Local Dominance System',
+    name: 'The Local Dominance System',
     description:
       'A done-for-you customer acquisition system that helps established home-service contractors become the first choice in their local market.',
   },
+};
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+  })),
 };
 
 export default async function Home() {
@@ -61,6 +80,10 @@ export default async function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <Nav />
       <main>

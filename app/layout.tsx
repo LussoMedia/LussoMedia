@@ -19,19 +19,30 @@ const dmSans = DM_Sans({
 
 const SITE_URL = "https://illussomedia.com";
 
+const SITE_TITLE = "Home-Service Contractor Marketing System | Lusso Media";
+const SITE_DESCRIPTION =
+  "Lusso Media installs and operates The Local Dominance System™ — a fully managed demand-generation, lead-conversion, and local-authority system for established home-service contractors.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Lusso Media — The Local Dominance System for Home-Service Contractors",
-  description:
-    "The Lusso Local Dominance System installs and operates the offer, website, content, advertising, reputation, and tracking infrastructure established home-service contractors need to become the first choice in their local market.",
+  title: {
+    default: SITE_TITLE,
+    template: "%s | Lusso Media",
+  },
+  description: SITE_DESCRIPTION,
+  alternates: { canonical: SITE_URL },
   keywords: [
     "home service marketing",
+    "home service marketing agency",
+    "contractor marketing agency",
     "contractor lead generation",
+    "lead generation for contractors",
     "local dominance system",
     "HVAC marketing",
     "plumbing marketing",
     "roofing marketing",
     "landscaping marketing",
+    "electrician marketing",
     "contractor customer acquisition",
   ],
   authors: [{ name: "Lusso Media" }],
@@ -40,9 +51,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: SITE_URL,
-    title: "Lusso Media — The Local Dominance System for Home-Service Contractors",
-    description:
-      "A done-for-you customer acquisition system that helps established home-service contractors become the first choice in their local market.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     siteName: "Lusso Media",
     images: [
       {
@@ -55,15 +65,44 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lusso Media — The Local Dominance System for Home-Service Contractors",
-    description:
-      "A done-for-you customer acquisition system that helps established home-service contractors become the first choice in their local market.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     images: [`${SITE_URL}/opengraph-image`],
   },
   robots: {
     index: true,
     follow: true,
   },
+};
+
+// Site-wide entity graph — Organization + WebSite. Kept minimal and
+// verifiable: no fabricated ratings, reviews, addresses, or credentials.
+// sameAs mirrors the social links already used in app/page.tsx's
+// ProfessionalService schema.
+const orgJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: "Lusso Media",
+      url: SITE_URL,
+      logo: `${SITE_URL}/images/logo.png`,
+      email: "admin@illussomedia.com",
+      sameAs: [
+        "https://instagram.com/illussomedia",
+        "https://tiktok.com/@illussomedia",
+        "https://linkedin.com/company/lussomedia",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: "Lusso Media",
+      publisher: { "@id": `${SITE_URL}/#organization` },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -77,6 +116,10 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${dmSans.variable}`}
     >
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+        />
         <Analytics />
         <Script
           id="cal-embed"

@@ -21,10 +21,16 @@ export async function generateMetadata({
   if (!caseStudy) return {};
 
   return {
-    title: `${caseStudy.client} Case Study — Lusso Media`,
+    title: `${caseStudy.client} Case Study`,
     description: caseStudy.outcome,
     alternates: { canonical: `https://illussomedia.com/results/${caseStudy.slug}` },
     robots: { index: true, follow: true },
+    openGraph: {
+      type: 'article',
+      url: `https://illussomedia.com/results/${caseStudy.slug}`,
+      title: `${caseStudy.client} Case Study | Lusso Media`,
+      description: caseStudy.outcome,
+    },
   };
 }
 

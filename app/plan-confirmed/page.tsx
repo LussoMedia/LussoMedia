@@ -8,7 +8,7 @@ import { getCaseStudy } from '@/lib/config/caseStudies';
 import CaseStudyProofLink from '@/components/CaseStudyProofLink';
 
 export const metadata: Metadata = {
-  title: 'Your Local Dominance Review Is Booked — Lusso Media',
+  title: 'Your Local Dominance Review Is Booked',
   description: 'Come prepared with a few rough numbers so we can make the most of the call.',
   robots: { index: false, follow: false },
 };

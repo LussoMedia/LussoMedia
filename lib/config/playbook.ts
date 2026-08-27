@@ -9,13 +9,18 @@ export const playbook = {
   slug: 'lead-to-booked-job-playbook',
   href: '/lead-to-booked-job-playbook',
   thankYouHref: '/playbook-thank-you',
-  eyebrow: 'HOME SERVICE LEAD CONVERSION PLAYBOOK',
-  title: 'The 90-Day Home Service Lead-to-Booked-Job Playbook',
-  shortTitle: '90-Day Lead-to-Booked-Job Playbook',
-  navLabel: 'Home Service Lead Conversion Playbook',
+  eyebrow: 'FREE 90-DAY PLAYBOOK',
+  // "The Home Service Lead Engine" is the resource's actual cover title —
+  // kept in sync with public/images/playbook/cover.jpg and the PDF itself.
+  title: 'The Home Service Lead Engine',
+  subtitle:
+    'The 90-Day Playbook for Capturing, Qualifying, Following Up With, and Converting More Local Leads',
+  shortTitle: 'The Home Service Lead Engine',
+  tagline: 'Build the system before you scale the traffic.',
+  navLabel: 'The Home Service Lead Engine',
   navDescription:
-    'Build the systems for capturing, qualifying, following up with, and converting more local opportunities.',
-  navEyebrow: '90-DAY LEAD-TO-BOOKED-JOB PLAYBOOK',
+    'The free 90-day playbook for capturing, qualifying, following up with, and converting more local leads.',
+  navEyebrow: 'FREE 90-DAY PLAYBOOK',
   pdfPath: '/resources/90-day-home-service-lead-to-booked-job-playbook.pdf',
   pdfFilename: '90-day-home-service-lead-to-booked-job-playbook.pdf',
   coverImage: '/images/playbook/cover.jpg',

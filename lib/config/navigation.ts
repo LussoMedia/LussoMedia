@@ -54,6 +54,7 @@ export const footerNavLinks = [
   { label: 'Industries', href: '/#industries' },
   { label: scoreCTA.label, href: scoreCTA.href },
   { label: '90-Day Lead-to-Booked-Job Playbook', href: '/lead-to-booked-job-playbook' },
+  { label: 'Guides', href: '/guides' },
   { label: 'About', href: '/#about' },
   { label: 'FAQ', href: '/#faq' },
 ];

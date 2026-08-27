@@ -64,4 +64,14 @@ export const faqs: FaqItem[] = [
     answer:
       'Local Dominance engagements are designed for established contractors making a serious growth investment. The engagement includes initial system installation, ongoing system operation, and client-funded media. Exact scope and investment are confirmed after qualification and the initial diagnostic.',
   },
+  {
+    question: 'Do you only work with contractors in Southern Utah?',
+    answer:
+      "No. Lusso Media is based in St. George, Utah, and works with established home-service contractors in St. George, Cedar City, and Southern Utah as well as markets across the country — the system is built the same way regardless of location.",
+  },
+  {
+    question: 'Which trades do you work with?',
+    answer:
+      'Established plumbing, HVAC, roofing, landscaping, concrete and hardscaping, electrical, general contracting, and remodeling businesses — and other local home-service trades where the offer, economics, and growth fit make sense.',
+  },
 ];

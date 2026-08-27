@@ -11,7 +11,7 @@ import CalBookingListener from '@/components/CalBookingListener';
 // tier rather than relying on obscurity.
 
 export const metadata: Metadata = {
-  title: 'Book Your Local Dominance Plan Review — Lusso Media',
+  title: 'Book Your Local Dominance Plan Review',
   description: 'Choose a time to review your Local Dominance Plan.',
   robots: { index: false, follow: false },
 };

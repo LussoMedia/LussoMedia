@@ -4,8 +4,8 @@ import Footer from '@/components/Footer';
 import PlaybookThankYou from '@/components/playbook/PlaybookThankYou';
 
 export const metadata: Metadata = {
-  title: 'Your Playbook Is Ready — Lusso Media',
-  description: 'Download the 90-Day Home Service Lead-to-Booked-Job Playbook.',
+  title: 'Your Playbook Is Ready',
+  description: 'Download The Home Service Lead Engine — the free 90-day playbook for capturing, qualifying, following up with, and converting more local leads.',
   alternates: { canonical: 'https://illussomedia.com/playbook-thank-you' },
   robots: { index: false, follow: true },
 };

@@ -36,9 +36,9 @@ export default function PlaybookHero() {
           >
             <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">{playbook.eyebrow}</p>
             <h1 className="font-[family-name:var(--font-space-grotesk)] text-[clamp(2rem,5vw,3.5rem)] font-bold text-white mb-5 leading-[1.08]">
-              Turn More Local Leads Into Booked Jobs.
+              {playbook.title}
             </h1>
-            <p className="text-white text-lg font-semibold mb-4 leading-snug">{playbook.title}</p>
+            <p className="text-white text-lg font-semibold mb-4 leading-snug">{playbook.subtitle}</p>
             <p className="text-[#C5C6C7] text-base leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
               A practical operating system for established home-service contractors who want to
               capture, qualify, follow up with, and convert more of the opportunities they&rsquo;re
@@ -66,7 +66,7 @@ export default function PlaybookHero() {
               <div className="relative rounded-lg overflow-hidden border border-white/10 shadow-2xl">
                 <Image
                   src={playbook.coverImage}
-                  alt="The 90-Day Home Service Lead-to-Booked-Job Playbook cover"
+                  alt="The Home Service Lead Engine — 90-day playbook cover"
                   width={1000}
                   height={1294}
                   priority

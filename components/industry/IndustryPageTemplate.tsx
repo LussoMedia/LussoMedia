@@ -4,6 +4,7 @@ import { m } from 'framer-motion';
 import Link from 'next/link';
 import { IndustryPage } from '@/lib/config/industryPages';
 import { caseStudies } from '@/lib/config/caseStudies';
+import { guides } from '@/lib/config/guides';
 import { primaryCTA, scoreCTA } from '@/lib/config/navigation';
 import { trackEvent } from '@/lib/analytics';
 
@@ -11,6 +12,7 @@ export default function IndustryPageTemplate({ industry }: { industry: IndustryP
   const proofCaseStudy = industry.proofCaseStudySlug
     ? caseStudies.find((cs) => cs.slug === industry.proofCaseStudySlug)
     : undefined;
+  const relatedGuides = guides.filter((g) => g.relatedIndustrySlug === industry.slug);
 
   return (
     <>
@@ -195,6 +197,26 @@ export default function IndustryPageTemplate({ industry }: { industry: IndustryP
           )}
         </div>
       </section>
+
+      {/* Related guides */}
+      {relatedGuides.length > 0 && (
+        <section className="section-pad bg-[#0D0D0D] pb-0">
+          <div className="max-w-3xl mx-auto px-6">
+            <p className="text-xs uppercase tracking-[0.15em] text-[#008080] mb-6">Related Reading</p>
+            <div className="flex flex-col gap-4">
+              {relatedGuides.map((g) => (
+                <Link
+                  key={g.slug}
+                  href={`/guides/${g.slug}`}
+                  className="text-white text-sm font-medium hover:text-[#008080] transition-colors"
+                >
+                  {g.h1} &rarr;
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* FAQ */}
       <section className="section-pad bg-[#0D0D0D]">

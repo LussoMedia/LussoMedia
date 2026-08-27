@@ -300,6 +300,165 @@ export const industryPages: IndustryPage[] = [
       },
     ],
   },
+  {
+    slug: 'electrical',
+    scoreLeakLine: 'See where your electrical growth system may be leaking.',
+    name: 'Electrical',
+    h1: 'Become the Electrician Homeowners Trust With Bigger Jobs.',
+    eyebrow: 'For established electrical contractors',
+    intro:
+      'Panel upgrades, EV charger installs, and whole-home rewires carry the margin — but most electrical marketing is built around service calls. The Local Dominance System is built to put your company in front of homeowners planning the bigger project, not just the one with a tripped breaker.',
+    primaryPain:
+      'Service and troubleshooting calls come in reliably, but panel upgrades, EV charger installs, and larger electrical projects don\'t get searched for with the same urgency — so they go to whoever homeowners trust most by the time they\'re ready.',
+    economics: [
+      'Panel upgrades, EV charger installs, and rewires carry far better margin than a single service call, but need their own offer and funnel to surface consistently.',
+      'Trust and licensing credibility matter more here than almost any other trade — homeowners are inviting someone into their electrical system.',
+      'Commercial and light-commercial work can meaningfully change the revenue mix if the acquisition system is built to capture it.',
+    ],
+    offerExamples: [
+      {
+        name: 'Whole-Home Electrical Safety Assessment',
+        description:
+          'A structured inspection covering panel capacity, code compliance, and safety risks, with clear next-step recommendations.',
+      },
+      {
+        name: 'EV Charger Readiness Evaluation',
+        description:
+          'Evaluate panel capacity and wiring needs for homeowners considering an EV charger install, with transparent scope and pricing before work begins.',
+      },
+      {
+        name: 'Panel Upgrade Priority Scheduling',
+        description:
+          'Fast-track qualified homeowners dealing with an outdated or at-capacity panel when installation capacity allows.',
+      },
+    ],
+    seasonality:
+      'Demand is steadier year-round than most trades, with predictable bumps around storm season (service calls) and EV/home-renovation cycles (bigger installs) — the system is built to capture both without over-indexing on one.',
+    projectExamples: [
+      'Panel upgrades and replacements',
+      'EV charger installations',
+      'Whole-home rewires',
+      'Generator and backup power installs',
+    ],
+    faq: [
+      {
+        question: 'We already get plenty of service calls — why does this matter?',
+        answer:
+          'Service calls rarely lead homeowners back for a panel upgrade or EV charger install on their own. The system is built to capture the bigger-ticket work that service calls alone don\'t generate.',
+      },
+      {
+        question: 'Do you help us market EV charger installs specifically?',
+        answer:
+          'Yes — EV charger demand is one of the fastest-growing categories in residential electrical work, and the offer and funnel are built to target it directly where it makes sense for your market.',
+      },
+    ],
+  },
+  {
+    slug: 'remodeling',
+    scoreLeakLine: 'See where your remodeling pipeline may be leaking.',
+    name: 'Remodeling',
+    h1: 'Fill Your Pipeline With the Remodeling Projects Worth Building.',
+    eyebrow: 'For established remodeling & renovation contractors',
+    intro:
+      'Kitchen and bath remodels, additions, and whole-home renovations are considered purchases — homeowners research extensively and compare contractors for weeks before they ever pick up the phone. The Local Dominance System is built to make sure they find you first, and trust you most.',
+    primaryPain:
+      'Strong past work and referrals aren\'t enough on their own — homeowners planning a major remodel spend weeks researching online, and the pipeline is only as strong as the system that captures and qualifies that research.',
+    economics: [
+      'Remodeling projects are high-ticket and infrequent — the offer, proof, and qualification process all need to earn trust well before the first estimate.',
+      'Design/build capacity is usually the real constraint, so the pipeline needs to be filled with qualified projects, not just volume.',
+      'Portfolio and before/after proof carry more weight here than almost any claim — homeowners are trying to picture their own home.',
+    ],
+    offerExamples: [
+      {
+        name: 'Remodel Planning & Scope Consultation',
+        description:
+          'A structured session connecting design goals, budget range, timeline, and project scope before a homeowner commits to a full estimate.',
+      },
+      {
+        name: 'Design Deposit Priority',
+        description:
+          'Qualify serious homeowners by requiring a design or planning commitment before detailed estimating and scheduling begin.',
+      },
+      {
+        name: 'Seasonal Production Window Priority',
+        description:
+          "Allow qualified projects to reserve upcoming production capacity when the contractor's schedule has genuine limited availability.",
+      },
+    ],
+    seasonality:
+      'Planning and research activity often runs months ahead of the actual build — the system is built to capture homeowners early in that research phase so the pipeline stays full well before ground breaks.',
+    projectExamples: [
+      'Kitchen and bathroom remodels',
+      'Whole-home renovations',
+      'Home additions',
+      'Design/build project pipelines',
+    ],
+    faq: [
+      {
+        question: 'Our best work comes from referrals — why do we need this?',
+        answer:
+          'Referrals are valuable but unpredictable. The system is built to add a consistent, qualified pipeline of design/build projects alongside the referral relationships you\'ve already built.',
+      },
+      {
+        question: 'How do you handle long sales cycles?',
+        answer:
+          'Follow-up and nurture are built into the Conversion Infrastructure component specifically because remodeling decisions take weeks or months, not days.',
+      },
+    ],
+  },
+  {
+    slug: 'general-contractors',
+    scoreLeakLine: 'See where your project pipeline may be leaking.',
+    name: 'General Contracting',
+    h1: 'Win More of the Projects Homeowners Are Already Comparing Bids On.',
+    eyebrow: 'For established general contractors',
+    intro:
+      'Homeowners planning a major project — an addition, a full renovation, a ground-up build — get multiple bids before choosing. The Local Dominance System is built to make your company the trusted, credible option by the time those bids come in.',
+    primaryPain:
+      'Being the best builder in the market doesn\'t automatically mean being the most visible or most trusted one to homeowners quietly comparing contractors online before they ever request a bid.',
+    economics: [
+      'Project value varies widely — the offer, qualification, and follow-up process need to route the right-size projects to the right capacity.',
+      'Trust and licensing credibility are the biggest lever — before/after proof, reviews, and completed-project content do more selling than any ad claim.',
+      'Bid-to-win rate matters as much as lead volume — a system that fills the pipeline with poorly-qualified bids wastes estimating capacity.',
+    ],
+    offerExamples: [
+      {
+        name: 'Project Scope & Feasibility Consultation',
+        description:
+          'A structured conversation clarifying project goals, budget range, timeline, and buildability before a full bid is prepared.',
+      },
+      {
+        name: 'Pre-Construction Planning Session',
+        description:
+          'Help homeowners understand permitting, scope, sequencing, and realistic cost ranges before committing to a full proposal.',
+      },
+      {
+        name: 'Priority Bid Scheduling',
+        description:
+          'Fast-track estimating for qualified projects when the contractor\'s bidding and production capacity allows.',
+      },
+    ],
+    seasonality:
+      'Larger projects are planned well ahead of the build season — the system is built to keep the bid pipeline full year-round rather than compressed into a short window.',
+    projectExamples: [
+      'Home additions and structural renovations',
+      'Ground-up custom builds',
+      'Multi-trade renovation projects',
+      'Design/build project pipelines',
+    ],
+    faq: [
+      {
+        question: 'We already win most of our bids — why do we need this?',
+        answer:
+          'A strong close rate on a thin pipeline still leaves capacity on the table. The system is built to fill the pipeline with more of the right-fit projects, not just more bids.',
+      },
+      {
+        question: 'How do you help with project trust and credibility?',
+        answer:
+          'Authority and reputation are built into the system — before/after proof, reviews, and completed-project content are positioned specifically to build trust before the first bid conversation.',
+      },
+    ],
+  },
 ];
 
 export function getIndustryPage(slug: string): IndustryPage | undefined {

@@ -6,11 +6,18 @@ import Footer from '@/components/Footer';
 import { caseStudies } from '@/lib/config/caseStudies';
 
 export const metadata: Metadata = {
-  title: 'Contractor Results — Lusso Media',
+  title: 'Contractor Results & Case Studies',
   description:
-    'See what happens when the offer, conversion infrastructure, content, demand, and reputation all work together — real business outcomes, not vanity metrics.',
+    'Real home-service contractor results from The Local Dominance System — business outcomes from offer, conversion, content, demand, and reputation working together.',
   alternates: { canonical: 'https://illussomedia.com/results' },
   robots: { index: true, follow: true },
+  openGraph: {
+    type: 'website',
+    url: 'https://illussomedia.com/results',
+    title: 'Contractor Results & Case Studies | Lusso Media',
+    description:
+      'Real home-service contractor results from The Local Dominance System — business outcomes, not vanity metrics.',
+  },
 };
 
 const tagColors: Record<string, string> = {

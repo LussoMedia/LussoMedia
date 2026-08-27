@@ -1,6 +1,8 @@
 import type { MetadataRoute } from 'next';
 import { caseStudies } from '@/lib/config/caseStudies';
 import { industryPages } from '@/lib/config/industryPages';
+import { playbook } from '@/lib/config/playbook';
+import { guides } from '@/lib/config/guides';
 
 // Single source of truth for the sitemap — pulls case studies and
 // vertical pages from their config so new entries there show up here
@@ -52,6 +54,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.9,
     },
+    {
+      url: `${base}${playbook.href}`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${base}/guides`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    ...guides.map((g) => ({
+      url: `${base}/guides/${g.slug}`,
+      lastModified: new Date(g.updatedDate),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    })),
     {
       url: `${base}/privacy`,
       lastModified: now,
