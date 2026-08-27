@@ -1,6 +1,7 @@
 import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
 import ProofStrip from '@/components/ProofStrip';
+import EarlyGuarantee from '@/components/EarlyGuarantee';
 import ReferralCeiling from '@/components/ReferralCeiling';
 import FragmentedMarketing from '@/components/FragmentedMarketing';
 import DominanceSystemDiagram from '@/components/DominanceSystemDiagram';
@@ -14,6 +15,7 @@ import BonusStack from '@/components/BonusStack';
 import DiyVsDwyNote from '@/components/DiyVsDwyNote';
 import HomepagePlaybookSection from '@/components/HomepagePlaybookSection';
 import GuaranteeSection from '@/components/GuaranteeSection';
+import MarketProtection from '@/components/MarketProtection';
 import QualificationSection from '@/components/QualificationSection';
 import Founder from '@/components/Founder';
 import FAQ from '@/components/FAQ';
@@ -64,6 +66,7 @@ export default async function Home() {
       <main>
         <Hero />
         <ProofStrip />
+        <EarlyGuarantee />
         <ReferralCeiling />
         <FragmentedMarketing />
         <DominanceSystemDiagram />
@@ -77,6 +80,7 @@ export default async function Home() {
         <DiyVsDwyNote />
         <HomepagePlaybookSection />
         <GuaranteeSection />
+        <MarketProtection />
         <QualificationSection />
         <Founder founder={founder} />
         <FAQ />

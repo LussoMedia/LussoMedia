@@ -74,7 +74,10 @@ export const scoreAnswersSchema = z.record(z.string().min(1).max(60), z.number()
 
 export const scoreRequestSchema = z.object({
   firstName: z.string().trim().min(1).max(100),
-  company: z.string().trim().min(1).max(150),
+  // Optional — the email-capture step only requires First Name + Email
+  // (reduced-friction ascension flow); company is a nice-to-have for
+  // personalization/CRM segmentation, never a submission blocker.
+  company: shortText(150),
   email: z.string().trim().email().max(200),
   phone: shortText(40),
   answers: scoreAnswersSchema,

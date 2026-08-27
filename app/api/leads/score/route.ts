@@ -45,8 +45,12 @@ export async function POST(req: NextRequest) {
 
   const safeFirstName = stripControlChars(firstName);
   const safeCompany = stripControlChars(company);
+  // Company is now optional at capture (reduced-friction ascension flow) —
+  // fall back to something readable in the admin-notification subject line
+  // rather than a blank/dash.
+  const companyLabel = safeCompany || 'Unknown Company';
 
-  const { sent } = await sendLeadEmail(`New Local Dominance Score Lead — ${safeCompany}`, [
+  const { sent } = await sendLeadEmail(`New Local Dominance Score Lead — ${companyLabel}`, [
     { label: 'Name', value: `${safeFirstName} — ${safeCompany}` },
     { label: 'First Name', value: safeFirstName },
     { label: 'Company', value: safeCompany },
@@ -78,7 +82,12 @@ export async function POST(req: NextRequest) {
       { label: 'Recommended Priority', value: topLeak.priority },
       { label: 'Immediate Action', value: topLeak.actions[0] },
       { label: 'Full Breakdown', value: 'https://illussomedia.com/local-dominance-score' },
-      { label: 'Next Step', value: 'https://illussomedia.com/apply' },
+      // The email-capture step now promises "your score, biggest growth
+      // constraints, and the 90-Day Lead-to-Booked-Job Playbook" — keep
+      // that promise honest by actually including the playbook link here,
+      // not just a generic "Next Step".
+      { label: 'Get the 90-Day Lead-to-Booked-Job Playbook', value: 'https://illussomedia.com/lead-to-booked-job-playbook' },
+      { label: 'See If Your Market Qualifies', value: 'https://illussomedia.com/apply' },
     ]
   ).catch((err) => console.error('[email] Visitor results email failed', err));
 

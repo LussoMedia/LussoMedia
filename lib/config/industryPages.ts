@@ -5,6 +5,11 @@
 // case study point to /results generally rather than implying a false
 // industry-specific result.
 
+export interface OfferExample {
+  name: string;
+  description: string;
+}
+
 export interface IndustryPage {
   slug: string;
   name: string;
@@ -13,7 +18,11 @@ export interface IndustryPage {
   intro: string;
   primaryPain: string;
   economics: string[];
-  commonOffers: string[];
+  // Illustrative offer-engineering concepts (Change 4) — named, structured
+  // examples of what a stronger offer can look like, not claims that these
+  // are active client offers. Framed on-page as "Examples of Offers We Can
+  // Engineer," never as "Common Offers We Build."
+  offerExamples: OfferExample[];
   seasonality: string;
   projectExamples: string[];
   faq: { question: string; answer: string }[];
@@ -39,10 +48,22 @@ export const industryPages: IndustryPage[] = [
       'Seasonal demand swings mean the acquisition system has to be able to turn up quickly ahead of summer and winter peaks.',
       'The path from a maintenance visit to a replacement conversation is where a lot of revenue quietly gets lost.',
     ],
-    commonOffers: [
-      'Same-day emergency repair positioning',
-      'Free replacement estimate with financing options',
-      'Maintenance plan built as a replacement pipeline, not just a service contract',
+    offerExamples: [
+      {
+        name: 'Comfort System Replacement Assessment',
+        description:
+          'A structured home-comfort evaluation that identifies performance issues, replacement options, financing paths, and next-step recommendations.',
+      },
+      {
+        name: 'Priority HVAC Rescue',
+        description:
+          'Dedicated scheduling for qualified homeowners dealing with urgent cooling or heating failures, with diagnostic costs credited toward approved repair work where applicable.',
+      },
+      {
+        name: 'Home Efficiency Upgrade Plan',
+        description:
+          'A combined system-performance and comfort assessment designed to identify inefficiencies before a homeowner commits to major equipment upgrades.',
+      },
     ],
     seasonality:
       'Demand concentrates ahead of and during extreme temperature swings. The system is built to have campaigns ready to scale before those windows, not scrambling once they hit.',
@@ -80,10 +101,22 @@ export const industryPages: IndustryPage[] = [
       'Search intent varies sharply by service — "burst pipe" behaves nothing like "tankless water heater install."',
       'Service-area funnels matter more here than almost any other trade — plumbers often cover a tighter radius than they think.',
     ],
-    commonOffers: [
-      'Free water treatment / repipe assessment',
-      'Same-day emergency response guarantee',
-      'Tankless upgrade offer bundled with financing',
+    offerExamples: [
+      {
+        name: 'Whole-Home Water Protection Assessment',
+        description:
+          'Diagnose hard-water damage, fixture impact, appliance exposure, and treatment options before recommending a system.',
+      },
+      {
+        name: 'Water Softener Installation Credit',
+        description:
+          'Qualified homeowners receive an installation credit toward an approved whole-home water treatment system.',
+      },
+      {
+        name: 'Appliance Protection Package',
+        description:
+          'Pair the installation with recurring maintenance, system servicing, and consumable delivery to increase long-term homeowner value.',
+      },
     ],
     seasonality:
       'Emergency demand spikes around freeze events; installation demand is steadier but benefits from a consistent authority and reputation presence year-round.',
@@ -122,10 +155,22 @@ export const industryPages: IndustryPage[] = [
       'Storm and insurance-driven demand creates sudden spikes that a fragmented marketing setup can\'t capitalize on fast enough.',
       'Trust is the biggest lever — before/after proof and reviews matter more here than in almost any other trade.',
     ],
-    commonOffers: [
-      'Free roof inspection with photo documentation',
-      'Financing-backed replacement offer',
-      'Storm damage assessment and insurance claim support',
+    offerExamples: [
+      {
+        name: 'Storm Damage Documentation & Replacement Assessment',
+        description:
+          'A documented roof evaluation with photo evidence, condition findings, replacement recommendations, and next-step guidance.',
+      },
+      {
+        name: 'Roof Replacement Planning Session',
+        description:
+          'Give homeowners clarity around condition, material options, project scope, expected timeline, and financing before they commit.',
+      },
+      {
+        name: 'Priority Weather-Damage Response',
+        description:
+          'Fast-track qualified homeowners following severe weather events when inspection capacity is available.',
+      },
     ],
     seasonality:
       'Storm events create sudden, sharp demand spikes. The system is built with creative and tracking ready so a market surge doesn\'t get missed.',
@@ -163,10 +208,22 @@ export const industryPages: IndustryPage[] = [
       'Project scope and qualification matter more here than most trades — the wrong-fit lead wastes a design consult.',
       'Visual proof (real before/after, real completed projects) does more of the selling than almost any other channel.',
     ],
-    commonOffers: [
-      'Free design consultation for full outdoor transformations',
-      'Seasonal project-booking campaigns',
-      'Portfolio-driven proof funnel for design/build work',
+    offerExamples: [
+      {
+        name: 'Outdoor Transformation Planning Session',
+        description:
+          'A structured consultation that connects design goals, property conditions, scope, timeline, and realistic budget expectations.',
+      },
+      {
+        name: 'Project Priority Deposit',
+        description:
+          'Qualify serious homeowners by requiring a planning or design commitment before major design work begins.',
+      },
+      {
+        name: 'Seasonal Installation Priority',
+        description:
+          "Allow qualified projects to reserve limited production windows when the contractor's upcoming schedule has genuine capacity constraints.",
+      },
     ],
     seasonality:
       'Demand builds ahead of the outdoor season and needs a pipeline of booked projects ready before the ground even thaws — waiting until spring to start marketing means competing for what\'s left.',
@@ -205,10 +262,22 @@ export const industryPages: IndustryPage[] = [
       'Capacity planning matters — these are longer projects, so the pipeline needs to be qualified, not just full.',
       'Before/after proof and real project photography do more of the convincing than almost any claim you could make.',
     ],
-    commonOffers: [
-      'Free on-site project estimate',
-      'Financing-backed hardscape packages',
-      'Portfolio-driven proof funnel for completed projects',
+    offerExamples: [
+      {
+        name: 'Property Hardscape Planning Assessment',
+        description:
+          'Evaluate site conditions, intended use, drainage considerations, material options, scope, and budget before project design begins.',
+      },
+      {
+        name: 'Project Scope & Buildability Review',
+        description:
+          "Help homeowners determine whether their patio, driveway, retaining wall, or outdoor structure is realistic before moving into design.",
+      },
+      {
+        name: 'Priority Installation Window',
+        description:
+          'Allow qualified projects to secure genuine upcoming production availability when capacity is limited.',
+      },
     ],
     seasonality:
       'Outdoor project season is compressed in colder climates — the system is built to fill the pipeline before the season starts, not scramble once it opens.',

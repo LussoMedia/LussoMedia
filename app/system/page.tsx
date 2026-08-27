@@ -7,6 +7,7 @@ import SystemDeepDive from '@/components/SystemDeepDive';
 import FastWinTimeline from '@/components/FastWinTimeline';
 import NinetyDayRoadmap from '@/components/NinetyDayRoadmap';
 import GuaranteeSection from '@/components/GuaranteeSection';
+import MarketProtection from '@/components/MarketProtection';
 import { primaryCTA, secondaryCTA } from '@/lib/config/navigation';
 
 export const metadata: Metadata = {
@@ -52,6 +53,7 @@ export default function SystemPage() {
         <FastWinTimeline />
         <NinetyDayRoadmap />
         <GuaranteeSection />
+        <MarketProtection />
 
         <section className="section-pad bg-[#0D0D0D] text-center">
           <div className="max-w-2xl mx-auto px-6">

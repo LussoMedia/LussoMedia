@@ -1,11 +1,11 @@
 'use client';
 
 import { m } from 'framer-motion';
-import Link from 'next/link';
 import { ScoreResult } from '@/lib/scoring';
 import { recommendations } from '@/lib/config/scoreRecommendations';
 import { buildInterpretation } from '@/lib/scoreInterpretation';
 import { trackEvent } from '@/lib/analytics';
+import ScoreNextStep from './ScoreNextStep';
 
 interface Props {
   result: ScoreResult;
@@ -87,24 +87,9 @@ export default function ScoreBreakdown({ result, firstName }: Props) {
         })}
       </div>
 
-      <div className="text-center print:hidden">
-        <div className="mb-8">
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-white mb-3">
-            Want a Plan Built Around Your Business?
-          </h2>
-          <p className="text-[#C5C6C7] max-w-lg mx-auto mb-6 leading-relaxed">
-            Your Score identifies the likely constraints. The Local Dominance Plan looks at your
-            economics, market, capacity, and service mix to determine what should be fixed first.
-          </p>
-          <Link
-            href="/apply"
-            onClick={() => trackEvent('dominance_score_plan_click')}
-            className="booking-btn booking-btn--primary text-base px-10 py-4 inline-block"
-          >
-            Get My Local Dominance Plan
-          </Link>
-        </div>
+      <ScoreNextStep result={result} />
 
+      <div className="text-center print:hidden mt-10">
         <button
           onClick={handleSave}
           className="booking-btn booking-btn--ghost text-sm px-6 py-3"

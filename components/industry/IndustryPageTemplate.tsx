@@ -112,12 +112,15 @@ export default function IndustryPageTemplate({ industry }: { industry: IndustryP
             transition={{ duration: 0.6 }}
             className="bg-[#141414] border border-white/5 rounded-xl p-8"
           >
-            <p className="text-xs uppercase tracking-[0.15em] text-[#008080] mb-5">Common Offers We Build</p>
-            <ul className="space-y-3">
-              {industry.commonOffers.map((offer) => (
-                <li key={offer} className="flex items-start gap-3 text-white text-sm">
-                  <span className="text-[#008080] flex-shrink-0 mt-0.5">•</span>
-                  {offer}
+            <p className="text-xs uppercase tracking-[0.15em] text-[#008080] mb-2">Examples of Offers We Can Engineer</p>
+            <p className="text-[#666] text-xs italic mb-5">
+              Illustrative concepts, not a claim of active client offers.
+            </p>
+            <ul className="flex flex-col gap-4">
+              {industry.offerExamples.map((offer) => (
+                <li key={offer.name}>
+                  <p className="text-white text-sm font-semibold mb-1">{offer.name}</p>
+                  <p className="text-[#C5C6C7] text-sm leading-relaxed">{offer.description}</p>
                 </li>
               ))}
             </ul>

@@ -5,7 +5,7 @@ import { activationGuarantee, performanceExtension } from '@/lib/config/guarante
 
 export default function GuaranteeSection() {
   return (
-    <section className="section-pad bg-[#0D0D0D]">
+    <section id="guarantee" className="section-pad bg-[#0D0D0D] scroll-mt-20">
       <div className="max-w-5xl mx-auto px-6">
         <m.div
           initial={{ opacity: 0, y: 20 }}

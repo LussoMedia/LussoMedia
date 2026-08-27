@@ -4,12 +4,13 @@ import { useState, useEffect, useCallback } from 'react';
 import { applicationSteps, totalSteps } from '@/lib/config/application';
 import { routeApplication } from '@/lib/applicationRouting';
 import { trackEvent, captureUtms, getStoredUtms } from '@/lib/analytics';
-import { getStoredScoreLead } from '@/lib/leadStorage';
+import { getStoredScoreLead, StoredScoreLead } from '@/lib/leadStorage';
 import ProgressIndicator from '@/components/ProgressIndicator';
 import Honeypot from '@/components/Honeypot';
 import StepForm from './StepForm';
 import ApplicationResult from './ApplicationResult';
 import SubmissionError from './SubmissionError';
+import ScoreContextBanner from './ScoreContextBanner';
 
 type SubmitState = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -19,6 +20,10 @@ export default function ApplicationFunnel() {
   const [honeypot, setHoneypot] = useState('');
   const [submitState, setSubmitState] = useState<SubmitState>('idle');
   const [started, setStarted] = useState(false);
+  // Full score record (not just the 3 fields pre-filled into `values`) —
+  // kept in state purely to know whether to show the contextual banner
+  // (Change 5). Never fed into qualification logic.
+  const [scoreLead, setScoreLead] = useState<StoredScoreLead | null>(null);
 
   const step = applicationSteps[stepIndex];
   const isLast = stepIndex === applicationSteps.length - 1;
@@ -30,15 +35,16 @@ export default function ApplicationFunnel() {
     // intentionally syncs from sessionStorage (an external system) after
     // mount rather than in the initializer, to avoid an SSR/client
     // hydration mismatch on the pre-filled input value.
-    const scoreLead = getStoredScoreLead();
-    if (scoreLead) {
+    const storedScoreLead = getStoredScoreLead();
+    if (storedScoreLead) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setValues((v) => ({
         ...v,
-        companyName: v.companyName || scoreLead.company,
-        contactName: v.contactName || scoreLead.firstName,
-        email: v.email || scoreLead.email,
+        companyName: v.companyName || storedScoreLead.company,
+        contactName: v.contactName || storedScoreLead.firstName,
+        email: v.email || storedScoreLead.email,
       }));
+      setScoreLead(storedScoreLead);
     }
   }, []);
 
@@ -130,6 +136,7 @@ export default function ApplicationFunnel() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center py-32">
       <Honeypot value={honeypot} onChange={setHoneypot} />
+      {scoreLead && stepIndex === 0 && <ScoreContextBanner />}
       <ProgressIndicator step={stepIndex + 1} total={totalSteps} label="Application" />
       <StepForm
         key={step.id}

@@ -45,7 +45,7 @@ export default function Hero() {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#008080]/30 bg-[#008080]/10 text-[#008080] text-sm font-medium mb-8"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-[#008080] animate-pulse" />
-          Built for established home-service contractors
+          Built for Established Home Service Contractors
         </m.div>
 
         {/* Headline */}
@@ -56,14 +56,26 @@ export default function Hero() {
           Become the <span className="teal-gradient-text">First Call</span> in Your Local Market.
         </m.h1>
 
-        {/* Subheadline */}
+        {/* Primary supporting copy — dream outcome + reduced owner effort,
+            before the mechanism (Change 1: outcome first, systems list
+            second, not the other way around). */}
         <m.p
           {...fadeUp(0.2)}
-          className="text-lg md:text-xl text-[#C5C6C7] max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="text-lg md:text-xl text-[#C5C6C7] max-w-2xl mx-auto mb-4 leading-relaxed"
         >
-          The Lusso Local Dominance System installs and operates the offer, website, content,
-          advertising, reputation, and tracking infrastructure established contractors need to
-          grow beyond referrals and become the first choice in their market.
+          Turn the reputation you&rsquo;ve already built into a predictable flow of qualified
+          opportunities — without hiring an internal marketing team or managing five different
+          vendors.
+        </m.p>
+
+        {/* Mechanism — smaller, secondary paragraph */}
+        <m.p
+          {...fadeUp(0.25)}
+          className="text-base text-[#888] max-w-2xl mx-auto mb-10 leading-relaxed"
+        >
+          The Local Dominance System installs and operates the offers, conversion infrastructure,
+          content, advertising, reputation, and tracking required to turn local attention into
+          measurable growth.
         </m.p>
 
         {/* CTAs */}
@@ -76,26 +88,24 @@ export default function Hero() {
             onClick={() => trackEvent('primary_cta_click', { location: 'hero' })}
             className="booking-btn booking-btn--primary text-base px-8 py-4"
           >
-            {primaryCTA.label}
+            See If Your Market Qualifies
           </Link>
           <Link
             href={scoreCTA.href}
             onClick={() => trackEvent('dominance_score_cta_click', { placement: 'hero' })}
             className="booking-btn booking-btn--ghost text-base px-8 py-4 flex items-center gap-2"
           >
-            {scoreCTA.label}
+            Take the 2-Minute Local Dominance Score
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </Link>
         </m.div>
 
-        {/* Score expectation-setting */}
-        <m.p {...fadeUp(0.35)} className="mt-4 text-xs text-[#666]">
-          {scoreCTA.microcopy}
-        </m.p>
-
-        {/* Qualification microcopy + tertiary results link */}
+        {/* Qualification microcopy + tertiary results link — the ghost CTA
+            above already spells out the score's name/length, so the old
+            separate "2-Minute Local Dominance Score" microcopy line here
+            would just repeat it verbatim; dropped. */}
         <m.p
           {...fadeUp(0.4)}
           className="mt-6 text-sm text-[#888] tracking-wide"

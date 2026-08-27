@@ -28,7 +28,8 @@ export default function LeadCaptureForm({ onSubmit }: Props) {
     e.preventDefault();
     const nextErrors: typeof errors = {};
     if (!data.firstName.trim()) nextErrors.firstName = 'First name is required';
-    if (!data.company.trim()) nextErrors.company = 'Company name is required';
+    // Company is intentionally optional — only First Name + Email gate the
+    // educational resource (reduced-friction ascension flow).
     if (!data.email.trim() || !EMAIL_RE.test(data.email)) nextErrors.email = 'Enter a valid email';
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
@@ -47,12 +48,15 @@ export default function LeadCaptureForm({ onSubmit }: Props) {
       noValidate
     >
       {/* Only heading visible at this stage (ScoreReveal's h1 has
-          unmounted) — Part 27/31. */}
+          unmounted) — Part 27/31. Copy + field set updated for the
+          reduced-friction ascension flow: only First Name + Email are
+          required; Company/Phone stay as optional nice-to-haves. */}
       <h1 className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-white mb-2 text-center">
-        Unlock Your Full Breakdown
+        Want the Full Breakdown?
       </h1>
       <p className="text-[#888] text-sm text-center mb-8">
-        Score by category, your top growth leaks, and immediate next steps.
+        Enter your email and we&rsquo;ll send you your score, biggest growth constraints, and the
+        90-Day Lead-to-Booked-Job Playbook.
       </p>
 
       <Honeypot value={honeypot} onChange={setHoneypot} />
@@ -73,20 +77,6 @@ export default function LeadCaptureForm({ onSubmit }: Props) {
         </div>
 
         <div>
-          <label htmlFor="company" className="block text-sm text-[#C5C6C7] mb-1.5">Company</label>
-          <input
-            id="company"
-            type="text"
-            value={data.company}
-            onChange={(e) => setData({ ...data, company: e.target.value })}
-            className="w-full bg-[#141414] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#008080] transition-colors"
-            aria-invalid={!!errors.company}
-            aria-describedby={errors.company ? 'company-error' : undefined}
-          />
-          {errors.company && <p id="company-error" className="text-red-400 text-xs mt-1">{errors.company}</p>}
-        </div>
-
-        <div>
           <label htmlFor="email" className="block text-sm text-[#C5C6C7] mb-1.5">Email</label>
           <input
             id="email"
@@ -98,6 +88,17 @@ export default function LeadCaptureForm({ onSubmit }: Props) {
             aria-describedby={errors.email ? 'email-error' : undefined}
           />
           {errors.email && <p id="email-error" className="text-red-400 text-xs mt-1">{errors.email}</p>}
+        </div>
+
+        <div>
+          <label htmlFor="company" className="block text-sm text-[#C5C6C7] mb-1.5">Company <span className="text-[#666]">(optional)</span></label>
+          <input
+            id="company"
+            type="text"
+            value={data.company}
+            onChange={(e) => setData({ ...data, company: e.target.value })}
+            className="w-full bg-[#141414] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#008080] transition-colors"
+          />
         </div>
 
         <div>
