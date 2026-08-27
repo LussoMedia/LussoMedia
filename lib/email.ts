@@ -4,12 +4,18 @@
 // Notion. See EMAIL_SETUP.md for the one-time Resend account setup.
 
 import { Resend } from 'resend';
+import { buildPlaybookDeliveryHtml, buildPlaybookDeliveryText } from './emailTemplates/playbookDelivery';
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 const NOTIFICATION_EMAIL = process.env.LEAD_NOTIFICATION_EMAIL || 'admin@illussomedia.com';
 // Must be an address on a domain verified in Resend — see EMAIL_SETUP.md.
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'Lusso Media Leads <leads@illussomedia.com>';
+// Visitor-facing resource delivery uses its own sender identity, separate
+// from the internal lead-notification address above — same illussomedia.com
+// domain (already verified in Resend), just a different, more appropriate
+// local part for something a visitor actually reads and clicks through.
+const RESOURCES_FROM_EMAIL = process.env.RESEND_RESOURCES_FROM_EMAIL || 'Lusso Media <resources@illussomedia.com>';
 
 export interface EmailField {
   label: string;
@@ -100,26 +106,41 @@ export async function sendApplicationConfirmationEmail(to: string, contactName: 
 
 // Playbook delivery email — sent after a successful lead-capture submission
 // on /lead-to-booked-job-playbook. The thank-you page already offers an
-// immediate in-browser download (Part 5 — never make the visitor wait on
-// email for the file itself); this email is the supplementary copy so they
-// have the link in their inbox too. Best-effort/non-blocking, same pattern
-// as sendApplicationConfirmationEmail.
-export async function sendPlaybookDeliveryEmail(to: string, firstName: string) {
-  const greeting = firstName ? `${firstName}, your` : 'Your';
-  return sendLeadEmail(
-    'Your 90-Day Lead-to-Booked-Job Playbook',
-    [
-      {
-        label: 'Ready',
-        value: `${greeting} playbook is ready. The 90-Day Home Service Lead-to-Booked-Job Playbook walks through the systems for capturing, qualifying, responding to, following up with, and converting more local opportunities. Start with the section that matches the biggest constraint in your current lead process.`,
-      },
-      { label: 'Download the Playbook', value: 'https://illussomedia.com/resources/90-day-home-service-lead-to-booked-job-playbook.pdf' },
-      {
-        label: 'Next',
-        value: "Once you've gone through it, the next question is whether the rest of your growth system is working together.",
-      },
-      { label: 'Take the 2-Minute Local Dominance Score', value: 'https://illussomedia.com/local-dominance-score' },
-    ],
-    to
-  );
+// immediate in-browser download (never make the visitor wait on email for
+// the file itself); this email is the supplementary copy so they have the
+// link in their inbox too. Best-effort/non-blocking.
+//
+// Deliberately bypasses sendLeadEmail's generic label/value table — this is
+// the one visitor-facing "premium resource delivery" email, not an internal
+// notification, so it gets its own bespoke template and its own sender
+// identity (resources@ instead of leads@), while every other email on the
+// site is untouched. `firstName` is accepted (kept for call-site parity with
+// the other confirmation emails) but intentionally not rendered anywhere in
+// the copy — the approved copy never names the recipient, which also
+// sidesteps ever showing an empty/placeholder name.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- kept for call-site parity, see comment above
+export async function sendPlaybookDeliveryEmail(to: string, _firstName: string) {
+  if (!resend) {
+    console.warn('[email] RESEND_API_KEY not configured — playbook delivery email not sent.');
+    return { sent: false as const };
+  }
+
+  try {
+    const result = await resend.emails.send({
+      from: RESOURCES_FROM_EMAIL,
+      to,
+      replyTo: NOTIFICATION_EMAIL,
+      subject: 'Your 90-Day Lead-to-Booked-Job Playbook',
+      html: buildPlaybookDeliveryHtml(),
+      text: buildPlaybookDeliveryText(),
+    });
+    if (result.error) {
+      console.error('[email] Resend returned an error (playbook delivery)', result.error);
+      return { sent: false as const };
+    }
+    return { sent: true as const };
+  } catch (err) {
+    console.error('[email] Failed to send playbook delivery email', err);
+    return { sent: false as const };
+  }
 }
