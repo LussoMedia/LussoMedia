@@ -24,7 +24,7 @@ export default function ReviewWhatWeCheck() {
           transition={{ duration: 0.6 }}
           className="text-center mb-6 max-w-2xl mx-auto"
         >
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-bold text-white mb-6">
             What We&rsquo;re Looking At
           </h2>
           <div className="teal-divider mx-auto mb-6" />
@@ -45,7 +45,7 @@ export default function ReviewWhatWeCheck() {
               transition={{ duration: 0.5, delay: i * 0.08 }}
               className="card-hover bg-[#141414] rounded-xl p-6 border border-white/5"
             >
-              <h3 className="font-[family-name:var(--font-space-grotesk)] text-base font-bold text-white mb-2">
+              <h3 className="font-[family-name:var(--font-display)] text-base font-bold text-white mb-2">
                 {item.title}
               </h3>
               <p className="text-[#C5C6C7] text-sm leading-relaxed">{item.description}</p>

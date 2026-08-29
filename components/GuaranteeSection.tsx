@@ -12,9 +12,9 @@ export default function GuaranteeSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-14"
+          className="mb-14 max-w-2xl"
         >
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-5xl font-bold text-white">
+          <h2 className="text-section-heading text-white">
             We Put Our Skin in the Game Too.
           </h2>
         </m.div>

@@ -16,7 +16,7 @@ export default function PlaybookEmailCapture() {
           transition={{ duration: 0.6 }}
         >
           <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">Get the Complete Playbook</p>
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
             Build the System Before You Scale the Traffic.
           </h2>
           <p className="text-[#C5C6C7] leading-relaxed mb-10">

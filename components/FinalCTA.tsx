@@ -16,11 +16,11 @@ export default function FinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className="font-[family-name:var(--font-space-grotesk)] text-4xl md:text-6xl font-bold text-white mb-6 leading-[1.05]"
+          className="text-section-heading text-white mb-6"
         >
           You Already Built the Reputation.
           <br />
-          <span className="teal-gradient-text">Now Put a System Behind It.</span>
+          <span className="text-[#00a8a8]">Now Put a System Behind It.</span>
         </m.h2>
 
         <m.p
@@ -28,7 +28,7 @@ export default function FinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-lg text-[#C5C6C7] max-w-xl mx-auto mb-10 leading-relaxed"
+          className="text-body-lg text-[#C5C6C7] prose-measure mx-auto mb-10"
         >
           Find out where your local growth is leaking and what it would take to become the first
           choice in your market.

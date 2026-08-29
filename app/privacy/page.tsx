@@ -6,6 +6,7 @@ import LegalPage from '@/components/LegalPage';
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description: 'How Lusso Media collects, uses, discloses, and protects information through illussomedia.com and its lead-generation tools.',
+  alternates: { canonical: 'https://illussomedia.com/privacy' },
   robots: { index: true, follow: true },
 };
 

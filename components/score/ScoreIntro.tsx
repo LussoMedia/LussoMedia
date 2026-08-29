@@ -15,7 +15,7 @@ export default function ScoreIntro({ onStart }: Props) {
       className="max-w-2xl mx-auto px-6 text-center"
     >
       <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">Local Dominance Score</p>
-      <h1 className="font-[family-name:var(--font-space-grotesk)] text-4xl md:text-6xl font-bold text-white mb-6 leading-[1.05]">
+      <h1 className="font-[family-name:var(--font-display)] text-4xl md:text-6xl font-bold text-white mb-6 leading-[1.05]">
         How Dominant Is Your Business in Your Local Market?
       </h1>
       <p className="text-lg text-[#C5C6C7] mb-10 leading-relaxed">

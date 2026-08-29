@@ -30,6 +30,23 @@ export interface IndustryPage {
   // Supporting line under the industry page's Score CTA (Part 18) — kept
   // short and specific to the vertical rather than generic.
   scoreLeakLine: string;
+  // Field Guide integration prep (Phase 3, Part 28). Max 3 slugs into
+  // lib/config/fieldGuides.ts. Left undefined on every industry until
+  // Phase 4 has real, relevant guides — IndustryPageTemplate resolves this
+  // against published guides and only renders the section when at least
+  // one resolves, so no empty placeholders ever show.
+  relatedFieldGuideSlugs?: string[];
+  // Phase 4H, generalized in Phase 4J — a single, restrained inline link
+  // to one industry-specific Field Guide, distinct from
+  // `relatedFieldGuideSlugs` above (which renders a full 3-column "Growth
+  // Strategies" module and is intentionally still inactive everywhere —
+  // one guide doesn't justify that module). Rendered as one plain text
+  // link under the economics section, nothing more. Left undefined on
+  // every industry until a genuinely relevant guide exists for it.
+  // Renamed from `economicsFieldGuide` (Phase 4H) once a third industry
+  // (HVAC) confirmed the name had outgrown its original single-purpose
+  // meaning — no behavior change, same single-link treatment.
+  contextualFieldGuide?: { label?: string; title: string; href: string };
 }
 
 export const industryPages: IndustryPage[] = [
@@ -48,6 +65,12 @@ export const industryPages: IndustryPage[] = [
       'Seasonal demand swings mean the acquisition system has to be able to turn up quickly ahead of summer and winter peaks.',
       'The path from a maintenance visit to a replacement conversation is where a lot of revenue quietly gets lost.',
     ],
+    // Phase 4J — third industry-specific Field Guide, using the newly
+    // generalized `contextualFieldGuide` field.
+    contextualFieldGuide: {
+      title: 'The HVAC Demand Calendar — Market Around Capacity, Not Just Weather',
+      href: '/resources/hvac-demand-calendar',
+    },
     offerExamples: [
       {
         name: 'Comfort System Replacement Assessment',
@@ -101,6 +124,13 @@ export const industryPages: IndustryPage[] = [
       'Search intent varies sharply by service — "burst pipe" behaves nothing like "tankless water heater install."',
       'Service-area funnels matter more here than almost any other trade — plumbers often cover a tighter radius than they think.',
     ],
+    // Phase 4I — second industry-specific Field Guide. Migrated to
+    // `contextualFieldGuide` in Phase 4J (see field comment) with zero
+    // visible change — same slug, same title, same single-link treatment.
+    contextualFieldGuide: {
+      title: 'The 3 Types of Plumbing Demand — and Why They Need Different Campaigns',
+      href: '/resources/plumbing-types-of-demand',
+    },
     offerExamples: [
       {
         name: 'Whole-Home Water Protection Assessment',
@@ -208,6 +238,14 @@ export const industryPages: IndustryPage[] = [
       'Project scope and qualification matter more here than most trades — the wrong-fit lead wastes a design consult.',
       'Visual proof (real before/after, real completed projects) does more of the selling than almost any other channel.',
     ],
+    // Phase 4H — first industry-specific Field Guide, restrained inline
+    // link only (see the interface comment above for why this isn't the
+    // full relatedFieldGuideSlugs module). Migrated to `contextualFieldGuide`
+    // in Phase 4J with zero visible change.
+    contextualFieldGuide: {
+      title: 'How Landscaping Companies Should Choose What to Advertise',
+      href: '/resources/landscaping-what-to-advertise',
+    },
     offerExamples: [
       {
         name: 'Outdoor Transformation Planning Session',

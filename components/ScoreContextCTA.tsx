@@ -24,7 +24,7 @@ export default function ScoreContextCTA({ eyebrow, supporting, ctaLabel, placeme
       transition={{ duration: 0.6 }}
       className="max-w-2xl mx-auto text-center"
     >
-      <h3 className="font-[family-name:var(--font-space-grotesk)] text-xl md:text-2xl font-bold text-white mb-3">
+      <h3 className="font-[family-name:var(--font-display)] text-xl md:text-2xl font-bold text-white mb-3">
         {eyebrow}
       </h3>
       <p className="text-[#C5C6C7] text-sm mb-6 leading-relaxed">{supporting}</p>

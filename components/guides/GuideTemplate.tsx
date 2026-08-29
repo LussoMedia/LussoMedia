@@ -31,7 +31,7 @@ export default function GuideTemplate({ guide }: { guide: Guide }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-5xl font-bold text-white mb-6 leading-[1.1]"
+            className="font-[family-name:var(--font-display)] text-3xl md:text-5xl font-bold text-white mb-6 leading-[1.1]"
           >
             {guide.h1}
           </m.h1>
@@ -58,7 +58,7 @@ export default function GuideTemplate({ guide }: { guide: Guide }) {
               transition={{ duration: 0.5, delay: Math.min(i * 0.05, 0.2) }}
               className="mb-12 last:mb-0"
             >
-              <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-white mb-4">
+              <h2 className="font-[family-name:var(--font-display)] text-2xl font-bold text-white mb-4">
                 {section.heading}
               </h2>
               {section.paragraphs.map((p) => (
@@ -85,7 +85,7 @@ export default function GuideTemplate({ guide }: { guide: Guide }) {
       {guide.faq && guide.faq.length > 0 && (
         <section className="section-pad bg-[#111111] border-y border-white/5">
           <div className="max-w-3xl mx-auto px-6">
-            <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-white mb-8">
+            <h2 className="font-[family-name:var(--font-display)] text-2xl font-bold text-white mb-8">
               Common Questions
             </h2>
             <div className="flex flex-col gap-4">
@@ -150,7 +150,7 @@ export default function GuideTemplate({ guide }: { guide: Guide }) {
       <section className="section-pad bg-[#0D0D0D] relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-[#008080]/12 blur-[100px] pointer-events-none" />
         <div className="relative z-10 max-w-2xl mx-auto px-6 text-center">
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-bold text-white mb-6">
             See If Your Business Qualifies for The Local Dominance System.
           </h2>
           <Link

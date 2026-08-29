@@ -1,19 +1,26 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, DM_Sans } from "next/font/google";
+import { Inter_Tight, Inter } from "next/font/google";
 import Script from "next/script";
 import MotionProvider from "@/components/MotionProvider";
 import Analytics, { AnalyticsNoscript } from "@/components/Analytics";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+// Phase 2 typography system (Part 1–3): Inter Tight for display/headings,
+// Inter for body/interface copy. Both are variable Google fonts served
+// through next/font — self-hosted at build time, automatically preloaded,
+// font-display: swap, zero external <link> requests. Only the weights the
+// site actually uses are requested to keep the font payload lean.
+const interTight = Inter_Tight({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  weight: ["500", "600", "700"],
+  variable: "--font-display",
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
+  weight: ["400", "500", "600"],
+  variable: "--font-body-sans",
   display: "swap",
 });
 
@@ -113,7 +120,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${dmSans.variable}`}
+      className={`${interTight.variable} ${inter.variable}`}
     >
       <head>
         <script

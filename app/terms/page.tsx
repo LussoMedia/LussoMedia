@@ -6,6 +6,7 @@ import LegalPage from '@/components/LegalPage';
 export const metadata: Metadata = {
   title: 'Terms of Use',
   description: 'Terms governing use of the Lusso Media website, application flow, and free tools like the Local Dominance Score and Home Service Lead Engine.',
+  alternates: { canonical: 'https://illussomedia.com/terms' },
   robots: { index: true, follow: true },
 };
 

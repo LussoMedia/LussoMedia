@@ -21,7 +21,7 @@ export default function HomepagePlaybookSection() {
           className="text-center mb-12"
         >
           <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">Start With the System</p>
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-bold text-white mb-6">
             Not Ready for a Growth Plan Yet?
           </h2>
           <p className="text-[#C5C6C7] leading-relaxed max-w-xl mx-auto">

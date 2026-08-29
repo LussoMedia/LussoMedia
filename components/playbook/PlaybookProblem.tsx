@@ -66,7 +66,7 @@ export default function PlaybookProblem() {
           <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">
             THE LEAD PROBLEM MOST CONTRACTORS MISS
           </p>
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
             More Leads Won&rsquo;t Fix a Broken Lead Process.
           </h2>
           <p className="text-[#C5C6C7] leading-relaxed">

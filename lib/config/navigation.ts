@@ -47,6 +47,17 @@ export const mainNavLinks = [
   { label: 'About', href: '/#about' },
 ];
 
+// Field Guides nav — activated in Phase 4A now that /resources has a real
+// published guide (Part 29/51/52). Wired into GrowthToolsDropdown.tsx's
+// LEARN group, the mobile drawer's Growth Tools submenu, and
+// footerNavLinks below.
+export const fieldGuides = {
+  href: '/resources',
+  navEyebrow: 'GROWTH STRATEGY',
+  navLabel: 'Field Guides',
+  navDescription: 'Short, actionable growth strategy.',
+};
+
 export const footerNavLinks = [
   homeNavLink,
   { label: 'System', href: '/system' },
@@ -54,7 +65,8 @@ export const footerNavLinks = [
   { label: 'Industries', href: '/#industries' },
   { label: scoreCTA.label, href: scoreCTA.href },
   { label: '90-Day Lead-to-Booked-Job Playbook', href: '/lead-to-booked-job-playbook' },
-  { label: 'Guides', href: '/guides' },
+  { label: fieldGuides.navLabel, href: fieldGuides.href },
+  { label: 'Deep Guides', href: '/guides' },
   { label: 'About', href: '/#about' },
   { label: 'FAQ', href: '/#faq' },
 ];

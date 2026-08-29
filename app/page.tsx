@@ -14,6 +14,7 @@ import TeamComparison from '@/components/TeamComparison';
 import BonusStack from '@/components/BonusStack';
 import DiyVsDwyNote from '@/components/DiyVsDwyNote';
 import HomepagePlaybookSection from '@/components/HomepagePlaybookSection';
+import FieldGuidesHomeBlock from '@/components/FieldGuidesHomeBlock';
 import GuaranteeSection from '@/components/GuaranteeSection';
 import MarketProtection from '@/components/MarketProtection';
 import QualificationSection from '@/components/QualificationSection';
@@ -97,6 +98,7 @@ export default async function Home() {
         <CaseStudies />
         <IndustriesStrip />
         <SystemDeepDive page="home" />
+        <FieldGuidesHomeBlock />
         <NinetyDayRoadmap />
         <TeamComparison />
         <BonusStack />

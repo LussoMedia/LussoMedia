@@ -1,24 +1,33 @@
 @import "tailwindcss";
 
 /* ── Lusso Media Brand Tokens ── */
+/* Phase 2: --font-display / --font-body-sans are populated by next/font in
+   app/layout.tsx (Inter Tight / Inter). The literal fallback strings below
+   only apply before hydration / if the variable is ever unset. */
 @theme inline {
   --color-background: #0D0D0D;
   --color-surface: #141414;
   --color-elevated: #1A1A1A;
+  --color-border: rgba(197, 198, 199, 0.12);
+  --color-border-strong: rgba(197, 198, 199, 0.22);
   --color-teal: #008080;
   --color-teal-light: #00a8a8;
   --color-platinum: #C5C6C7;
   --color-foreground: #F0F0F0;
-  --color-muted: #888888;
+  --color-muted: #8A8B8C;
 
-  --font-display: 'Space Grotesk', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
-
+  /* Radius system (Part 13) — restrained, architectural, not "soft SaaS." */
+  --radius-sm: 6px;
   --radius-card: 12px;
+  --radius-media: 16px;
   --radius-btn: 6px;
 
   --transition-fast: 150ms ease;
   --transition-base: 200ms ease;
+
+  /* Spacing rhythm (Part 45) */
+  --space-section: 128px;
+  --space-section-mobile: 72px;
 }
 
 /* ── Base ── */
@@ -41,16 +50,70 @@ html {
 body {
   background: #0D0D0D;
   color: #F0F0F0;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-body-sans, 'Inter'), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Typography ── */
+/* ── Typography (Phase 2 — Inter Tight display system) ── */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Space Grotesk', sans-serif;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  font-family: var(--font-display, 'Inter Tight'), sans-serif;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  font-weight: 700;
+}
+
+p {
+  line-height: 1.65;
+}
+
+/* ── Centralized typographic scale (Part 5) ──
+   Single source of truth for the editorial type ramp. Components should
+   reach for these utilities instead of inventing new arbitrary text sizes. */
+.text-hero {
+  font-size: clamp(2.75rem, 6vw, 5.25rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+
+.text-section-heading {
+  font-size: clamp(2rem, 4.2vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+.text-subsection-heading {
+  font-size: clamp(1.25rem, 2vw, 1.85rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+
+.text-body-lg {
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+.text-body {
+  font-size: 1rem;
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+.text-eyebrow {
+  font-family: var(--font-display, 'Inter Tight'), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Readable measure for long-form copy (Part 7) */
+.prose-measure {
+  max-width: 62ch;
 }
 
 /* ── Grain overlay utility ── */

@@ -18,7 +18,7 @@ export default function PlaybookFiveSystems() {
           className="text-center mb-14"
         >
           <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">Inside the Playbook</p>
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-5xl font-bold text-white">
+          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-5xl font-bold text-white">
             Five Systems That Work Together.
           </h2>
           <div className="teal-divider mx-auto mt-6" />
@@ -34,7 +34,7 @@ export default function PlaybookFiveSystems() {
               transition={{ duration: 0.5, delay: (i % 5) * 0.08 }}
               className="card-hover bg-[#141414] border border-white/5 rounded-xl p-6"
             >
-              <p className="font-[family-name:var(--font-space-grotesk)] text-[#008080] text-2xl font-bold mb-3">
+              <p className="font-[family-name:var(--font-display)] text-[#008080] text-2xl font-bold mb-3">
                 {s.number}
               </p>
               <h3 className="text-white font-semibold mb-2 leading-snug">{s.name}</h3>

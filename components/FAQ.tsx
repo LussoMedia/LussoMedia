@@ -6,13 +6,13 @@ import { faqs, FaqItem } from '@/lib/config/faqs';
 
 function FAQItem({ faq, isOpen, onToggle }: { faq: FaqItem; isOpen: boolean; onToggle: () => void }) {
   return (
-    <div className="border-b border-white/5 last:border-0">
+    <div>
       <button
         onClick={onToggle}
         className="w-full text-left py-6 flex items-start justify-between gap-6 group"
         aria-expanded={isOpen}
       >
-        <span className="font-[family-name:var(--font-space-grotesk)] text-base font-semibold text-white group-hover:text-[#008080] transition-colors leading-snug">
+        <span className="font-[family-name:var(--font-display)] text-[1.05rem] font-semibold leading-snug text-white group-hover:text-[#008080] transition-colors">
           {faq.question}
         </span>
         <span
@@ -62,13 +62,12 @@ export default function FAQ() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-14"
+          className="mb-14 max-w-2xl"
         >
-          <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">FAQ</p>
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-4xl md:text-5xl font-bold text-white">
+          <p className="text-eyebrow text-[#008080] mb-4">FAQ</p>
+          <h2 className="text-section-heading text-white">
             Questions Worth Asking
           </h2>
-          <div className="teal-divider mx-auto mt-6" />
         </m.div>
 
         <m.div
@@ -76,7 +75,7 @@ export default function FAQ() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className="bg-[#141414] rounded-2xl px-8 divide-y divide-white/5 border border-white/5"
+          className="divide-y divide-white/[0.08] border-t border-white/[0.08]"
         >
           {faqs.map((faq, i) => (
             <FAQItem

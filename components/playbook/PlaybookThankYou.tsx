@@ -23,7 +23,7 @@ export default function PlaybookThankYou() {
           className="relative z-10 max-w-xl mx-auto px-6 text-center"
         >
           <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">Your Playbook Is Ready</p>
-          <h1 className="font-[family-name:var(--font-space-grotesk)] text-[clamp(1.75rem,5vw,2.75rem)] font-bold text-white mb-6 leading-[1.15]">
+          <h1 className="font-[family-name:var(--font-display)] text-[clamp(1.75rem,5vw,2.75rem)] font-bold text-white mb-6 leading-[1.15]">
             Start With the System.
           </h1>
           <p className="text-[#C5C6C7] leading-relaxed mb-10">
@@ -50,7 +50,7 @@ export default function PlaybookThankYou() {
           className="max-w-xl mx-auto px-6 text-center"
         >
           <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">Know Where to Start</p>
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl md:text-3xl font-bold text-white mb-6 leading-tight">
+          <h2 className="font-[family-name:var(--font-display)] text-2xl md:text-3xl font-bold text-white mb-6 leading-tight">
             Which Part of Your Growth System Needs Attention First?
           </h2>
           <p className="text-[#C5C6C7] leading-relaxed mb-3">

@@ -13,7 +13,7 @@ export default function ReviewPrep() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
+          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
             In the Meantime, Here&rsquo;s the Most Useful Thing You Can Do.
           </h2>
           <div className="teal-divider mx-auto mb-6" />

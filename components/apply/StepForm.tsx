@@ -45,7 +45,7 @@ export default function StepForm({ step, values, onChange, onNext, onBack, isLas
     >
       {/* This funnel has no other h1 — each step functions as its own
           "page" for assistive tech, so its title is the h1 (Part 27/31). */}
-      <h1 className="font-[family-name:var(--font-space-grotesk)] text-2xl md:text-3xl font-bold text-white mb-2 text-center">
+      <h1 className="font-[family-name:var(--font-display)] text-2xl md:text-3xl font-bold text-white mb-2 text-center">
         {step.title}
       </h1>
       {step.description && (

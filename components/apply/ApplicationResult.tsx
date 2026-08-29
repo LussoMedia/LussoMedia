@@ -27,7 +27,7 @@ export default function ApplicationResult({ tier, values }: Props) {
           className="max-w-xl mx-auto px-6 text-center"
         >
           <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">Strong Fit</p>
-          <h1 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-4xl font-bold text-white mb-5 leading-tight">
+          <h1 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-bold text-white mb-5 leading-tight">
             Your Business Looks Like a Strong Fit.
           </h1>
           <p className="text-[#C5C6C7] mb-10 leading-relaxed">
@@ -61,7 +61,7 @@ export default function ApplicationResult({ tier, values }: Props) {
         className="max-w-xl mx-auto px-6 text-center"
       >
         <p className="text-sm uppercase tracking-[0.2em] text-[#888] mb-4">Not Quite Yet</p>
-        <h1 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-4xl font-bold text-white mb-5 leading-tight">
+        <h1 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-bold text-white mb-5 leading-tight">
           The Full Local Dominance System May Be Premature Right Now.
         </h1>
         <p className="text-[#C5C6C7] mb-10 leading-relaxed">

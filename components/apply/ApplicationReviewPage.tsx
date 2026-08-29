@@ -43,7 +43,7 @@ export default function ApplicationReviewPage({ values }: Props) {
           className="max-w-2xl mx-auto px-6 text-center"
         >
           <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">Application Received</p>
-          <h1 className="font-[family-name:var(--font-space-grotesk)] text-[clamp(1.75rem,5vw,2.75rem)] font-bold text-white mb-6 leading-[1.15]">
+          <h1 className="font-[family-name:var(--font-display)] text-[clamp(1.75rem,5vw,2.75rem)] font-bold text-white mb-6 leading-[1.15]">
             Your Application Is In. We&rsquo;ll Review the Fit Personally.
           </h1>
           <p className="text-[#C5C6C7] leading-relaxed">
@@ -75,7 +75,7 @@ export default function ApplicationReviewPage({ values }: Props) {
           transition={{ duration: 0.6 }}
           className="max-w-xl mx-auto px-6 text-center"
         >
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl md:text-3xl font-bold text-white mb-8 leading-tight">
+          <h2 className="font-[family-name:var(--font-display)] text-2xl md:text-3xl font-bold text-white mb-8 leading-tight">
             While We Review, See What the System Looks Like in Practice.
           </h2>
           <ReviewLinks placement="final_cta" variant="buttons" />

@@ -36,7 +36,7 @@ export default function ReviewChecklist() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 max-w-2xl mx-auto"
         >
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-bold text-white mb-6">
             If We Move Forward, Have These Numbers Ready.
           </h2>
           <div className="teal-divider mx-auto mb-6" />

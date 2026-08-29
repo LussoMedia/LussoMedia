@@ -19,7 +19,7 @@ function AccordionItem({ faq, isOpen, onToggle }: { faq: FaqItem; isOpen: boolea
         className="w-full text-left py-6 flex items-start justify-between gap-6 group min-h-[44px]"
         aria-expanded={isOpen}
       >
-        <span className="font-[family-name:var(--font-space-grotesk)] text-base font-semibold text-white group-hover:text-[#008080] transition-colors leading-snug">
+        <span className="font-[family-name:var(--font-display)] text-base font-semibold text-white group-hover:text-[#008080] transition-colors leading-snug">
           {faq.question}
         </span>
         <span
@@ -71,7 +71,7 @@ export default function ReviewFAQ() {
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-4xl font-bold text-white">
+          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-bold text-white">
             Questions While We Review Your Application
           </h2>
           <div className="teal-divider mx-auto mt-6" />
