@@ -24,7 +24,7 @@ export default function BookPage() {
       <main className="min-h-screen flex items-center justify-center py-32 px-6">
         <div className="max-w-lg mx-auto text-center">
           <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">Almost There</p>
-          <h1 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-4xl font-bold text-white mb-5 leading-tight">
+          <h1 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-bold text-white mb-5 leading-tight">
             Choose a Time to Review Your Local Dominance Plan.
           </h1>
           <p className="text-[#C5C6C7] mb-10 leading-relaxed">

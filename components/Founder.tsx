@@ -70,7 +70,7 @@ export default function Founder({ founder }: Props) {
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 rounded-full bg-[#008080] animate-pulse" />
                 <div>
-                  <p className="text-white text-sm font-semibold font-[family-name:var(--font-space-grotesk)]">Based in Southern Utah</p>
+                  <p className="text-white text-sm font-semibold font-[family-name:var(--font-display)]">Based in Southern Utah</p>
                   <p className="text-[#888] text-xs">Serving Contractors Nationwide</p>
                 </div>
               </div>
@@ -84,8 +84,8 @@ export default function Founder({ founder }: Props) {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number], delay: 0.1 }}
           >
-            <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">About</p>
-            <h2 className="font-[family-name:var(--font-space-grotesk)] text-4xl md:text-5xl font-bold text-white mb-6 leading-[1.05]">
+            <p className="text-eyebrow text-[#008080] mb-4">About</p>
+            <h2 className="text-section-heading text-white mb-6">
               A Growth Partner
               <br />
               Who Actually Shows Up.
@@ -112,7 +112,7 @@ export default function Founder({ founder }: Props) {
                   transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
                   className="text-center"
                 >
-                  <p className="font-[family-name:var(--font-space-grotesk)] text-3xl font-bold text-white mb-1">{stat.value}</p>
+                  <p className="font-[family-name:var(--font-display)] text-3xl font-bold text-white mb-1">{stat.value}</p>
                   <p className="text-[#888] text-xs leading-snug">{stat.label}</p>
                 </m.div>
               ))}

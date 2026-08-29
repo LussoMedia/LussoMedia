@@ -36,7 +36,7 @@ export default function ResultsPage() {
         <section className="pt-40 pb-20 bg-[#0D0D0D] grain-overlay">
           <div className="max-w-3xl mx-auto px-6 text-center">
             <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">Results</p>
-            <h1 className="font-[family-name:var(--font-space-grotesk)] text-4xl md:text-6xl font-bold text-white mb-6 leading-[1.05]">
+            <h1 className="font-[family-name:var(--font-display)] text-4xl md:text-6xl font-bold text-white mb-6 leading-[1.05]">
               See What Happens When the Pieces Work Together.
             </h1>
             <p className="text-lg text-[#C5C6C7] leading-relaxed">
@@ -70,7 +70,7 @@ export default function ResultsPage() {
                   <span className={`self-start px-3 py-1 rounded-full text-xs font-semibold border mb-4 ${tagColors[featured.tag] ?? 'bg-[#008080]/10 text-[#008080] border-[#008080]/25'}`}>
                     {featured.tag}
                   </span>
-                  <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl md:text-3xl font-bold text-white mb-2">
+                  <h2 className="font-[family-name:var(--font-display)] text-2xl md:text-3xl font-bold text-white mb-2">
                     {featured.client}
                   </h2>
                   <p className="text-[#888] text-sm mb-5">{featured.industry}</p>
@@ -101,7 +101,7 @@ export default function ResultsPage() {
                   >
                     <div className="flex items-start justify-between gap-4 mb-5">
                       <div>
-                        <h2 className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold text-white">{cs.client}</h2>
+                        <h2 className="font-[family-name:var(--font-display)] text-xl font-bold text-white">{cs.client}</h2>
                         <p className="text-[#888] text-sm mt-0.5">{cs.industry}</p>
                       </div>
                       <span className={`px-3 py-1 rounded-full text-xs font-semibold border flex-shrink-0 ${tagColors[cs.tag] ?? 'bg-[#008080]/10 text-[#008080] border-[#008080]/25'}`}>

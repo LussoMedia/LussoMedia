@@ -43,7 +43,7 @@ export default function PlanConfirmedPage() {
         {/* Hero */}
         <section className="max-w-3xl mx-auto px-6 text-center mb-16">
           <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">Booked</p>
-          <h1 className="font-[family-name:var(--font-space-grotesk)] text-4xl md:text-5xl font-bold text-white mb-6 leading-[1.05]">
+          <h1 className="font-[family-name:var(--font-display)] text-4xl md:text-5xl font-bold text-white mb-6 leading-[1.05]">
             Your Local Dominance Review Is Booked.
           </h1>
           <p className="text-lg text-[#C5C6C7] leading-relaxed">
@@ -72,7 +72,7 @@ export default function PlanConfirmedPage() {
         {/* Come prepared */}
         <section className="max-w-2xl mx-auto px-6 mb-16">
           <div className="bg-[#141414] border border-[#008080]/30 rounded-xl p-8">
-            <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-white mb-4">
+            <h2 className="font-[family-name:var(--font-display)] text-2xl font-bold text-white mb-4">
               Come Prepared With Rough Numbers
             </h2>
             <p className="text-[#C5C6C7] mb-6 leading-relaxed">
@@ -108,7 +108,7 @@ export default function PlanConfirmedPage() {
               )}
               <div className="p-8">
                 <p className="text-xs uppercase tracking-[0.1em] text-[#008080] mb-2">{proofCaseStudy.industry}</p>
-                <h3 className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold text-white mb-3">
+                <h3 className="font-[family-name:var(--font-display)] text-xl font-bold text-white mb-3">
                   {proofCaseStudy.client}: 2-Person Crew → 14-Person Operation
                 </h3>
                 <p className="text-[#C5C6C7] text-sm leading-relaxed mb-6">

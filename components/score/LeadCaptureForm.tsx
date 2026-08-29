@@ -51,7 +51,7 @@ export default function LeadCaptureForm({ onSubmit }: Props) {
           unmounted) — Part 27/31. Copy + field set updated for the
           reduced-friction ascension flow: only First Name + Email are
           required; Company/Phone stay as optional nice-to-haves. */}
-      <h1 className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-white mb-2 text-center">
+      <h1 className="font-[family-name:var(--font-display)] text-2xl font-bold text-white mb-2 text-center">
         Want the Full Breakdown?
       </h1>
       <p className="text-[#888] text-sm text-center mb-8">

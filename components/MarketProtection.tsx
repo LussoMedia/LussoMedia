@@ -21,7 +21,7 @@ export default function MarketProtection() {
           transition={{ duration: 0.6 }}
         >
           <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">Market Protection</p>
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
+          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
             We don&rsquo;t build the same acquisition system for direct competitors inside the
             same protected service territory.
           </h2>

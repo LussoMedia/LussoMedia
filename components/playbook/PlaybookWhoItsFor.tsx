@@ -14,7 +14,7 @@ export default function PlaybookWhoItsFor() {
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-5xl font-bold text-white leading-tight">
+          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-5xl font-bold text-white leading-tight">
             Built for Established Home-Service Operators.
           </h2>
         </m.div>

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { mainNavLinks, primaryCTA, scoreCTA } from '@/lib/config/navigation';
+import { mainNavLinks, primaryCTA, scoreCTA, fieldGuides } from '@/lib/config/navigation';
 import { industries } from '@/lib/config/industries';
 import { playbook } from '@/lib/config/playbook';
 import { trackEvent } from '@/lib/analytics';
@@ -12,7 +12,7 @@ import IndustriesDropdown from './nav/IndustriesDropdown';
 import GrowthToolsDropdown from './nav/GrowthToolsDropdown';
 
 const industryPaths = industries.map((i) => `/${i.slug}`);
-const growthToolsPaths = [scoreCTA.href, playbook.href, playbook.thankYouHref];
+const growthToolsPaths = [scoreCTA.href, playbook.href, playbook.thankYouHref, fieldGuides.href];
 
 function isActive(href: string, pathname: string): boolean {
   if (href === '/') return pathname === '/';
@@ -256,7 +256,8 @@ export default function Nav() {
                       </svg>
                     </button>
                     {growthToolsOpen && (
-                      <div className="pb-4 flex flex-col gap-2">
+                      <div className="pb-4 flex flex-col gap-1">
+                        <p className="text-[0.65rem] uppercase tracking-[0.12em] text-[#555] pl-4 pt-2 pb-1">Diagnose</p>
                         <Link
                           href={scoreCTA.href}
                           onClick={() => {
@@ -265,9 +266,24 @@ export default function Nav() {
                           }}
                           className="pl-4 pr-2 py-2.5 rounded-lg hover:bg-white/5 transition-colors"
                         >
-                          <p className="text-xs uppercase tracking-[0.1em] text-[#008080] mb-1">How Do You Stack Up Locally?</p>
-                          <p className="text-base text-white">{scoreCTA.microcopy}</p>
+                          <p className="text-base text-white">{scoreCTA.label}</p>
+                          <p className="text-xs text-[#888] mt-0.5">{scoreCTA.microcopy}</p>
                         </Link>
+
+                        <p className="text-[0.65rem] uppercase tracking-[0.12em] text-[#555] pl-4 pt-2 pb-1">Learn</p>
+                        <Link
+                          href={fieldGuides.href}
+                          onClick={() => {
+                            trackEvent('field_guide_related_click', { from: 'mobile_growth_tools', destination: fieldGuides.href });
+                            closeMobile();
+                          }}
+                          className="pl-4 pr-2 py-2.5 rounded-lg hover:bg-white/5 transition-colors"
+                        >
+                          <p className="text-base text-white">{fieldGuides.navLabel}</p>
+                          <p className="text-xs text-[#888] mt-0.5">{fieldGuides.navDescription}</p>
+                        </Link>
+
+                        <p className="text-[0.65rem] uppercase tracking-[0.12em] text-[#555] pl-4 pt-2 pb-1">Implement</p>
                         <Link
                           href={playbook.href}
                           onClick={() => {
@@ -276,8 +292,8 @@ export default function Nav() {
                           }}
                           className="pl-4 pr-2 py-2.5 rounded-lg hover:bg-white/5 transition-colors"
                         >
-                          <p className="text-xs uppercase tracking-[0.1em] text-[#008080] mb-1">{playbook.navEyebrow}</p>
                           <p className="text-base text-white">{playbook.navLabel}</p>
+                          <p className="text-xs text-[#888] mt-0.5">{playbook.navDescription}</p>
                         </Link>
                       </div>
                     )}

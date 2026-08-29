@@ -29,12 +29,26 @@ export default function GuidesIndexPage() {
         <section className="pt-40 pb-16 bg-[#0D0D0D] grain-overlay">
           <div className="max-w-3xl mx-auto px-6 text-center">
             <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">Guides</p>
-            <h1 className="font-[family-name:var(--font-space-grotesk)] text-4xl md:text-6xl font-bold text-white mb-6 leading-[1.05]">
+            <h1 className="font-[family-name:var(--font-display)] text-4xl md:text-6xl font-bold text-white mb-6 leading-[1.05]">
               Practical Growth Guides for Home-Service Contractors.
             </h1>
             <p className="text-lg text-[#C5C6C7] leading-relaxed">
               Lead qualification, follow-up systems, and local market share — written for established
               contractors, not marketers.
+            </p>
+          </div>
+        </section>
+
+        {/* Restrained cross-link to the new Field Guide hub (Phase 4A) —
+            no redesign of this page, just a pointer for readers who want
+            the shorter format. */}
+        <section className="pb-4">
+          <div className="max-w-4xl mx-auto px-6">
+            <p className="text-[#888] text-sm">
+              Looking for Lusso&rsquo;s short, actionable Field Guides?{' '}
+              <Link href="/resources" className="text-[#008080] hover:text-[#00a8a8] underline underline-offset-2 transition-colors">
+                Explore Growth Resources &rarr;
+              </Link>
             </p>
           </div>
         </section>

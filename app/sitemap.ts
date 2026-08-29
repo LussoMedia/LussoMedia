@@ -3,6 +3,7 @@ import { caseStudies } from '@/lib/config/caseStudies';
 import { industryPages } from '@/lib/config/industryPages';
 import { playbook } from '@/lib/config/playbook';
 import { guides } from '@/lib/config/guides';
+import { getPublishedGuides } from '@/lib/config/fieldGuides';
 
 // Single source of truth for the sitemap — pulls case studies and
 // vertical pages from their config so new entries there show up here
@@ -68,6 +69,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...guides.map((g) => ({
       url: `${base}/guides/${g.slug}`,
+      lastModified: new Date(g.updatedDate),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    })),
+    // Field Guides (Phase 4A) — /resources is now the primary public
+    // educational hub with a real published guide, so the hub itself is
+    // listed alongside its guides. Draft guides are excluded by
+    // getPublishedGuides() itself, so a guide only ever enters the sitemap
+    // once its `draft` flag is flipped to false (Part 47/48).
+    {
+      url: `${base}/resources`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    ...getPublishedGuides().map((g) => ({
+      url: `${base}/resources/${g.slug}`,
       lastModified: new Date(g.updatedDate),
       changeFrequency: 'monthly' as const,
       priority: 0.6,

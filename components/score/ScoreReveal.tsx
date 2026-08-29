@@ -33,14 +33,14 @@ export default function ScoreReveal({ result, onUnlock }: Props) {
           />
         </svg>
         <div>
-          <p className="font-[family-name:var(--font-space-grotesk)] text-5xl font-bold text-white">
+          <p className="font-[family-name:var(--font-display)] text-5xl font-bold text-white">
             {result.overall}
           </p>
           <p className="text-[#888] text-xs">/ 100</p>
         </div>
       </div>
 
-      <h1 className="font-[family-name:var(--font-space-grotesk)] text-2xl md:text-3xl font-bold text-white mb-3">
+      <h1 className="font-[family-name:var(--font-display)] text-2xl md:text-3xl font-bold text-white mb-3">
         {result.band.label}
       </h1>
       <p className="text-[#C5C6C7] mb-10">{result.band.description}</p>

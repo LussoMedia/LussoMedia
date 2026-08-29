@@ -40,7 +40,7 @@ export default function ReviewLinks({ placement, variant = 'cards' }: Props) {
         onClick={() => trackEvent('review_page_results_click', { placement })}
         className="card-hover group bg-[#141414] rounded-xl p-6 border border-white/5 flex items-center justify-between gap-4"
       >
-        <span className="font-[family-name:var(--font-space-grotesk)] text-base font-bold text-white">
+        <span className="font-[family-name:var(--font-display)] text-base font-bold text-white">
           See Contractor Results
         </span>
         <span className="text-[#008080] flex-shrink-0 transition-transform group-hover:translate-x-1">→</span>
@@ -50,7 +50,7 @@ export default function ReviewLinks({ placement, variant = 'cards' }: Props) {
         onClick={() => trackEvent('review_page_system_click', { placement })}
         className="card-hover group bg-[#141414] rounded-xl p-6 border border-white/5 flex items-center justify-between gap-4"
       >
-        <span className="font-[family-name:var(--font-space-grotesk)] text-base font-bold text-white">
+        <span className="font-[family-name:var(--font-display)] text-base font-bold text-white">
           Explore the Local Dominance System
         </span>
         <span className="text-[#008080] flex-shrink-0 transition-transform group-hover:translate-x-1">→</span>

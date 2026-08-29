@@ -14,7 +14,7 @@ export default function BonusStack() {
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-5xl font-bold text-white leading-tight">
+          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-5xl font-bold text-white leading-tight">
             We Also Remove the Problems That Kill Good Marketing.
           </h2>
         </m.div>

@@ -41,7 +41,7 @@ export default function ReviewTimeline() {
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-4xl font-bold text-white">
+          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-bold text-white">
             What Happens Next
           </h2>
           <div className="teal-divider mx-auto mt-6" />
@@ -72,7 +72,7 @@ export default function ReviewTimeline() {
               )}
 
               <div
-                className={`relative z-10 flex-shrink-0 w-10 h-10 rounded-full border flex items-center justify-center text-xs font-semibold font-[family-name:var(--font-space-grotesk)] ${
+                className={`relative z-10 flex-shrink-0 w-10 h-10 rounded-full border flex items-center justify-center text-xs font-semibold font-[family-name:var(--font-display)] ${
                   step.status === 'Complete'
                     ? 'border-[#008080] bg-[#008080] text-white'
                     : 'border-[#008080]/40 bg-[#141414] text-[#008080]'
@@ -97,7 +97,7 @@ export default function ReviewTimeline() {
                     {step.status}
                   </p>
                 )}
-                <h3 className="font-[family-name:var(--font-space-grotesk)] text-lg font-bold text-white mb-2">
+                <h3 className="font-[family-name:var(--font-display)] text-lg font-bold text-white mb-2">
                   {step.title}
                 </h3>
                 <p className="text-[#C5C6C7] text-sm leading-relaxed md:max-w-[240px] md:mx-auto">

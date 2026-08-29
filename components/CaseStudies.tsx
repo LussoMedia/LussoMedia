@@ -19,13 +19,12 @@ export default function CaseStudies() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-16 max-w-2xl"
         >
-          <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">Results</p>
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-4xl md:text-5xl font-bold text-white">
+          <p className="text-eyebrow text-[#008080] mb-4">Results</p>
+          <h2 className="text-section-heading text-white">
             See What Happens When the Pieces Work Together.
           </h2>
-          <div className="teal-divider mx-auto mt-6" />
         </m.div>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -40,7 +39,7 @@ export default function CaseStudies() {
             >
               <div className="flex items-start justify-between gap-4 mb-5">
                 <div>
-                  <h3 className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold text-white">{cs.client}</h3>
+                  <h3 className="font-[family-name:var(--font-display)] text-xl font-bold text-white">{cs.client}</h3>
                   <p className="text-[#888] text-sm mt-0.5">{cs.industry}</p>
                 </div>
                 <span className={`px-3 py-1 rounded-full text-xs font-semibold border flex-shrink-0 ${tagColors[cs.tag] ?? 'bg-[#008080]/10 text-[#008080] border-[#008080]/25'}`}>

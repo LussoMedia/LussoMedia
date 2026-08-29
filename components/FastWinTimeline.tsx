@@ -25,9 +25,9 @@ export default function FastWinTimeline() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-14"
+          className="mb-14 max-w-2xl"
         >
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-5xl font-bold text-white leading-tight">
+          <h2 className="text-section-heading text-white">
             Your Marketing Shouldn&rsquo;t Take 30 Days Just to Start.
           </h2>
         </m.div>
@@ -72,7 +72,7 @@ export default function FastWinTimeline() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="text-center text-[#C5C6C7] max-w-2xl mx-auto mt-10"
+          className="text-body-lg text-[#C5C6C7] prose-measure mt-10"
         >
           We build the larger Local Dominance infrastructure in parallel. You don&rsquo;t have to
           wait for every long-term asset to be finished before we begin collecting real market

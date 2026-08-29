@@ -22,12 +22,11 @@ export default function ReferralCeiling() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-6"
+          className="mb-6 max-w-2xl"
         >
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-5xl font-bold text-white leading-tight">
+          <h2 className="text-section-heading text-white">
             Referrals Built Your Business.
-            <br />
-            They Shouldn&rsquo;t Be Your Only Growth Plan.
+            <br className="hidden md:block" /> They Shouldn&rsquo;t Be Your Only Growth Plan.
           </h2>
         </m.div>
 
@@ -36,7 +35,7 @@ export default function ReferralCeiling() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-center text-[#C5C6C7] max-w-2xl mx-auto mb-14 leading-relaxed"
+          className="text-body-lg text-[#C5C6C7] prose-measure mb-14"
         >
           Referrals are powerful because they arrive with trust already built in. But they only
           grow as fast as your existing customer base talks about you. Meanwhile, homeowners
@@ -86,7 +85,7 @@ export default function ReferralCeiling() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-center text-[#C5C6C7] font-medium max-w-2xl mx-auto"
+          className="text-body-lg text-[#C5C6C7] font-medium prose-measure"
         >
           Lusso doesn&rsquo;t replace referrals. We install the system that expands your
           reputation beyond the people who already know you.

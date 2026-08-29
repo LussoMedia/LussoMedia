@@ -48,7 +48,13 @@ export type AnalyticsEvent =
   | 'guarantee_terms_click'
   | 'market_protection_apply_click'
   | 'score_to_application_click'
-  | 'guide_related_industry_click';
+  | 'guide_related_industry_click'
+  // Field Guides (Phase 3, Part 53)
+  | 'field_guide_view'
+  | 'field_guide_action_click'
+  | 'field_guide_related_click'
+  | 'field_guide_score_click'
+  | 'field_guide_playbook_click';
 
 declare global {
   interface Window {

@@ -15,7 +15,7 @@ export default function PlaybookValueStack() {
           className="text-center mb-14 max-w-2xl mx-auto"
         >
           <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">What You Can Actually Use</p>
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-5xl font-bold text-white mb-6">
             More Than Marketing Advice.
           </h2>
           <p className="text-[#C5C6C7] leading-relaxed">

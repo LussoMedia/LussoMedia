@@ -79,7 +79,7 @@ export default function ScoreNextStep({ result }: Props) {
 
         <div className="bg-[#141414] border border-white/5 rounded-xl p-8 mb-6 max-w-lg mx-auto">
           <p className="text-xs uppercase tracking-[0.1em] text-[#008080] mb-3">Recommended Next Step</p>
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold text-white mb-3">
+          <h2 className="font-[family-name:var(--font-display)] text-xl font-bold text-white mb-3">
             Get the 90-Day Lead-to-Booked-Job Playbook
           </h2>
           <p className="text-[#C5C6C7] text-sm leading-relaxed mb-6">
@@ -124,7 +124,7 @@ export default function ScoreNextStep({ result }: Props) {
 
         <div className="bg-[#141414] border border-white/5 rounded-xl p-8 mb-8 max-w-lg mx-auto">
           <p className="text-xs uppercase tracking-[0.1em] text-[#008080] mb-3">Recommended Next Step</p>
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold text-white mb-3">
+          <h2 className="font-[family-name:var(--font-display)] text-xl font-bold text-white mb-3">
             Get Your 90-Day Growth Framework
           </h2>
           <Link
@@ -177,7 +177,7 @@ export default function ScoreNextStep({ result }: Props) {
 
       <div className="bg-[#141414] border border-[#008080]/30 rounded-xl p-8 mb-6 max-w-lg mx-auto">
         <p className="text-xs uppercase tracking-[0.1em] text-[#008080] mb-3">Recommended Next Step</p>
-        <h2 className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold text-white mb-3">
+        <h2 className="font-[family-name:var(--font-display)] text-xl font-bold text-white mb-3">
           Apply for the Local Dominance System
         </h2>
         <p className="text-[#C5C6C7] text-sm leading-relaxed mb-6">

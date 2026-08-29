@@ -39,29 +39,30 @@ export default function Hero() {
       />
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-24 md:pt-0">
-        {/* Eyebrow */}
+        {/* Eyebrow — restrained label, not a heavy SaaS pill (Part 5/56) */}
         <m.div
           {...fadeUp(0)}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#008080]/30 bg-[#008080]/10 text-[#008080] text-sm font-medium mb-8"
+          className="inline-flex items-center gap-2 mb-8 text-eyebrow text-[#008080]"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-[#008080] animate-pulse" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#008080]" />
           Built for Established Home Service Contractors
         </m.div>
 
-        {/* Headline */}
+        {/* Headline — typography alone creates the impact; no gradient text (Part 19) */}
         <m.h1
           {...fadeUp(0.1)}
-          className="font-[family-name:var(--font-space-grotesk)] text-5xl md:text-7xl font-bold text-white mb-6 leading-[1.05]"
+          className="text-hero text-white mb-6"
         >
-          Become the <span className="teal-gradient-text">First Call</span> in Your Local Market.
+          Become the <span className="text-[#00a8a8]">First Call</span> in Your Local Market.
         </m.h1>
 
         {/* Primary supporting copy — dream outcome + reduced owner effort,
             before the mechanism (Change 1: outcome first, systems list
-            second, not the other way around). */}
+            second, not the other way around). Width constrained to a
+            readable measure rather than a full-bleed paragraph (Part 7). */}
         <m.p
           {...fadeUp(0.2)}
-          className="text-lg md:text-xl text-[#C5C6C7] max-w-2xl mx-auto mb-4 leading-relaxed"
+          className="text-body-lg text-[#C5C6C7] prose-measure mx-auto mb-4"
         >
           Turn the reputation you&rsquo;ve already built into a predictable flow of qualified
           opportunities — without hiring an internal marketing team or managing five different
@@ -71,7 +72,7 @@ export default function Hero() {
         {/* Mechanism — smaller, secondary paragraph */}
         <m.p
           {...fadeUp(0.25)}
-          className="text-base text-[#888] max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="text-body text-[#888] prose-measure mx-auto mb-10"
         >
           The Local Dominance System installs and operates the offers, conversion infrastructure,
           content, advertising, reputation, and tracking required to turn local attention into

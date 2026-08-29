@@ -16,7 +16,7 @@ export default function IndustriesStrip() {
           className="mb-10"
         >
           <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">Industries</p>
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-4xl font-bold text-white">
+          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-bold text-white">
             Built for Established Home-Service Contractors
           </h2>
         </m.div>

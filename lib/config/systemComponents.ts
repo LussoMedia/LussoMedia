@@ -12,6 +12,16 @@ export interface SystemComponent {
   // Contextual objection handling (Part 9) — only components where a
   // common doubt naturally arises carry one.
   objection?: { question: string; answer: string };
+  // Field Guide integration prep (Phase 3, Part 27). Left undefined on
+  // every component until Phase 4 publishes a real, relevant guide —
+  // SystemDeepDive only renders the "Related Field Guide" block when this
+  // is set, so no empty placeholders ever show.
+  relatedGuide?: { title: string; href: string; description: string };
+  // Phase 4C: a component can outgrow a single related guide. Prefer this
+  // over `relatedGuide` when ≥2 genuinely relevant guides exist — kept as a
+  // separate field rather than replacing `relatedGuide` so single-guide
+  // components don't need an unnecessary array wrapper.
+  relatedGuides?: { title: string; href: string; description: string }[];
 }
 
 export const systemComponents: SystemComponent[] = [
@@ -31,6 +41,14 @@ export const systemComponents: SystemComponent[] = [
     ],
     whyItMatters:
       'Every dollar spent afterward is pointed at the opportunity most likely to produce a return, instead of a guess.',
+    // Field Guide #8 (Phase 4H) — the first guide tied to Market
+    // Intelligence, and directly about service/opportunity selection, not
+    // offer creation, so it belongs here rather than under Offer Engineering.
+    relatedGuide: {
+      title: 'How Landscaping Companies Should Choose What to Advertise',
+      href: '/resources/landscaping-what-to-advertise',
+      description: "Don't advertise every service equally.",
+    },
   },
   {
     number: '02',
@@ -45,6 +63,20 @@ export const systemComponents: SystemComponent[] = [
     ],
     whyItMatters:
       'A sharper offer increases response and conversion before a single ad dollar is spent.',
+    // Field Guide #2 and #3 (Phase 4B/4C) — both directly relevant to this
+    // component; two genuinely related guides doesn't clutter the section.
+    relatedGuides: [
+      {
+        title: 'The One Market, One Service, One Offer Framework',
+        href: '/resources/one-market-one-service-one-offer',
+        description: 'Concentrated messaging beats diluted advertising.',
+      },
+      {
+        title: 'Why "10% Off" Isn’t a Home Service Offer',
+        href: '/resources/why-10-percent-off-isnt-an-offer',
+        description: 'A discount changes price. A strong offer changes perceived value.',
+      },
+    ],
   },
   {
     number: '03',
@@ -68,6 +100,12 @@ export const systemComponents: SystemComponent[] = [
       answer:
         "We don't rebuild assets simply to put our name on them. We evaluate the existing conversion path first and only replace or improve what is limiting performance.",
     },
+    // Field Guide #4 (Phase 4D) — directly relevant to this component only.
+    relatedGuide: {
+      title: 'Stop Sending Paid Traffic to Your Homepage',
+      href: '/resources/stop-sending-paid-traffic-to-your-homepage',
+      description: 'Match one campaign promise to one conversion path.',
+    },
   },
   {
     number: '04',
@@ -85,6 +123,16 @@ export const systemComponents: SystemComponent[] = [
       question: "Don't want to sound scripted on camera?",
       answer:
         "You don't have to. Creative can combine guided conversations, jobsite footage, expert commentary, scripted direct response, project showcases, and other formats based on what fits the brand and performs in the market.",
+    },
+    // Field Guide #7 (Phase 4G) — primary home chosen deliberately: this
+    // component is about content/proof/online presence, which is exactly
+    // what the guide teaches how to source; Reputation Engine (06) is
+    // narrower (reviews/GBP specifically), so the guide is not duplicated
+    // there. See docs/phase-4g-guide-7.md.
+    relatedGuide: {
+      title: 'The Job-to-Authority Flywheel',
+      href: '/resources/job-to-authority-flywheel',
+      description: 'A completed job should create proof that helps sell the next job.',
     },
   },
   {
@@ -108,6 +156,12 @@ export const systemComponents: SystemComponent[] = [
       question: 'Already running ads?',
       answer:
         "Good campaigns don't need to be thrown away. We audit what already exists, preserve what is working, and improve the offer, creative, targeting, tracking, or conversion path where the data shows a constraint.",
+    },
+    // Field Guide #6 (Phase 4F) — directly relevant to this component only.
+    relatedGuide: {
+      title: 'The 5 Awareness Levels in Home Service Advertising',
+      href: '/resources/home-service-advertising-awareness-levels',
+      description: 'The same ad should not be expected to persuade every prospect.',
     },
   },
   {
@@ -145,5 +199,19 @@ export const systemComponents: SystemComponent[] = [
       answer:
         "That's common. We establish the baseline and improve tracking so future decisions can be made against actual business outcomes instead of assumptions.",
     },
+    // Field Guide #1 (Phase 4A) and #5 (Phase 4E) — diagnosis and
+    // measurement are different roles, both genuinely belong here.
+    relatedGuides: [
+      {
+        title: "Why More Leads Won't Fix a Broken Growth System",
+        href: '/resources/why-more-leads-wont-fix-growth',
+        description: 'Find the constraint before increasing demand.',
+      },
+      {
+        title: 'The Lead-to-Booked-Job System',
+        href: '/resources/lead-to-booked-job-system',
+        description: 'Generating the lead is only the first handoff.',
+      },
+    ],
   },
 ];

@@ -81,18 +81,19 @@ export default function Footer() {
 
           {/* Navigation */}
           <div>
-            <p className="text-white text-sm font-semibold font-[family-name:var(--font-space-grotesk)] mb-5 uppercase tracking-[0.1em]">
+            <p className="text-white text-sm font-semibold font-[family-name:var(--font-display)] mb-5 uppercase tracking-[0.1em]">
               Navigate
             </p>
             <ul className="flex flex-col gap-3">
               {footerNavLinks.map((link) => {
                 const isScore = link.href === '/local-dominance-score';
+                const isFieldGuides = link.href === '/resources';
                 return (
                   <li key={link.label}>
                     <Link
                       href={link.href}
                       onClick={() =>
-                        trackEvent(isScore ? 'dominance_score_cta_click' : 'nav_click', {
+                        trackEvent(isScore ? 'dominance_score_cta_click' : isFieldGuides ? 'field_guide_related_click' : 'nav_click', {
                           nav_item: link.label,
                           placement: 'footer',
                           destination: link.href,
@@ -110,7 +111,7 @@ export default function Footer() {
 
           {/* Contact + Social */}
           <div>
-            <p className="text-white text-sm font-semibold font-[family-name:var(--font-space-grotesk)] mb-5 uppercase tracking-[0.1em]">
+            <p className="text-white text-sm font-semibold font-[family-name:var(--font-display)] mb-5 uppercase tracking-[0.1em]">
               Connect
             </p>
             <div className="flex flex-col gap-3 mb-8">

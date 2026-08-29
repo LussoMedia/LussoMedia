@@ -24,7 +24,7 @@ export default function QuestionStep({ question, selected, onAnswer, onBack }: P
       </p>
       {/* ScoreIntro's h1 unmounts once questions start — this is the only
           heading on screen at this stage, so it's the h1 (Part 27/31). */}
-      <h1 className="font-[family-name:var(--font-space-grotesk)] text-2xl md:text-3xl font-bold text-white mb-10 text-center leading-snug">
+      <h1 className="font-[family-name:var(--font-display)] text-2xl md:text-3xl font-bold text-white mb-10 text-center leading-snug">
         {question.question}
       </h1>
 

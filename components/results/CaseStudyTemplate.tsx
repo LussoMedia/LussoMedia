@@ -19,7 +19,7 @@ export default function CaseStudyTemplate({ caseStudy }: { caseStudy: CaseStudy 
         <div className="max-w-4xl mx-auto px-6 text-center pb-14">
           <m.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">{caseStudy.industry}</p>
-            <h1 className="font-[family-name:var(--font-space-grotesk)] text-4xl md:text-6xl font-bold text-white mb-6 leading-[1.05]">
+            <h1 className="font-[family-name:var(--font-display)] text-4xl md:text-6xl font-bold text-white mb-6 leading-[1.05]">
               {caseStudy.client}
             </h1>
             <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold border bg-[#008080]/10 text-[#008080] border-[#008080]/25">
@@ -181,7 +181,7 @@ export default function CaseStudyTemplate({ caseStudy }: { caseStudy: CaseStudy 
       <section className="section-pad bg-[#0D0D0D] relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-[#008080]/12 blur-[100px] pointer-events-none" />
         <div className="relative z-10 max-w-2xl mx-auto px-6 text-center">
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-bold text-white mb-6">
             Want to See What This System Could Look Like for Your Business?
           </h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

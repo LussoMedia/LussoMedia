@@ -35,7 +35,7 @@ export default function PlaybookHero() {
             className="text-center lg:text-left"
           >
             <p className="text-sm uppercase tracking-[0.2em] text-[#008080] mb-4">{playbook.eyebrow}</p>
-            <h1 className="font-[family-name:var(--font-space-grotesk)] text-[clamp(2rem,5vw,3.5rem)] font-bold text-white mb-5 leading-[1.08]">
+            <h1 className="font-[family-name:var(--font-display)] text-[clamp(2rem,5vw,3.5rem)] font-bold text-white mb-5 leading-[1.08]">
               {playbook.title}
             </h1>
             <p className="text-white text-lg font-semibold mb-4 leading-snug">{playbook.subtitle}</p>

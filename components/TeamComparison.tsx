@@ -24,7 +24,7 @@ export default function TeamComparison() {
           transition={{ duration: 0.6 }}
           className="mb-10"
         >
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-5xl font-bold text-white leading-tight">
+          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-5xl font-bold text-white leading-tight">
             Building This Internally Takes More Than a Marketing Hire.
           </h2>
         </m.div>
@@ -48,7 +48,7 @@ export default function TeamComparison() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="font-[family-name:var(--font-space-grotesk)] text-xl md:text-2xl font-bold teal-gradient-text"
+          className="font-[family-name:var(--font-display)] text-xl md:text-2xl font-bold teal-gradient-text"
         >
           One System. One Partner. One Growth Plan.
         </m.p>
