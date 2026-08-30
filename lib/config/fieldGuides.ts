@@ -98,6 +98,12 @@ export interface FrameworkVisual {
 export interface ScorecardVisual {
   type: 'scorecard';
   items: { question: string; status: 'pass' | 'warn' | 'fail' }[];
+  /** Optional override for the status labels shown next to each item — the
+   * default wording ("On track" / "Worth checking" / "Likely a leak")
+   * assumes a funnel-leak diagnostic, which doesn't fit every guide (e.g.
+   * an offer decision check). Every guide that omits this keeps the
+   * existing default text. */
+  statusLabels?: { pass?: string; warn?: string; fail?: string };
 }
 
 export interface DecisionTreeVisual {
@@ -230,6 +236,10 @@ export interface FieldGuide {
   metricsSection?: { title: string; metrics: { label: string; detail: string; formula?: string }[] };
 
   // Section 04 — The Framework
+  /** Overrides the section's default "The Framework" heading (Public
+   * Framework Originality Audit, Change 1) — used when a guide's own
+   * question/name is stronger than the generic label. */
+  frameworkSectionTitle?: string;
   frameworkIntro: string;
   framework: FieldGuideVisual;
   /** Optional one-line-per-term list under the framework visual (a diagnostic question per stage, or a short component explanation — whichever the guide needs). */
@@ -427,27 +437,30 @@ const publishedGuides: FieldGuide[] = [
     // guide's diagnosis, not a mechanical reciprocal link.
     // Phase 4E: Guide #5 is the natural "now build the scoreboard" next
     // step once a reader has diagnosed that visibility is the gap.
-    relatedGuideSlugs: ['one-market-one-service-one-offer', 'lead-to-booked-job-system'],
+    relatedGuideSlugs: ['focused-home-service-campaign', 'lead-to-booked-job-system'],
     relatedDeepGuideSlugs: ['how-to-qualify-home-service-leads', 'speed-to-lead-for-contractors'],
   },
   {
-    slug: 'one-market-one-service-one-offer',
-    title: 'The One Market, One Service, One Offer Framework',
-    shortTitle: 'One Market, One Service, One Offer',
+    slug: 'focused-home-service-campaign',
+    title: 'How to Build a Focused Home Service Campaign',
+    shortTitle: 'Build a Focused Campaign',
     category: 'offer-engineering',
     premise: "Your business can offer everything. Your campaign shouldn't advertise everything at once.",
     readTimeMinutes: 3,
     publishDate: '2026-08-29',
     updatedDate: '2026-08-29',
+    // Public Framework Originality Audit — retitled and re-slugged from
+    // "one-market-one-service-one-offer" (see /docs/public-framework-
+    // originality-audit.md, Change 4). 301 redirect in next.config.ts.
     // Phase 4G: homepage flagship (preserved from Phase 4F) and part of
     // the hub's featured set (Option B — Offer Engineering representation).
     featuredOnHomepage: true,
     featuredOnHub: true,
     draft: false,
-    metaTitle: 'One Market, One Service, One Offer: Home Service Campaign Framework | Lusso Media',
+    metaTitle: 'How to Build a Focused Home Service Campaign | Lusso Media',
     metaDescription:
-      'Learn why focused home-service campaigns outperform diluted messaging and how to align one market, service, problem, offer, and CTA.',
-    ogImageAlt: 'Lusso Media Field Guide — The One Market, One Service, One Offer Framework',
+      'Learn why focused home-service campaigns outperform diluted messaging, and how to align your target customer, service, problem, offer, and next step.',
+    ogImageAlt: 'Lusso Media Field Guide — How to Build a Focused Home Service Campaign',
 
     problem:
       'Home-service owners often assume that advertising more services increases the chance someone will respond. In practice, it usually creates the opposite problem. When one ad or landing page talks about repairs, replacements, maintenance, financing, and several audiences at once, the prospect has to work out something the campaign should have already answered: is this actually for me? Every extra service or offer folded into one message adds a decision the visitor has to make before they\'ll act — and most people don\'t make it. Focus the campaign before you increase the volume.',
@@ -475,10 +488,10 @@ const publishedGuides: FieldGuide[] = [
     },
     seeItCaption: 'The service list didn\'t get smaller. The campaign got clearer.',
     secondaryVisual: {
-      label: 'How One Flows Into the Next',
+      label: 'How One Decision Flows Into the Next',
       visual: {
         type: 'funnel',
-        stages: ['Market', 'Problem', 'Service', 'Offer', 'Action'],
+        stages: ['Target Customer', 'Priority Service', 'Buying Problem', 'Offer', 'Next Step'],
       },
     },
 
@@ -501,32 +514,32 @@ const publishedGuides: FieldGuide[] = [
     ],
 
     frameworkIntro:
-      'Lusso builds every acquisition campaign around five concentrated decisions — each one narrows the message until only one path remains.',
+      'Lusso builds every acquisition campaign around five connected decisions — the Focused Campaign Chain — each one carrying into the next until a single, clear action remains.',
     framework: {
       type: 'framework',
-      terms: ['One Market', 'One Service', 'One Problem', 'One Offer', 'One CTA'],
-      connector: '×',
+      terms: ['Target Customer', 'Priority Service', 'Buying Problem', 'Offer', 'Next Step'],
+      connector: '→',
     },
     frameworkQuestions: [
       {
-        stage: 'One Market',
+        stage: 'Target Customer',
         question: 'Who specifically are we trying to reach? "Southern Utah homeowners dealing with hard water" — not "everyone who may need plumbing someday."',
       },
       {
-        stage: 'One Service',
-        question: 'Which economic opportunity are we intentionally creating demand for? Example: water softener installation.',
+        stage: 'Priority Service',
+        question: 'What type of work are we intentionally creating demand for? Example: water softener installation.',
       },
       {
-        stage: 'One Problem',
-        question: 'What dominant problem or desire creates attention? Example: recurring hard-water buildup and frustration.',
+        stage: 'Buying Problem',
+        question: 'What situation, frustration, or desired change makes the service relevant? Example: recurring hard-water buildup and frustration.',
       },
       {
-        stage: 'One Offer',
-        question: 'Why should someone act now, or choose this contractor? The offer should increase perceived value, not just restate the service.',
+        stage: 'Offer',
+        question: 'Why should this customer choose to move forward with this opportunity? The offer should increase perceived value, not just restate the service.',
       },
       {
-        stage: 'One CTA',
-        question: 'What should the prospect do next? One action — e.g. "See If Your Home Qualifies" — not five simultaneous options.',
+        stage: 'Next Step',
+        question: 'What is the single primary action we want them to take? One action — e.g. "See If Your Home Qualifies" — not five simultaneous options.',
       },
     ],
     keyPrinciple: {
@@ -536,11 +549,11 @@ const publishedGuides: FieldGuide[] = [
     example: {
       label: 'Example — a plumbing company that offers everything',
       rows: [
-        { label: 'Market', value: 'Southern Utah homeowner' },
-        { label: 'Service', value: 'Water softener installation' },
-        { label: 'Problem', value: 'Hard-water frustration' },
+        { label: 'Target Customer', value: 'Southern Utah homeowner' },
+        { label: 'Priority Service', value: 'Water softener installation' },
+        { label: 'Buying Problem', value: 'Hard-water frustration' },
         { label: 'Offer', value: 'Installation-focused value package' },
-        { label: 'CTA', value: 'Check eligibility' },
+        { label: 'Next Step', value: 'Check eligibility' },
       ],
     },
 
@@ -575,6 +588,7 @@ const publishedGuides: FieldGuide[] = [
     relatedGuideSlugs: ['why-more-leads-wont-fix-growth', 'why-10-percent-off-isnt-an-offer'],
   },
   {
+    // Field Guide #3.
     slug: 'why-10-percent-off-isnt-an-offer',
     title: 'Why "10% Off" Isn’t a Home Service Offer',
     shortTitle: '"10% Off" Isn’t an Offer',
@@ -635,49 +649,65 @@ const publishedGuides: FieldGuide[] = [
       },
     ],
 
-    frameworkIntro: 'A stronger offer usually improves some combination of these — rarely all at once, but usually more than one.',
+    // Public Framework Originality Audit, Change 1 — the previous framework
+    // ("Outcome ↑ + Certainty ↑ + Time/Friction ↓ + Effort/Risk ↓ + Reason
+    // to Act") was a cosmetic relabeling of Hormozi's Value Equation. This
+    // is a genuinely independent six-driver diagnostic, not a renamed
+    // four-variable formula: no addition, no ↑/↓ notation, no equation
+    // framing anywhere in the section. See /docs/public-framework-
+    // originality-audit.md.
+    frameworkSectionTitle: 'What Makes an Offer Easier to Say Yes To?',
+    frameworkIntro:
+      "When we pressure-test a home-service offer, we evaluate six parts of the buying decision. A strong offer doesn't rely on one gimmick or discount — it makes the right customer's decision clearer, more credible, and easier to act on.",
+    // Rendered as six numbered diagnostic blocks (Timeline's existing
+    // presentation), deliberately not the `framework` visual — there is no
+    // connector, multiplication, or equation-style layout here.
     framework: {
-      type: 'framework',
-      terms: ['Outcome ↑', 'Certainty ↑', 'Time/Friction ↓', 'Effort/Risk ↓', 'Reason to Act'],
-      connector: '+',
+      type: 'timeline',
+      steps: [
+        {
+          label: 'Customer Priority',
+          detail: 'Does the problem or desired result matter enough to this customer? An offer cannot manufacture importance where little exists.',
+        },
+        {
+          label: 'Service Fit',
+          detail: 'Are we presenting the right solution to the right homeowner? A strong proposition begins with alignment between customer, problem, property, service, and market.',
+        },
+        {
+          label: 'Proof & Confidence',
+          detail: 'What gives the homeowner a credible reason to believe this contractor can deliver? Relevant completed work, reviews, process, expertise, and warranties where legitimate all build this.',
+        },
+        {
+          label: 'Ease to Start',
+          detail: 'Is the next step obvious, understandable, and reasonably simple? Clear qualification, an understandable process, and simple scheduling remove hesitation.',
+        },
+        {
+          label: 'Risk & Uncertainty',
+          detail: 'What concerns, ambiguity, or perceived downside could stop the decision? An unclear price process, scheduling uncertainty, or confusing next steps all raise it.',
+        },
+        {
+          label: 'Reason to Act',
+          detail: "Is there a legitimate reason to solve the problem now rather than indefinitely postpone it? Don't manufacture urgency — use a real one.",
+        },
+      ],
     },
-    frameworkQuestions: [
-      {
-        stage: 'Outcome ↑',
-        question: 'What does the customer actually want? A home that never runs out of hot water — not just "a water heater."',
-      },
-      {
-        stage: 'Certainty ↑',
-        question: 'Why should they believe this company can deliver? Proof, reviews, and a clear process build this.',
-      },
-      {
-        stage: 'Time / Friction ↓',
-        question: 'How simple is the path from interest to result? Fewer steps, clearer next actions.',
-      },
-      {
-        stage: 'Effort / Risk ↓',
-        question: 'How much work, confusion, or perceived risk sits on the customer? A warranty or clear expectations can lower this.',
-      },
-      {
-        stage: 'Reason to Act',
-        question: 'Is there a legitimate reason to move forward now — a real one, not manufactured urgency.',
-      },
-    ],
     secondaryVisual: {
-      label: 'Quick Offer Check',
+      label: 'Offer Decision Check',
       visual: {
         type: 'scorecard',
+        statusLabels: { pass: 'Strong', warn: 'Needs Work' },
         items: [
-          { question: 'Is the desired outcome obvious?', status: 'warn' },
-          { question: 'Does the customer have a reason to trust the result?', status: 'warn' },
-          { question: 'Is the next step easy to understand?', status: 'warn' },
-          { question: 'Does the offer reduce uncertainty or effort?', status: 'warn' },
-          { question: 'Is there a legitimate reason to act?', status: 'warn' },
+          { question: 'Customer priority — does this matter enough to them?', status: 'warn' },
+          { question: 'Service fit — is this the right solution for this homeowner?', status: 'warn' },
+          { question: 'Proof & confidence — do they have a reason to believe you?', status: 'warn' },
+          { question: 'Ease to start — is the next step simple?', status: 'warn' },
+          { question: 'Risk & uncertainty — is anything holding them back?', status: 'warn' },
+          { question: 'Reason to act — is there a legitimate reason to move now?', status: 'warn' },
         ],
       },
     },
     interpretationNote:
-      'Score it yourself: 0–2 yes and your offer may mostly be a promotion. 3–4 yes and there’s a stronger value structure developing. 5 yes and you have a solid offer foundation to test. A simple educational self-check, not a validated scoring model.',
+      "This is a planning diagnostic Lusso uses internally — not a validated psychometric model. If more than one or two of these come back Needs Work, the offer is likely leaning on price instead of the buying decision.",
     keyPrinciple: {
       statement: 'A discount asks, "How much less?" An offer asks, "Why is this worth choosing?"',
       supporting: 'Price can strengthen an offer. It should not have to carry the entire offer.',
@@ -719,7 +749,7 @@ const publishedGuides: FieldGuide[] = [
     // Guide #2 is the natural predecessor (this guide goes deeper on its
     // "One Offer" component); Guide #1's diagnostic framing is also a
     // genuinely useful next/prior step, not forced reciprocity.
-    relatedGuideSlugs: ['one-market-one-service-one-offer', 'why-more-leads-wont-fix-growth'],
+    relatedGuideSlugs: ['focused-home-service-campaign', 'why-more-leads-wont-fix-growth'],
   },
   {
     slug: 'stop-sending-paid-traffic-to-your-homepage',
@@ -845,7 +875,7 @@ const publishedGuides: FieldGuide[] = [
     // (weak conversion infrastructure is a common downstream constraint)
     // are both genuine relationships. Guide #3 intentionally excluded —
     // no direct path improvement from linking it here (Phase 4D review).
-    relatedGuideSlugs: ['one-market-one-service-one-offer', 'why-more-leads-wont-fix-growth'],
+    relatedGuideSlugs: ['focused-home-service-campaign', 'why-more-leads-wont-fix-growth'],
   },
   {
     slug: 'lead-to-booked-job-system',
@@ -965,11 +995,20 @@ const publishedGuides: FieldGuide[] = [
     relatedGuideSlugs: ['why-more-leads-wont-fix-growth', 'stop-sending-paid-traffic-to-your-homepage'],
   },
   {
-    slug: 'home-service-advertising-awareness-levels',
-    title: 'The 5 Awareness Levels in Home Service Advertising',
-    shortTitle: 'The 5 Awareness Levels',
+    // Public Framework Originality Audit, Change 3 — re-slugged and rebuilt
+    // from "home-service-advertising-awareness-levels" (see /docs/public-
+    // framework-originality-audit.md). The prior guide presented Schwartz's
+    // Awareness Levels taxonomy (Unaware / Problem Aware / Solution Aware /
+    // Product Aware / Most Aware) essentially unchanged. This guide keeps
+    // only the underlying insight — different prospects need different
+    // information before acting — and replaces the taxonomy with an
+    // independent buyer-readiness progression and message-job ladder. 301
+    // redirect in next.config.ts.
+    slug: 'home-service-buyer-readiness',
+    title: 'Match the Message to Buyer Readiness',
+    shortTitle: 'Match the Message to Buyer Readiness',
     category: 'demand-advertising',
-    premise: "A homeowner who doesn't recognize the problem needs a different message than one already comparing contractors.",
+    premise: "A homeowner who hasn't recognized the problem needs a different message than one already comparing providers.",
     readTimeMinutes: 4,
     publishDate: '2026-08-29',
     updatedDate: '2026-08-29',
@@ -982,37 +1021,36 @@ const publishedGuides: FieldGuide[] = [
     featuredOnHomepage: false,
     featuredOnHub: false,
     draft: false,
-    metaTitle: 'The 5 Awareness Levels in Home Service Advertising | Lusso Media',
+    metaTitle: 'Match the Message to Buyer Readiness | Lusso Media',
     metaDescription:
-      'Different prospects need different messages. Learn the five awareness stages and how to adapt home-service advertising from problem recognition through action.',
-    ogImageAlt: 'Lusso Media Field Guide — The 5 Awareness Levels in Home Service Advertising',
+      'Different homeowners need different information before they act. Learn the five buyer-readiness stages and how to adapt home-service advertising message by message.',
+    ogImageAlt: 'Lusso Media Field Guide — Match the Message to Buyer Readiness',
 
     problem:
-      'Many home-service campaigns use one message for every prospect: "Need [service]? Call today." That can work for someone already looking for the service. But another homeowner may only recognize a symptom, know the problem but not the solution, know solutions exist but not know your company, or already know your company and simply need a reason to act. Those are different conversations. Before writing the ad, determine what the prospect needs to understand next.',
+      'Many home-service campaigns use one message for every prospect: "Need [service]? Call today." That can work for someone already looking for the service. But another homeowner may only notice a symptom, understand the problem but not the solution, know solutions exist but not know your company, or already know your company and simply need a reason to act. Those are different conversations. Before writing the ad, determine what the homeowner needs to hear next.',
 
-    // Timeline in the customer's progression-toward-action order, per the
-    // brief — easier for contractors to follow than Schwartz's original
-    // numbering. Each stage: awareness definition + message job + one
-    // concise example, kept short (Part "Keep the five stages short").
+    // A home-service buyer-readiness progression — independent of, and
+    // deliberately not placed alongside, any external awareness taxonomy.
+    // Each stage: the situation the homeowner is in + one concise example.
     seeIt: {
       type: 'timeline',
       steps: [
-        { label: 'Unaware', detail: 'Create recognition. "Why do your faucets look clean — then develop white buildup again a few days later?"' },
-        { label: 'Problem Aware', detail: 'Explain cause and consequence. "If mineral deposits keep returning, the issue may be the water entering the home — not the cleaning product."' },
-        { label: 'Solution Aware', detail: 'Explain why this approach makes sense — how the service works, what evaluation involves, what to consider.' },
-        { label: 'Company / Product Aware', detail: 'Increase certainty with proof, real installations, reviews, process, and differentiation.' },
-        { label: 'Most Aware', detail: 'Make the next step obvious — a clear offer, real availability, scheduling, and a legitimate reason to act now.' },
+        { label: 'Notices the Symptom', detail: '"Why do your faucets look clean — then develop white buildup again a few days later?" The homeowner notices something is off but may not understand the underlying problem yet.' },
+        { label: 'Understands the Problem', detail: '"If mineral deposits keep returning, the issue may be the water entering the home — not the cleaning product." Connect symptom to cause to consequence, without exaggerating fear.' },
+        { label: 'Explores Options', detail: 'The homeowner understands that solutions exist and wants to know the available approaches, tradeoffs, process, and expected next steps.' },
+        { label: 'Compares Providers', detail: 'The homeowner is evaluating companies, proof, process, reviews, experience, warranties, and fit.' },
+        { label: 'Ready to Move', detail: 'The homeowner largely understands the problem, the service, and the provider. The campaign should make the next step clear and reduce unnecessary friction.' },
       ],
     },
 
     whyItHappens: [
       {
-        label: 'Different people know different things',
-        detail: 'One homeowner may be researching. Another may already have three estimates. They shouldn\'t necessarily receive identical messages.',
+        label: 'Different people are at different points',
+        detail: 'One homeowner may just be noticing a symptom. Another may already have three estimates. They shouldn\'t necessarily receive identical messages.',
       },
       {
-        label: 'Direct offers require existing awareness',
-        detail: 'A strong "Book Now" message works when the prospect already understands the problem and solution — it can be premature for someone who doesn\'t yet recognize why the service matters.',
+        label: 'Direct offers require existing understanding',
+        detail: 'A strong "Book Now" message works when the homeowner already understands the problem and the solution — it can be premature for someone who doesn\'t yet recognize why the service matters.',
       },
       {
         label: 'Creative variety isn\'t message variety',
@@ -1020,22 +1058,22 @@ const publishedGuides: FieldGuide[] = [
       },
     ],
 
-    frameworkIntro: 'Lusso maps each awareness stage to one job the message has to do — the Message Ladder.',
+    frameworkIntro: 'Lusso maps each buyer-readiness stage to one job the message has to do — the Message Ladder.',
     framework: {
       type: 'framework',
-      terms: ['Recognize', 'Understand', 'Consider', 'Believe', 'Act'],
+      terms: ['Recognize', 'Clarify', 'Evaluate', 'Trust', 'Act'],
       connector: '→',
     },
     frameworkQuestions: [
-      { stage: 'Recognize', question: 'Unaware — help the homeowner recognize the situation.' },
-      { stage: 'Understand', question: 'Problem Aware — explain what is actually happening.' },
-      { stage: 'Consider', question: 'Solution Aware — introduce the solution and mechanism.' },
-      { stage: 'Believe', question: 'Company Aware — build confidence in this provider.' },
-      { stage: 'Act', question: 'Most Aware — give a clear reason and path to move forward.' },
+      { stage: 'Recognize', question: 'Notices the Symptom — help the homeowner recognize the situation.' },
+      { stage: 'Clarify', question: 'Understands the Problem — explain what is actually happening and why it matters.' },
+      { stage: 'Evaluate', question: 'Explores Options — introduce the approach and what evaluating it involves.' },
+      { stage: 'Trust', question: 'Compares Providers — build confidence in this company specifically.' },
+      { stage: 'Act', question: 'Ready to Move — give a clear reason and a simple path to move forward.' },
     ],
     keyPrinciple: {
-      statement: "Don't ask the ad to sell more than the prospect is ready to understand.",
-      supporting: 'The job of the message is to move the prospect one step closer to the decision.',
+      statement: "Don't ask the ad to sell more than the homeowner is ready to understand.",
+      supporting: 'The job of the message is to move the homeowner one step closer to the decision.',
     },
     // "Same Service, Five Messages" — the guide's strongest section,
     // reusing the Timeline primitive rather than a new one-off component.
@@ -1044,34 +1082,35 @@ const publishedGuides: FieldGuide[] = [
       visual: {
         type: 'timeline',
         steps: [
-          { label: 'Unaware', detail: '"Why does one side of your house stay warmer even when the AC keeps running?"' },
-          { label: 'Problem Aware', detail: '"If your system runs constantly but comfort keeps getting worse, the issue may be bigger than the thermostat."' },
-          { label: 'Solution Aware', detail: '"Repair or replace? Here\'s what should be evaluated before deciding."' },
-          { label: 'Company Aware', detail: '"See how our replacement process works — from system sizing through installation and final walkthrough."' },
-          { label: 'Most Aware', detail: '"Ready to replace your system? Check current consultation availability."' },
+          { label: 'Notices the Symptom', detail: '"Why does one side of your house stay warmer even when the AC keeps running?"' },
+          { label: 'Understands the Problem', detail: '"If your system runs constantly but comfort keeps getting worse, the issue may be bigger than the thermostat."' },
+          { label: 'Explores Options', detail: '"Repair or replace? Here\'s what should be evaluated before deciding."' },
+          { label: 'Compares Providers', detail: '"See how our replacement process works — from system sizing through installation and final walkthrough."' },
+          { label: 'Ready to Move', detail: '"Ready to replace your system? Check current consultation availability."' },
         ],
       },
     },
     // Retargeting connection, using the reusable label/value `example`
-    // slot rather than a new component.
+    // slot rather than a new component. Framed as engagement stages, not
+    // as movement through an awareness taxonomy.
     example: {
-      label: 'Why Retargeting Should Change the Message',
+      label: 'What Retargeting Should Say Next',
       rows: [
-        { label: 'Cold prospect', value: 'Problem education' },
+        { label: 'First interaction', value: 'Problem education' },
         { label: 'Engaged visitor', value: 'Proof / mechanism' },
         { label: 'Returning prospect', value: 'Objection handling' },
-        { label: 'High-intent prospect', value: 'Offer / next step' },
+        { label: 'High intent', value: 'Offer / next step' },
       ],
     },
 
     actions: [
       {
         title: 'Label your current ads.',
-        detail: 'For each active creative, ask which awareness level it\'s actually written for. If every ad has the same answer, you may not be covering enough of the customer journey.',
+        detail: 'For each active creative, ask which readiness stage it\'s actually written for. If every ad has the same answer, you may not be covering enough of the customer journey.',
       },
       {
         title: 'Create one new message.',
-        detail: "Choose one different awareness stage. Don't simply reshoot the current ad — change the hook, message, proof, and objective to match what that prospect needs to understand.",
+        detail: "Choose one different readiness stage. Don't simply reshoot the current ad — change the hook, message, proof, and objective to match what that homeowner needs to hear next.",
       },
       {
         title: 'Change your retargeting message.',
@@ -1086,9 +1125,10 @@ const publishedGuides: FieldGuide[] = [
       'The 2-minute Local Dominance Score evaluates the offer, authority, demand, conversion, reputation, and revenue systems behind local growth.',
 
     // Guide #2 (focus the campaign first) and Guide #3 (the offer matters
-    // most at Most Aware) are both genuine, specific relationships called
-    // out in the brief. Guide #4 intentionally left out to avoid over-linking.
-    relatedGuideSlugs: ['one-market-one-service-one-offer', 'why-10-percent-off-isnt-an-offer'],
+    // most once the homeowner is Ready to Move) are both genuine, specific
+    // relationships called out in the brief. Guide #4 intentionally left
+    // out to avoid over-linking.
+    relatedGuideSlugs: ['focused-home-service-campaign', 'why-10-percent-off-isnt-an-offer'],
   },
   {
     slug: 'job-to-authority-flywheel',
@@ -1200,12 +1240,12 @@ const publishedGuides: FieldGuide[] = [
       'The 2-minute Local Dominance Score evaluates how authority, reputation, demand, conversion, and the rest of your local growth system work together.',
 
     // All three named in the brief carry a specific, individually reasoned
-    // connection (offer certainty, landing-page proof, Company-Aware
+    // connection (offer certainty, landing-page proof, Compares-Providers
     // messaging) rather than mechanical reciprocity — kept at the 3 max.
     relatedGuideSlugs: [
       'why-10-percent-off-isnt-an-offer',
       'stop-sending-paid-traffic-to-your-homepage',
-      'home-service-advertising-awareness-levels',
+      'home-service-buyer-readiness',
     ],
   },
   {
@@ -1353,7 +1393,7 @@ const publishedGuides: FieldGuide[] = [
     // capacity-warning theme above directly echoes its diagnosis, a
     // genuine link rather than a mechanical one.
     relatedGuideSlugs: [
-      'one-market-one-service-one-offer',
+      'focused-home-service-campaign',
       'job-to-authority-flywheel',
       'why-more-leads-wont-fix-growth',
     ],
@@ -1488,9 +1528,9 @@ const publishedGuides: FieldGuide[] = [
     // buying mode — see the section above), Guide #4 (destination
     // architecture varies by demand type), Guide #2 (campaign concentration).
     relatedGuideSlugs: [
-      'home-service-advertising-awareness-levels',
+      'home-service-buyer-readiness',
       'stop-sending-paid-traffic-to-your-homepage',
-      'one-market-one-service-one-offer',
+      'focused-home-service-campaign',
     ],
   },
   {
@@ -1627,7 +1667,7 @@ const publishedGuides: FieldGuide[] = [
     // Guide #1 and the other industry guides (#8, #9) deliberately
     // excluded — cross-linking industry guides merely because they share
     // Market Intelligence was explicitly discouraged in the brief.
-    relatedGuideSlugs: ['one-market-one-service-one-offer', 'lead-to-booked-job-system'],
+    relatedGuideSlugs: ['focused-home-service-campaign', 'lead-to-booked-job-system'],
   },
 ];
 

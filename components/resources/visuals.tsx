@@ -103,8 +103,18 @@ export function Framework({ terms, connector = '→' }: { terms: string[]; conne
   );
 }
 
-export function Scorecard({ items }: { items: { question: string; status: 'pass' | 'warn' | 'fail' }[] }) {
-  const statusText: Record<string, string> = { pass: 'On track', warn: 'Worth checking', fail: 'Likely a leak' };
+export function Scorecard({
+  items,
+  statusLabels,
+}: {
+  items: { question: string; status: 'pass' | 'warn' | 'fail' }[];
+  statusLabels?: { pass?: string; warn?: string; fail?: string };
+}) {
+  const statusText: Record<string, string> = {
+    pass: statusLabels?.pass ?? 'On track',
+    warn: statusLabels?.warn ?? 'Worth checking',
+    fail: statusLabels?.fail ?? 'Likely a leak',
+  };
   const statusColor: Record<string, string> = { pass: '#00a8a8', warn: '#C5C6C7', fail: '#888' };
   return (
     <div className="border border-white/10 rounded-[var(--radius-media)] divide-y divide-white/[0.08]">
@@ -280,7 +290,7 @@ export function FieldGuideVisualRenderer({ visual }: { visual: FieldGuideVisual 
     case 'framework':
       return <Framework terms={visual.terms} connector={visual.connector} />;
     case 'scorecard':
-      return <Scorecard items={visual.items} />;
+      return <Scorecard items={visual.items} statusLabels={visual.statusLabels} />;
     case 'decisionTree':
       return <DecisionTree question={visual.question} branches={visual.branches} />;
     case 'leakMap':

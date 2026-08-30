@@ -21,8 +21,13 @@ export const playbook = {
   navDescription:
     'The free 90-day playbook for capturing, qualifying, following up with, and converting more local leads.',
   navEyebrow: 'FREE 90-DAY PLAYBOOK',
-  pdfPath: '/resources/90-day-home-service-lead-to-booked-job-playbook.pdf',
-  pdfFilename: '90-day-home-service-lead-to-booked-job-playbook.pdf',
+  // Public Framework Originality Audit — renamed from the internal
+  // "90-day-home-service-lead-to-booked-job-playbook.pdf" to a clean,
+  // customer-facing filename once the revised PDF replaced the original
+  // (see /docs/public-framework-originality-audit.md). Old path 301s to
+  // this one via next.config.ts.
+  pdfPath: '/resources/The-Home-Service-Lead-Engine-90-Day-Playbook.pdf',
+  pdfFilename: 'The-Home-Service-Lead-Engine-90-Day-Playbook.pdf',
   coverImage: '/images/playbook/cover.jpg',
   pageCount: 61,
   microValueLine: '61 pages • Scripts • Workflows • Visual Systems • Scorecards • 90-Day Implementation Plan',

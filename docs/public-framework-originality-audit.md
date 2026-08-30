@@ -1,0 +1,96 @@
+# Public Framework Originality Audit
+
+Scope: narrow IP/originality cleanup only. No redesign, no new Field Guides, no offer/pricing change, no unrelated SEO change. Branch: `fix/framework-originality-audit`.
+
+Standard applied throughout:
+
+`Source knowledge → Lusso analysis → home-service application → independent framework → original visual/explanation`
+
+## Summary
+
+| Public Asset | Framework / Concept | Closest Source Risk | Classification | Action |
+| ------------ | -------------------- | -------------------- | --------------- | ------ |
+| Field Guide #3 — `why-10-percent-off-isnt-an-offer` | "Outcome ↑ + Certainty ↑ + Time/Friction ↓ + Effort/Risk ↓ + Reason to Act" equation | Hormozi's Value Equation (`$100M Offers`) | **CHANGE** | Replaced with an independent six-driver diagnostic ("What Makes an Offer Easier to Say Yes To?"), rendered as six numbered blocks — no addition, no ↑/↓ notation, no equation layout. URL/title/premise/examples/CTA unchanged. |
+| Field Guide #3 — "Quick Offer Check" scorecard | 0–5 scoring tied to the four-driver formula | Same source risk, carried into the self-check tool | **CHANGE** | Renamed "Offer Decision Check," rebuilt around the six drivers, STRONG/NEEDS WORK labeling, explicitly stated as a planning diagnostic, not a validated model. |
+| Field Guide #6 — `home-service-advertising-awareness-levels` | "Unaware → Problem Aware → Solution Aware → Product Aware → Most Aware" presented together as a five-stage taxonomy | Schwartz's Awareness Levels (`Breakthrough Advertising`) | **CHANGE** | Full rebuild as "Match the Message to Buyer Readiness": an independent buyer-readiness progression (Notices the Symptom → Understands the Problem → Explores Options → Compares Providers → Ready to Move) plus a message-job ladder (Recognize → Clarify → Evaluate → Trust → Act). Re-slugged to `/resources/home-service-buyer-readiness` with a 301. |
+| Field Guide #2 — `one-market-one-service-one-offer` | "One Market × One Service × One Problem × One Offer × One CTA" naming/visual | Overlaps common Hormozi one-offer/one-market language (not a direct copy, but close enough to want distance) | **CHANGE** | Retitled "How to Build a Focused Home Service Campaign," framework renamed "The Focused Campaign Chain" (Target Customer → Priority Service → Buying Problem → Offer → Next Step), rendered as an arrow/continuity chain, not a multiplication formula. Re-slugged to `/resources/focused-home-service-campaign` with a 301 (see URL Redirects/decision note below). Underlying campaign-concentration principle, problem statement, examples, actions, and CTA preserved. |
+| Downloadable 90-Day Playbook PDF, offer section (originally p.46 "Offer Architecture," now p.47 after the rebuild) | Four-quadrant grid (bigger desired outcome / more confidence / less time / less effort-risk) + "Desired outcome + specific deliverable + risk reduction + honest reason to act now" formula | Hormozi's Value Equation, reproduced near-verbatim | **RESOLVED** | Human-supplied revised PDF received and installed — see **Playbook Changes** below. The page is now "Offer Architecture / Build an Offer Around the Buying Decision – Not Just the Discount," presenting the six-driver Lusso model (Customer Priority, Service Fit, Proof & Confidence, Ease to Start, Risk & Uncertainty, Reason to Act) as six numbered cards plus a "Pressure-Test the Offer" checklist. No equation, quadrant, numerator/denominator, or formula remains — confirmed by both text extraction and visual page render. |
+| Downloadable 90-Day Playbook PDF, credits page (originally p.60, now p.60 "Framework references") | "Alex Hormozi's $100M Offers for offer-value concepts and $100M Leads for lead-magnet and acquisition principles" | Attribution used to justify a source-identical framework | **RESOLVED (partial, by design)** | The "$100M Offers ... offer-value concepts" clause is gone, consistent with the rebuilt offer section. The unrelated "$100M Leads for lead-magnet and acquisition principles" citation remains on the same page — left in place per instruction not to auto-delete a source reference unrelated to the change being made; reported for human review (see Remaining Review Items). |
+| System page — Offer Engineering component | Related-guide title/link | Followed Guide #2's old title | **CHANGE** | Updated to "How to Build a Focused Home Service Campaign" / new URL. |
+| System page — Demand Engine component | Related-guide title/link | Followed Guide #6's old title | **CHANGE** | Updated to "Match the Message to Buyer Readiness" / new URL. |
+| Field Guide #1 — `why-more-leads-wont-fix-growth` | Constraint/lead diagnostic | General systems-thinking (theory of constraints is a broad business concept) | SAFE — general principle | No change. |
+| Field Guide #4 — `stop-sending-paid-traffic-to-your-homepage` | Campaign-to-landing-page message continuity | General conversion-rate-optimization principle | SAFE — general principle | No change. |
+| Field Guide #5 — `lead-to-booked-job-system` | Lead-to-booked-job operating measurement | General operations/KPI measurement | SAFE — general principle | No change. |
+| Field Guide #7 — `job-to-authority-flywheel` | Job-to-Authority Flywheel; "one job → six destinations" `+`-joined distribution list | General content-repurposing principle; the `+` here is a fan-out list, not an equation | SAFE — general principle | No change. Reviewed specifically because it uses the `framework` visual with a `+` connector — confirmed it lists six independent distribution channels, not a value formula. |
+| Field Guide #8 — `landscaping-what-to-advertise` | Ticket / Margin / Demand / Capacity / Differentiation / Proof | General service-economics evaluation criteria | SAFE — general principle, explicitly retained per brief | No change. |
+| Field Guide #9 — `plumbing-types-of-demand` | Urgent / Planned / Improvement buying-mode framework; `+`-joined `seeIt` list | General buying-urgency segmentation | SAFE — general principle, explicitly retained per brief | No change. Reviewed the `+` connector here too — three buying modes, not an equation. |
+| Field Guide #10 — `hvac-demand-calendar` | Pre-Peak / Peak / Shoulder; Demand/Capacity matrix; Create/Capture/Prioritize | General seasonal-demand planning | SAFE — general principle, explicitly retained per brief | No change. |
+| Deep Guides (`lib/config/guides.ts`, 10 articles) | Various home-service SEO/AEO long-form content | Scanned for all source-risk terms (Value Equation, Core Four, Awareness Levels, Hormozi, Schwartz, etc.) | SAFE — no matches found | No change. |
+| Local Dominance System (`systemComponents.ts`) — 7-component architecture | Market Intelligence / Offer Engineering / Conversion Infrastructure / Authority Engine / Demand Engine / Reputation Engine / Revenue Intelligence | Lusso's own named system | SAFE — explicitly retained per brief | No change beyond the two related-guide link updates above. |
+| Local Dominance Score (`score.ts`, `scoreRecommendations.ts`) | Diagnostic scoring across growth-system components | General assessment/diagnostic format | SAFE — general principle | No change. |
+| Results / case studies (`caseStudies.ts`, `/results`) | Verified client metrics and narratives | N/A | SAFE | No change. |
+| Playbook landing page (`/lead-to-booked-job-playbook`, `components/playbook/*`, `lib/config/playbook.ts`) | Five Systems, Value Stack, Before/After | General lead-operations framing, all Lusso-specific naming | SAFE — web copy contains no source-identical language | No change. (The PDF itself is the flagged item, not this landing page.) |
+| Homepage (Hero, FieldGuidesHomeBlock, SystemDeepDive, HomepagePlaybookSection) | General offer/growth copy | "dream outcome" appears only in a code comment (not rendered) | SAFE | No change. |
+| About / Founder section, application & qualification copy, navigation/footer, metadata/OG defaults, bonuses (`bonuses.ts`), guarantees (`guarantees.ts`) | General trust, proof, bonus, and guarantee concepts | General business/marketing concepts | SAFE — explicitly not to be rewritten per brief | No change. |
+
+## Changes Made
+
+1. **Field Guide #3** (`why-10-percent-off-isnt-an-offer`) — Replaced the four-variable, ↑/↓, `+`-joined "Value Equation" cosmetic relabel with an independent six-driver diagnostic: Customer Priority, Service Fit, Proof & Confidence, Ease to Start, Risk & Uncertainty, Reason to Act. New section heading "What Makes an Offer Easier to Say Yes To?" Visual changed from an equation-style `framework` block to six numbered diagnostic blocks (the `timeline` primitive, reused rather than adding a new component). The self-check tool was renamed "Offer Decision Check" and rebuilt around the same six drivers with STRONG/NEEDS WORK language and an explicit "planning diagnostic, not a validated model" disclaimer. Title, URL, premise, problem statement, before/after visual, examples, actions, and CTA are all unchanged.
+2. **Field Guide #6** — Rebuilt from "The 5 Awareness Levels in Home Service Advertising" into "Match the Message to Buyer Readiness." Replaced the Schwartz taxonomy (Unaware / Problem Aware / Solution Aware / Product Aware / Most Aware) with an independent buyer-readiness progression (Notices the Symptom / Understands the Problem / Explores Options / Compares Providers / Ready to Move) and a message-job ladder (Recognize → Clarify → Evaluate → Trust → Act). Re-slugged `home-service-advertising-awareness-levels` → `home-service-buyer-readiness` with a permanent redirect. The "same service, five messages" example and the retargeting section were preserved as concepts and rewritten in the new language.
+3. **Field Guide #2** — Retitled "The One Market, One Service, One Offer Framework" to "How to Build a Focused Home Service Campaign." Framework renamed "The Focused Campaign Chain" (Target Customer → Priority Service → Buying Problem → Offer → Next Step), rendered as an arrow/continuity chain (no `×`, no equation styling). Re-slugged `one-market-one-service-one-offer` → `focused-home-service-campaign` with a permanent redirect. Underlying concentration principle, problem statement, before/after visual, actions, and CTA preserved.
+4. **`lib/config/systemComponents.ts`** — Updated the Offer Engineering and Demand Engine related-guide entries (title + href) to match the two renamed/re-slugged guides.
+5. **`next.config.ts`** — Added two permanent (308) redirects, old slug → new slug, for Guides #2 and #6.
+6. **`lib/config/fieldGuides.ts` (schema)** — Added two small, generic, backward-compatible fields to support the above without a new one-off component: `FieldGuide.frameworkSectionTitle?` (overrides the default "The Framework" heading) and `ScorecardVisual.statusLabels?` (overrides the default pass/warn/fail wording, since the existing default text — "On track / Worth checking / Likely a leak" — assumes a funnel-leak diagnostic that doesn't fit an offer decision check). Both default to prior behavior; every other guide is unaffected.
+7. **`docs/field-guide-editorial-standard.md`** — Added a permanent "Source Synthesis Rule" (10-point standard) and a corresponding QA checklist line, so this discipline applies to every future guide, not just this cleanup.
+8. **90-Day Playbook PDF** — Replaced with the human-supplied revised PDF and renamed to a clean, customer-facing filename: `public/resources/90-day-home-service-lead-to-booked-job-playbook.pdf` → `public/resources/The-Home-Service-Lead-Engine-90-Day-Playbook.pdf`. Updated the two files that reference it (`lib/config/playbook.ts`'s `pdfPath`/`pdfFilename`, `lib/emailTemplates/playbookDelivery.ts`'s `PDF_URL`) — every consumer (thank-you page download link/filename, delivery email HTML+text links) reads from these, so no other file needed changes. Added a permanent redirect from the old PDF path to the new one in `next.config.ts`.
+
+## Items Reviewed and Kept
+
+Everything in the "SAFE" rows above. In every case the concept is a broad marketing/business/psychology principle (proof, urgency, risk reduction, offers, qualification, buying-mode segmentation, seasonal demand, service economics, systems architecture) expressed in Lusso's own terminology, structure, and home-service examples — not a source's distinctive name, taxonomy, or diagram. Per the brief, these were **not** touched even though they use general concepts also discussed in marketing books:
+
+- Local Dominance System's seven-component architecture
+- Guide #1's constraint/lead diagnostic
+- Guide #4's campaign-page message continuity
+- Guide #5's Lead-to-Booked-Job operating measurement
+- Guide #7's Job-to-Authority Flywheel
+- Landscaping guide's Ticket/Margin/Demand/Capacity/Differentiation/Proof framework
+- Plumbing guide's Urgent/Planned/Improvement buying-mode framework
+- HVAC guide's Pre-Peak/Peak/Shoulder, Demand/Capacity matrix, and Create/Capture/Prioritize
+- All 10 Deep Guides (scanned, no source-identical language found)
+- Guarantees, bonuses, reviews, proof, risk reduction, CTAs, qualification, funnels, and follow-up as general concepts throughout the site
+
+## URL Redirects
+
+| Old URL | New URL | Type | Status |
+| ------- | ------- | ---- | ------ |
+| `/resources/one-market-one-service-one-offer` | `/resources/focused-home-service-campaign` | 308 permanent (`next.config.ts` → `redirects()`) | Verified locally: single-hop redirect, no chain, sitemap contains only the new URL, canonical/OG/schema/System-page/hub/homepage links all updated. |
+| `/resources/home-service-advertising-awareness-levels` | `/resources/home-service-buyer-readiness` | 308 permanent (`next.config.ts` → `redirects()`) | Verified locally: single-hop redirect, no chain, sitemap contains only the new URL, canonical/OG/schema/System-page/hub/homepage links all updated. |
+
+**Decision note on Guide #2's URL change:** the brief allowed keeping the existing URL if changing it "introduces materially unnecessary risk." It doesn't here: the guide only launched 2026-08-29 (same day as this audit), Search Console was only just connected, there is exactly one clean redirect hop to manage, and every internal reference (System page, hub, homepage, `relatedGuideSlugs` across five other guides, Article schema, sitemap) is generated from the single `slug` field in `lib/config/fieldGuides.ts` rather than hand-typed elsewhere — so the rename was mechanical and low-risk to verify. Proceeded with the change rather than keeping the old URL.
+
+## Playbook Changes
+
+**Website-facing playbook copy** (`/lead-to-booked-job-playbook`, `components/playbook/*.tsx`, `lib/config/playbook.ts`, `lib/emailTemplates/playbookDelivery.ts`) was scanned for the same risk terms — **no source-derived language found**. No copy changes made there.
+
+**The PDF itself was replaced.** The original blocker — no editable design source existed in this repository, so the Value-Equation-derived offer page could not be safely regenerated here — was resolved by the human-supplied revised PDF. Confirmed by extracting and visually rendering the new file:
+
+- **Offer section (originally page 46, now page 47 after the rewrite — total page count unchanged at 61)**: "Offer Architecture / Build an Offer Around the Buying Decision – Not Just the Discount." Presents "THE 6 OFFER DECISION DRIVERS" as six numbered cards (Customer Priority, Service Fit, Proof & Confidence, Ease to Start, Risk & Uncertainty, Reason to Act), followed by a "PRESSURE-TEST THE OFFER" checklist (checkbox-style, six questions) and the original "GUARDRAIL — use real scarcity and real urgency only" note. No equation, quadrant, numerator/denominator, or mathematical relationship between drivers remains — confirmed both by text extraction (`pdftotext`) and a rendered page image.
+- **Credits page (page 60, "Framework references used in shaping this edition")**: the "$100M Offers for offer-value concepts" clause is gone. The unrelated "Alex Hormozi's $100M Leads for lead-magnet and acquisition principles" citation remains — left in place per instruction not to auto-delete a source reference unrelated to the change being made (see Remaining Review Items).
+- **TOC bullet updated to match**: "Offer decision drivers and architecture" (previously "Offer value equation and architecture").
+
+**File replacement:**
+
+- `public/resources/90-day-home-service-lead-to-booked-job-playbook.pdf` → `public/resources/The-Home-Service-Lead-Engine-90-Day-Playbook.pdf` (git-tracked as a rename; old file no longer present anywhere in the repo).
+- Updated the two files that reference the PDF path: `lib/config/playbook.ts` (`pdfPath`, `pdfFilename`) and `lib/emailTemplates/playbookDelivery.ts` (`PDF_URL`). Every consumer — the thank-you page's download link/filename and both the HTML and plain-text delivery-email links — reads from these two files, so no other file needed a change.
+- Added a permanent redirect, old PDF path → new PDF path, in `next.config.ts`. Verified locally: 308, single hop, no chain, `Content-Type: application/pdf`, byte size matches the source file exactly (2,904,516 bytes).
+- Confirmed no other copy of the PDF (old or new, under any filename) exists anywhere else in the repository.
+
+**Quality/metadata checks performed on the new PDF:** 61 pages (unchanged), all fonts embedded (Inter family, no corrupted/missing fonts), TOC page ranges still accurate for every section, no clipped or overlapping content observed on the rendered offer or credits pages, `previewPages`/`pageCount` references in `lib/config/playbook.ts` (pages 4, 8, 12, 19, 22, 53) are unaffected by the pagination shift. Neither the old nor the new PDF contains embedded clickable link annotations (`/URI` count is 0 in both), so "existing hyperlinks remain clickable" is unaffected — there were none to begin with. PDF metadata (Title/Author/Creator/Producer) is empty in the new file rather than containing an internal filename, so no metadata edit was made (editing it would mean rewriting/recompressing the binary for no correctness gain).
+
+## Remaining Review Items
+
+- **Page 60's `$100M Leads` acquisition-principles citation** — intentionally left in place. It's an unrelated citation (lead-magnet/acquisition principles, not the offer-value concepts that were rebuilt) and the brief specifically instructed not to auto-delete a source reference found elsewhere — reported here for human review instead. If the business wants it removed or re-evaluated, that's a separate, deliberate decision, not a byproduct of this cleanup.
+
+## Originality Standard Going Forward
+
+Codified as the **Source Synthesis Rule** in `docs/field-guide-editorial-standard.md` (10-point checklist + QA line), summarized: extract the principle, don't copy the source's name/taxonomy/diagram, translate it into the home-service operating problem, combine it with Lusso's own experience, create independent terminology and visuals, use Lusso/client examples, don't claim to have invented universal principles, and flag rather than publish (or attribute-and-ship) anything that can't be meaningfully re-expressed. This applies to every Field Guide, Deep Guide, and downloadable resource published after this audit.

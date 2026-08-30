@@ -13,7 +13,7 @@
 // re-coloring doesn't fight the already-dark design.
 
 const SITE_URL = 'https://illussomedia.com';
-const PDF_URL = `${SITE_URL}/resources/90-day-home-service-lead-to-booked-job-playbook.pdf`;
+const PDF_URL = `${SITE_URL}/resources/The-Home-Service-Lead-Engine-90-Day-Playbook.pdf`;
 const SCORE_URL = `${SITE_URL}/local-dominance-score`;
 const COVER_URL = `${SITE_URL}/images/playbook/cover.jpg`;
 const COVER_ALT = '90-Day Home Service Lead-to-Booked-Job Playbook';
