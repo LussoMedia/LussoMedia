@@ -67,8 +67,8 @@ export const systemComponents: SystemComponent[] = [
     // component; two genuinely related guides doesn't clutter the section.
     relatedGuides: [
       {
-        title: 'The One Market, One Service, One Offer Framework',
-        href: '/resources/one-market-one-service-one-offer',
+        title: 'How to Build a Focused Home Service Campaign',
+        href: '/resources/focused-home-service-campaign',
         description: 'Concentrated messaging beats diluted advertising.',
       },
       {
@@ -159,8 +159,8 @@ export const systemComponents: SystemComponent[] = [
     },
     // Field Guide #6 (Phase 4F) — directly relevant to this component only.
     relatedGuide: {
-      title: 'The 5 Awareness Levels in Home Service Advertising',
-      href: '/resources/home-service-advertising-awareness-levels',
+      title: 'Match the Message to Buyer Readiness',
+      href: '/resources/home-service-buyer-readiness',
       description: 'The same ad should not be expected to persuade every prospect.',
     },
   },

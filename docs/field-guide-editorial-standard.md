@@ -92,3 +92,23 @@ Before a guide ships (flip `draft: false`):
 - [ ] Read time is realistically 2–5 minutes (`getReadTime()` or a manual `readTimeMinutes` reflects this)
 - [ ] `relatedGuideSlugs` (if any) resolve to real, published guides
 - [ ] Validated via `lib/config/fieldGuides.ts`'s build-time checks (`npx tsc --noEmit` / `next build` must pass)
+- [ ] Passes the Source Synthesis Rule below
+
+## Source Synthesis Rule
+
+Added by the Public Framework Originality Audit (`/docs/public-framework-originality-audit.md`) — permanent, applies to every guide going forward.
+
+Lusso is allowed to apply general marketing, sales, advertising, psychology, and business principles. It should never present a framework learned from a book, course, video, or other practitioner through a substantially identical name, taxonomy, diagram, equation, step sequence, or distinctive wording. A matching individual word is not automatically a problem — context decides. Five labels presented together as someone else's named model is a different thing than one of those words appearing in an ordinary sentence.
+
+When an idea originates from books, courses, videos, research, or other practitioners:
+
+1. Extract the underlying principle.
+2. Do not copy the source's distinctive framework name.
+3. Do not recreate its exact diagram/taxonomy.
+4. Translate the principle into the home-service operating problem.
+5. Combine it with Lusso's own experience and other relevant principles.
+6. Create independent terminology.
+7. Create an original visual structure.
+8. Use Lusso/client examples rather than source examples.
+9. Do not claim Lusso invented universal principles (proof, urgency, risk reduction, offers, qualification, follow-up, and similar broad concepts belong to no one).
+10. If the only useful presentation is substantially the source's named framework, flag it for human review rather than publishing it as Lusso IP. Do not add attribution as a substitute for independent synthesis — a source-identical framework plus a citation is still a source-identical framework. The standard is independent expression, not "framework + footnote."

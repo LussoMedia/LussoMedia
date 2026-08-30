@@ -142,7 +142,7 @@ export default function FieldGuideTemplate({ guide }: { guide: FieldGuide }) {
       {/* 04 — The Framework */}
       <section className="section-pad bg-[#111111] border-y border-white/5">
         <div className={`${VISUAL_WIDTH} mx-auto px-6`}>
-          <h2 className="text-subsection-heading text-white mb-3">The Framework</h2>
+          <h2 className="text-subsection-heading text-white mb-3">{guide.frameworkSectionTitle ?? 'The Framework'}</h2>
           <p className="text-[#C5C6C7] text-body-lg mb-8 max-w-[700px]">{guide.frameworkIntro}</p>
           <FieldGuideVisualRenderer visual={guide.framework} />
 
