@@ -40,8 +40,7 @@ export default function IndustriesStrip() {
         </m.div>
 
         <p className="text-[#666] text-xs mt-8 max-w-lg mx-auto">
-          Also open to adjacent, high-value home-service businesses with profitable,
-          project-based, or recurring revenue.
+          We also work with select adjacent home-service businesses when the model and market are a fit.
         </p>
       </div>
     </section>
