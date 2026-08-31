@@ -2,7 +2,7 @@
 
 import { m } from 'framer-motion';
 import Link from 'next/link';
-import { industries, industryQualifierLabel } from '@/lib/config/industries';
+import { industries } from '@/lib/config/industries';
 import { primaryCTA, secondaryCTA, scoreCTA } from '@/lib/config/navigation';
 import { trackEvent } from '@/lib/analytics';
 
@@ -111,7 +111,7 @@ export default function Hero() {
           {...fadeUp(0.4)}
           className="mt-6 text-sm text-[#888] tracking-wide"
         >
-          {industries.map((i) => i.name).join(' • ')} • {industryQualifierLabel}
+          {industries.map((i) => i.name).join(' • ')}
         </m.p>
         <m.p {...fadeUp(0.45)} className="mt-3 text-sm">
           <a

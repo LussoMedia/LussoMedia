@@ -17,5 +17,3 @@ export const industries: Industry[] = [
   { slug: 'remodeling', name: 'Remodeling' },
   { slug: 'general-contractors', name: 'General Contracting' },
 ];
-
-export const industryQualifierLabel = 'High-Value Home Services';
